@@ -14,6 +14,8 @@ import FoodPlans from './pages/FoodPlans';
 import ExercisePlans from './pages/ExercisePlans';
 import FoodPlanCreation from './pages/FoodPlanCreation';
 import ExercisepPlanCreation from './pages/ExercisePlanCreation';
+import EvaluationHistory from './pages/EvaluationHistory';
+import NewEvaluation from './pages/NewEvaluation';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -80,6 +82,24 @@ function App() {
             <>
               <PageTitle title="Food Plans" />
               <FoodPlans />
+            </>
+          }
+        />
+        <Route
+          path="/newevaluation"
+          element={
+            <>
+              <PageTitle title="New Evaluation" />
+              <NewEvaluation />
+            </>
+          }
+        />
+        <Route
+          path="/evaluationhistory"
+          element={
+            <>
+              <PageTitle title="Evaluation History" />
+              <EvaluationHistory />
             </>
           }
         />
