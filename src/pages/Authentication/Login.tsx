@@ -105,7 +105,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
         </Formik>
         <p className="text-center text-gray-600 mt-6">
           Don't have an account?{' '}
-          <a href="/register" className="text-indigo-600 hover:underline font-medium">Sign Up</a>
+          <a href="/registration" className="text-indigo-600 hover:underline font-medium">Sign Up</a>
         </p>
       </div>
     </div>
