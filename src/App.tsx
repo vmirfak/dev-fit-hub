@@ -41,7 +41,7 @@ function App() {
           }
         />
         <Route
-          path="/register"
+          path="/registration"
           element={
             <>
               <PageTitle title="Register" />
