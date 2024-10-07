@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage';
 import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownUser';
-import LogoIcon from '../../images/logo/logo-icon.svg';
+import LogoIcon from '../../images/logo/fithub_promo.png';
 import DarkModeSwitcher from './DarkModeSwitcher';
 
 const Header = (props: {
@@ -59,8 +59,13 @@ const Header = (props: {
 
         {/* Moved the logo to the center */}
         <div className="flex justify-center items-center">
-          <Link className="block flex-shrink-0 lg:hidden" to="/">
-            <img src={LogoIcon} alt="Logo" />
+          <Link className="block flex-shrink-0 lg:hidden" to="/dashboard">
+            {/* Set max-width and height to control the logo size */}
+            <img
+              src={LogoIcon}
+              alt="Logo"
+              className="w-24 h-auto max-h-12"
+            />
           </Link>
         </div>
 
