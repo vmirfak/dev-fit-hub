@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Registration: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleRegister = async () => {
     // Clear previous messages
-    setError('');
-    setSuccessMessage('');
+    setError("");
+    setSuccessMessage("");
 
     // Input validations
     if (!username || !email || !password || !confirmPassword) {
-      setError('All fields are required!');
+      setError("All fields are required!");
       return;
     }
 
     if (!emailRegex.test(email)) {
-      setError('Please enter a valid email address.');
+      setError("Please enter a valid email address.");
       return;
     }
 
@@ -39,10 +40,10 @@ const Registration: React.FC = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/register', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
       });
@@ -51,29 +52,37 @@ const Registration: React.FC = () => {
 
       if (response.ok) {
         // Registration successful
-        setSuccessMessage('Registration successful! You can now log in.');
+        setSuccessMessage("Registration successful! You can now log in.");
       } else {
         // Handle server errors
-        setError(result.message || 'Registration failed. Please try again.');
+        setError(result.message || "Registration failed. Please try again.");
       }
     } catch (error) {
-      setError('An error occurred while registering. Please try again later.');
-      console.error('Registration error:', error);
+      setError("An error occurred while registering. Please try again later.");
+      console.error("Registration error:", error);
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-500 to-green-600 p-6">
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
-        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">Create an Account</h2>
+        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
+          Create an Account
+        </h2>
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative mb-4" role="alert">
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative mb-4"
+              role="alert"
+            >
               <span className="block sm:inline">{error}</span>
             </div>
           )}
           {successMessage && (
-            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl relative mb-4" role="alert">
+            <div
+              className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl relative mb-4"
+              role="alert"
+            >
               <span className="block sm:inline">{successMessage}</span>
               <br />
               <a
@@ -85,7 +94,9 @@ const Registration: React.FC = () => {
             </div>
           )}
           <div>
-            <label className="block text-lg font-medium text-gray-700 mb-1">Username</label>
+            <label className="block text-lg font-medium text-gray-700 mb-1">
+              Username
+            </label>
             <input
               type="text"
               value={username}
@@ -95,7 +106,9 @@ const Registration: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-lg font-medium text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               value={email}
@@ -105,7 +118,9 @@ const Registration: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-lg font-medium text-gray-700 mb-1">
+              Password
+            </label>
             <input
               type="password"
               value={password}
@@ -115,7 +130,9 @@ const Registration: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-medium text-gray-700 mb-1">Confirm Password</label>
+            <label className="block text-lg font-medium text-gray-700 mb-1">
+              Confirm Password
+            </label>
             <input
               type="password"
               value={confirmPassword}
@@ -132,9 +149,15 @@ const Registration: React.FC = () => {
             Register
           </button>
         </form>
+
         <p className="text-center text-gray-600 mt-6">
-          Already have an account?{' '}
-          <a href="/" className="text-teal-600 hover:underline font-medium">Sign In</a>
+          Already have an account?{" "}
+          <NavLink
+            to="/"
+            className="text-indigo-600 hover:underline font-medium"
+          >
+            Sign Up
+          </NavLink>
         </p>
       </div>
     </div>
