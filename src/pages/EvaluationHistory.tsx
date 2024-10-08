@@ -29,8 +29,10 @@ const EvaluationHistory: React.FC = () => {
     );
   };
 
+  const [isOpen] = useState(false);
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="Evaluation History" />
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="p-6">

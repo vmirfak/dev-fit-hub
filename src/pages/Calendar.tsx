@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import DefaultLayout from '../layout/DefaultLoayout';
 
 const Calendar = () => {
+  const [isOpen] = useState(false);
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="Calendar" />
 
       {/* <!-- ====== Calendar Section Start ====== --> */}

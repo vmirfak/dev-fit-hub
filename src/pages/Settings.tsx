@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 import userThree from '../images/user/user-03.png';
 import DefaultLayout from '../layout/DefaultLoayout';
 const Settings = () => {
+  const [isOpen] = useState(false);
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout isModalOpen={isOpen}>
       <div className="mx-auto max-w-270">
         <Breadcrumb pageName="Settings" />
 

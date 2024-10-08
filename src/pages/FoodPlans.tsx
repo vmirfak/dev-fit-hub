@@ -347,8 +347,10 @@ const FoodPlans = () => {
     setExpandedRecipe(expandedRecipe === recipeIndex ? null : recipeIndex);
   };
 
+  const [isOpen] = useState(false);
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="My Diet Plans" />
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         {meals.map((meal, mealIndex) => (

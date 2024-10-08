@@ -279,8 +279,9 @@ const ExercisePlans: React.FC = () => {
     setExpandedExercise(expandedExercise === index ? null : index);
   };
 
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="My Exercise Plans" />
 
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
@@ -366,7 +367,7 @@ const ExercisePlans: React.FC = () => {
                                   {exercise.instructions}
                                 </p>
                                 <button
-                                  className="mt-2 text-blue-500"
+                                  className="mt-2 text-blue-600"
                                   onClick={() => {
                                     setIsModalOpen(true);
                                     setVideoUrl(exercise.videoLink);

@@ -97,8 +97,10 @@ const NewEvaluation: React.FC = () => {
     setRemarks("");
   };
 
+  const [isOpen] = useState(false);
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="New Physical Evaluation" />
       <div className="w-full grid grid-cols-1 gap-9 sm:grid-cols-1">
         <div className="flex flex-col gap-9">

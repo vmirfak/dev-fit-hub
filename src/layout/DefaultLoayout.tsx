@@ -2,13 +2,18 @@ import React, { useState, ReactNode } from 'react';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
 
-const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
+interface DefaultLayoutProps {
+  children: ReactNode;
+  isModalOpen: boolean;
+}
+
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, isModalOpen}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
       {/* <!-- ===== Page Wrapper Start ===== --> */}
-      <div className="flex h-screen overflow-hidden">
+      <div className={`flex h-screen overflow-hidden ${isModalOpen ? 'blur-sm' : ''}`}>
         {/* <!-- ===== Sidebar Start ===== --> */}
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         {/* <!-- ===== Sidebar End ===== --> */}
