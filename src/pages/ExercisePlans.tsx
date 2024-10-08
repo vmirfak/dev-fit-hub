@@ -98,7 +98,7 @@ const ExercisePlans: React.FC = () => {
 
             {/* Expandable Plan Details */}
             {expandedPlan === planIndex && (
-              <div className="p-4 border-t border-gray-200 dark:border-gray-600">
+              <div className="p-4 border-gray-200 dark:border-gray-600">
                 <h4 className="text-lg font-medium mb-2">Exercises</h4>
 
                 {/* Exercise List */}

@@ -44,7 +44,7 @@ function App() {
           path="/registration"
           element={
             <>
-              <PageTitle title="Register" />
+              <PageTitle title="Registration" />
               <Registration />
             </>
           }
