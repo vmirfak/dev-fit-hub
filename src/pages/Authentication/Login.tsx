@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { NavLink } from "react-router-dom";
 
 interface LoginProps {
   setLoading: (loading: boolean) => void;
@@ -12,10 +13,10 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required('Username is required'),
-    password: Yup.string().required('Password is required'),
+    username: Yup.string().required("Username is required"),
+    password: Yup.string().required("Password is required"),
   });
-/*
+  /*
   const handleLogin = async (values: { username: string; password: string }) => {
     setLoading(true);
     const { username, password } = values;
@@ -41,15 +42,18 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
       setLoading(false);
     }
   };*/
-  const handleLogin = async (values: { username: string; password: string }) => {
+  const handleLogin = async (values: {
+    username: string;
+    password: string;
+  }) => {
     setLoading(true);
     const { username, password } = values;
 
     // Hardcoded dummy credentials check
-    if (username === '111' && password === '111') {
-      navigate('/dashboard');
+    if (username === "111" && password === "111") {
+      navigate("/dashboard");
     } else {
-      setLoginError('Invalid username or password');
+      setLoginError("Invalid username or password");
     }
     setLoading(false);
   };
@@ -57,41 +61,64 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-600 p-6">
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
-        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">Welcome Back</h2>
+        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
+          Welcome Back
+        </h2>
         <Formik
-          initialValues={{ username: '', password: '' }}
+          initialValues={{ username: "", password: "" }}
           validationSchema={validationSchema}
           onSubmit={handleLogin}
         >
           {({ isSubmitting }) => (
             <Form className="space-y-6">
               <div>
-                <label className="block text-lg font-medium text-gray-700 mb-1">Username</label>
+                <label className="block text-lg font-medium text-gray-700 mb-1">
+                  Username
+                </label>
                 <Field
                   type="text"
                   name="username"
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
                   placeholder="Enter your username"
                 />
-                <ErrorMessage name="username" component="div" className="text-red-600 text-sm mt-1" />
+                <ErrorMessage
+                  name="username"
+                  component="div"
+                  className="text-red-600 text-sm mt-1"
+                />
               </div>
               <div>
-                <label className="block text-lg font-medium text-gray-700 mb-1">Password</label>
+                <label className="block text-lg font-medium text-gray-700 mb-1">
+                  Password
+                </label>
                 <Field
                   type="password"
                   name="password"
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
                   placeholder="Enter your password"
                 />
-                <ErrorMessage name="password" component="div" className="text-red-600 text-sm mt-1" />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="text-red-600 text-sm mt-1"
+                />
               </div>
-              {loginError && <div className="text-red-600 text-sm">{loginError}</div>}
+              {loginError && (
+                <div className="text-red-600 text-sm">{loginError}</div>
+              )}
               <div className="flex items-center justify-between mt-4">
                 <label className="flex items-center">
-                  <Field type="checkbox" className="form-checkbox text-indigo-600" />
-                  <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                  <Field
+                    type="checkbox"
+                    className="form-checkbox text-indigo-600"
+                  />
+                  <span className="ml-2 text-sm text-gray-600">
+                    Remember me
+                  </span>
                 </label>
-                <a href="#" className="text-sm text-indigo-600 hover:underline">Forgot Password?</a>
+                <a href="#" className="text-sm text-indigo-600 hover:underline">
+                  Forgot Password?
+                </a>
               </div>
               <button
                 type="submit"
@@ -104,8 +131,13 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
           )}
         </Formik>
         <p className="text-center text-gray-600 mt-6">
-          Don't have an account?{' '}
-          <a href="/registration" className="text-indigo-600 hover:underline font-medium">Sign Up</a>
+          Don't have an account?{" "}
+          <NavLink
+            to="/registration"
+            className="text-indigo-600 hover:underline font-medium"
+          >
+            Sign Up
+          </NavLink>
         </p>
       </div>
     </div>

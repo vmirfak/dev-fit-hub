@@ -113,7 +113,7 @@ function App() {
           }
         />
         <Route
-          path="/perscribeexerciselan"
+          path="/perscribeexerciseplan"
           element={
             <>
               <PageTitle title="Perscribe Exercise" />
