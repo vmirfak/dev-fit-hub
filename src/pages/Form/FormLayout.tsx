@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import SelectGroupOne from '../../components/Forms/SelectGroup/SelectGroupOne';
 import DefaultLayout from '../../layout/DefaultLoayout';
+import { useState } from 'react';
 
 const FormLayout = () => {
+  const [isOpen] = useState(false);
+  
   return (
-    <DefaultLayout>
+    <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="Form Layout" />
 
       <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
