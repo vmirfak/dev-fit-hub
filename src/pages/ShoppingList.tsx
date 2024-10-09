@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
+import { jsPDF } from "jspdf";
 
 // Define types for ingredients and meals
 interface Ingredient {
@@ -16,107 +17,107 @@ interface Meal {
 
 // Mock data for meals
 const mealsData: Meal[] = [
-    {
-      id: 1,
-      name: "Grilled Chicken Salad",
-      ingredients: [
-        { name: "Chicken Breast", quantity: "300g" },
-        { name: "Lettuce", quantity: "1 bunch" },
-        { name: "Tomato", quantity: "2 pcs" },
-        { name: "Olive Oil", quantity: "2 tbsp" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Spaghetti Bolognese",
-      ingredients: [
-        { name: "Spaghetti", quantity: "200g" },
-        { name: "Ground Beef", quantity: "250g" },
-        { name: "Tomato Sauce", quantity: "1 cup" },
-        { name: "Garlic", quantity: "3 cloves" },
-      ],
-    },
-    {
-      id: 3,
-      name: "Chicken Stir Fry",
-      ingredients: [
-        { name: "Chicken Breast", quantity: "300g" },
-        { name: "Bell Peppers", quantity: "2 pcs" },
-        { name: "Onion", quantity: "1 pc" },
-        { name: "Soy Sauce", quantity: "3 tbsp" },
-      ],
-    },
-    {
-      id: 4,
-      name: "Vegetable Curry",
-      ingredients: [
-        { name: "Potatoes", quantity: "3 pcs" },
-        { name: "Carrots", quantity: "2 pcs" },
-        { name: "Coconut Milk", quantity: "1 can" },
-        { name: "Curry Powder", quantity: "2 tbsp" },
-      ],
-    },
-    {
-      id: 5,
-      name: "Beef Tacos",
-      ingredients: [
-        { name: "Ground Beef", quantity: "200 g" },
-        { name: "Taco Shells", quantity: "8 pcs" },
-        { name: "Lettuce", quantity: "1 bunch" },
-        { name: "Cheddar Cheese", quantity: "100g" },
-      ],
-    },
-    {
-      id: 6,
-      name: "Pancakes with Berries",
-      ingredients: [
-        { name: "All-purpose Flour", quantity: "1 cup" },
-        { name: "Milk", quantity: "1 cup" },
-        { name: "Eggs", quantity: "2 pcs" },
-        { name: "Mixed Berries", quantity: "1 cup" },
-      ],
-    },
-    {
-      id: 7,
-      name: "Quinoa Salad",
-      ingredients: [
-        { name: "Quinoa", quantity: "1 cup" },
-        { name: "Cucumber", quantity: "1 pc" },
-        { name: "Cherry Tomatoes", quantity: "1 cup" },
-        { name: "Feta Cheese", quantity: "100g" },
-      ],
-    },
-    {
-      id: 8,
-      name: "Shrimp Alfredo Pasta",
-      ingredients: [
-        { name: "Shrimp", quantity: "250 g" },
-        { name: "Pasta", quantity: "200 g" },
-        { name: "Heavy Cream", quantity: "1 cup" },
-        { name: "Parmesan Cheese", quantity: "1/2 cup" },
-      ],
-    },
-    {
-      id: 9,
-      name: "Beef and Broccoli Stir Fry",
-      ingredients: [
-        { name: "Beef Strips", quantity: "300g" },
-        { name: "Broccoli", quantity: "1 head" },
-        { name: "Soy Sauce", quantity: "2 tbsp" },
-        { name: "Garlic", quantity: "3 cloves" },
-      ],
-    },
-    {
-      id: 10,
-      name: "Avocado Toast",
-      ingredients: [
-        { name: "Bread", quantity: "2 slices" },
-        { name: "Avocado", quantity: "1 pc" },
-        { name: "Lemon Juice", quantity: "1 tbsp" },
-        { name: "Chili Flakes", quantity: "1 tsp" },
-      ],
-    },
-  ];
+  {
+    id: 1,
+    name: "Grilled Chicken Salad",
+    ingredients: [
+      { name: "Chicken Breast", quantity: "300g" },
+      { name: "Lettuce", quantity: "1 bunch" },
+      { name: "Tomato", quantity: "2 pcs" },
+      { name: "Olive Oil", quantity: "2 tbsp" },
+    ],
+  },
+  {
+    id: 2,
+    name: "Spaghetti Bolognese",
+    ingredients: [
+      { name: "Spaghetti", quantity: "200g" },
+      { name: "Ground Beef", quantity: "250g" },
+      { name: "Tomato Sauce", quantity: "1 cup" },
+      { name: "Garlic", quantity: "3 cloves" },
+    ],
+  },
+  {
+    id: 3,
+    name: "Chicken Stir Fry",
+    ingredients: [
+      { name: "Chicken Breast", quantity: "300g" },
+      { name: "Bell Peppers", quantity: "2 pcs" },
+      { name: "Onion", quantity: "1 pc" },
+      { name: "Soy Sauce", quantity: "3 tbsp" },
+    ],
+  },
+  {
+    id: 4,
+    name: "Vegetable Curry",
+    ingredients: [
+      { name: "Potatoes", quantity: "3 pcs" },
+      { name: "Carrots", quantity: "2 pcs" },
+      { name: "Coconut Milk", quantity: "1 can" },
+      { name: "Curry Powder", quantity: "2 tbsp" },
+    ],
+  },
+  {
+    id: 5,
+    name: "Beef Tacos",
+    ingredients: [
+      { name: "Ground Beef", quantity: "200 g" },
+      { name: "Taco Shells", quantity: "8 pcs" },
+      { name: "Lettuce", quantity: "1 bunch" },
+      { name: "Cheddar Cheese", quantity: "100g" },
+    ],
+  },
+  {
+    id: 6,
+    name: "Pancakes with Berries",
+    ingredients: [
+      { name: "All-purpose Flour", quantity: "1 cup" },
+      { name: "Milk", quantity: "1 cup" },
+      { name: "Eggs", quantity: "2 pcs" },
+      { name: "Mixed Berries", quantity: "1 cup" },
+    ],
+  },
+  {
+    id: 7,
+    name: "Quinoa Salad",
+    ingredients: [
+      { name: "Quinoa", quantity: "1 cup" },
+      { name: "Cucumber", quantity: "1 pc" },
+      { name: "Cherry Tomatoes", quantity: "1 cup" },
+      { name: "Feta Cheese", quantity: "100g" },
+    ],
+  },
+  {
+    id: 8,
+    name: "Shrimp Alfredo Pasta",
+    ingredients: [
+      { name: "Shrimp", quantity: "250 g" },
+      { name: "Pasta", quantity: "200 g" },
+      { name: "Heavy Cream", quantity: "1 cup" },
+      { name: "Parmesan Cheese", quantity: "1/2 cup" },
+    ],
+  },
+  {
+    id: 9,
+    name: "Beef and Broccoli Stir Fry",
+    ingredients: [
+      { name: "Beef Strips", quantity: "300g" },
+      { name: "Broccoli", quantity: "1 head" },
+      { name: "Soy Sauce", quantity: "2 tbsp" },
+      { name: "Garlic", quantity: "3 cloves" },
+    ],
+  },
+  {
+    id: 10,
+    name: "Avocado Toast",
+    ingredients: [
+      { name: "Bread", quantity: "2 slices" },
+      { name: "Avocado", quantity: "1 pc" },
+      { name: "Lemon Juice", quantity: "1 tbsp" },
+      { name: "Chili Flakes", quantity: "1 tsp" },
+    ],
+  },
+];
 
 const ShoppingList = () => {
   // Define state with proper types
@@ -135,15 +136,21 @@ const ShoppingList = () => {
 
   // Generate shopping list based on selected meals
   const generateShoppingList = () => {
-    const list: { [key: string]: { name: string; quantity: string; amount: number; unit: string } } = {};
-  
+    const list: {
+      [key: string]: {
+        name: string;
+        quantity: string;
+        amount: number;
+        unit: string;
+      };
+    } = {};
+
     selectedMeals.forEach((meal) => {
       meal.ingredients.forEach((ingredient) => {
-        // Use regex to separate numbers and unit
         const match = ingredient.quantity.match(/(\d+)(\s*)([a-zA-Z]*)/);
         const parsedAmount = match ? parseFloat(match[1]) : 0;
         const unit = match && match[3] ? match[3] : "";
-  
+
         if (list[ingredient.name]) {
           list[ingredient.name].amount += parsedAmount;
         } else {
@@ -156,16 +163,29 @@ const ShoppingList = () => {
         }
       });
     });
-  
+
+    const sortedList = Object.values(list).sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+
     setShoppingList(
-      Object.values(list).map((item) => ({
+      sortedList.map((item) => ({
         name: item.name,
         quantity: `${item.amount} ${item.unit}`,
       }))
     );
   };
-  
-  
+
+  const generatePDF = () => {
+    const pdf = new jsPDF();
+    pdf.text("Shopping List", 20, 20);
+
+    shoppingList.forEach((item, index) => {
+      pdf.text(`${item.name}: ${item.quantity}`, 20, 30 + index * 10);
+    });
+
+    pdf.save("shopping-list.pdf");
+  };
 
   return (
     <DefaultLayout isModalOpen={isOpen}>
@@ -210,6 +230,12 @@ const ShoppingList = () => {
             </ul>
           </div>
         )}
+        <button
+          onClick={generatePDF}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Download as PDF
+        </button>
       </div>
     </DefaultLayout>
   );
