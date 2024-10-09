@@ -363,7 +363,7 @@ const ShoppingList = () => {
         let yOffset = 30; // Initial y offset for the first row
         let columnCount = 0; // Track the current column
       
-        shoppingList.forEach((item, index) => {
+        shoppingList.forEach((item, _index) => {
           // If the item fits in the current column
           if (columnCount < 3) {
             pdf.text(`${item.name}: ${item.quantity}`, xOffset, yOffset);
