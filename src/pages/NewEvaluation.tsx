@@ -98,7 +98,7 @@ const NewEvaluation: React.FC = () => {
   };
 
   const [isOpen] = useState(false);
-  
+
   return (
     <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="New Physical Evaluation" />

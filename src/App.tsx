@@ -16,6 +16,9 @@ import FoodPlanCreation from './pages/FoodPlanCreation';
 import ExercisepPlanCreation from './pages/ExercisePlanCreation';
 import EvaluationHistory from './pages/EvaluationHistory';
 import NewEvaluation from './pages/NewEvaluation';
+import Chat from './pages/Chat';
+import Recipes from './pages/Recipes';
+
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -46,6 +49,24 @@ function App() {
             <>
               <PageTitle title="Registration" />
               <Registration />
+            </>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <>
+              <PageTitle title="Chat" />
+              <Chat />
+            </>
+          }
+        />
+        <Route
+          path="/recipes"
+          element={
+            <>
+              <PageTitle title="Recipes" />
+              <Recipes />
             </>
           }
         />
