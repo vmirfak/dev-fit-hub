@@ -8,7 +8,6 @@ const Chat = () => {
   return (
     <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="Chat" />
-
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       </div>
     </DefaultLayout>

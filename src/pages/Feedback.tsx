@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DefaultLayout from '../layout/DefaultLoayout';
+import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
 
 const Feedback = () => {
   const [rating, setRating] = useState(0);
@@ -67,8 +68,9 @@ const Feedback = () => {
   
   return (
     <DefaultLayout isModalOpen={isOpen}>
+      <Breadcrumb pageName="Feedback" />
       <div className="mx-auto max-w-270">
-        <div className="grid grid-cols-5 gap-8">
+        <div className="grid grid-cols-4 gap-8">
           <div className="col-span-5 xl:col-span-3">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
