@@ -366,45 +366,56 @@ const FoodPlans = () => {
                 {expandedMeal === mealIndex ? '-' : '+'}
               </span>
             </div>
-
-            {expandedMeal === mealIndex && (
-              <div>
-                {meal.recipes.map((recipe, recipeIndex) => (
-                  <div key={recipeIndex}>
-                    <div
-                      className="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded-lg"
-                      onClick={() => toggleRecipeExpansion(recipeIndex)}
-                    >
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-200">
-                        {recipe.recipeName}
-                      </h4>
-                      <span className="text-2xl">
-                        {expandedRecipe === recipeIndex ? '-' : '+'}
-                      </span>
-                    </div>
-
-                    {expandedRecipe === recipeIndex && (
-                      <div className="grid grid-cols-5 gap-4 p-4">
-                        {recipe.ingredients.map((ingredient, index) => (
-                          <div
-                            key={index}
-                            className="p-2 border border-gray-300 dark:border-gray-600 rounded-lg flex flex-col items-center"
-                          >
-                            <span className="font-semibold">{ingredient.name}</span>
-                            <span className="text-sm text-gray-500">{ingredient.quantity}</span>
-                          </div>
-                        ))}
+  
+            <div className={`overflow-hidden transition-all duration-400 ease-in-out ${
+              expandedMeal === mealIndex ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+            }`}>
+              {expandedMeal === mealIndex && (
+                <div>
+                  {meal.recipes.map((recipe, recipeIndex) => (
+                    <div key={recipeIndex}>
+                      <div
+                        className="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded-lg"
+                        onClick={() => toggleRecipeExpansion(recipeIndex)}
+                      >
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-200">
+                          {recipe.recipeName}
+                        </h4>
+                        <span className="text-2xl">
+                          {expandedRecipe === recipeIndex ? '-' : '+'}
+                        </span>
                       </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
+  
+                      <div
+                      className={`overflow-hidden transition-all duration-400 ease-in-out ${
+                        expandedRecipe === recipeIndex ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                        {expandedRecipe === recipeIndex && (
+                          <div className="grid grid-cols-5 gap-4 p-4">
+                            {recipe.ingredients.map((ingredient, index) => (
+                              <div
+                                key={index}
+                                className="p-2 border border-gray-300 dark:border-gray-600 rounded-lg flex flex-col items-center"
+                              >
+                                <span className="font-semibold">{ingredient.name}</span>
+                                <span className="text-sm text-gray-500">{ingredient.quantity}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>
     </DefaultLayout>
   );
+  
 };
 
 export default FoodPlans;

@@ -1,24 +1,24 @@
-import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import Loader from './common/Loader';
-import PageTitle from './components/PageTitle';
-import Calendar from './pages/Calendar';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
-import MyDashboard from './pages/Dashboard/Dashboard';
-import Login from './pages/Authentication/Login';
-import Registration from './pages/Authentication/Registration';
-import FeedBack from './pages/Feedback';
-import FAQ from './pages/Faqs';
-import FoodPlans from './pages/FoodPlans';
-import ExercisePlans from './pages/ExercisePlans';
-import FoodPlanCreation from './pages/FoodPlanCreation';
-import ExercisepPlanCreation from './pages/ExercisePlanCreation';
-import EvaluationHistory from './pages/EvaluationHistory';
-import NewEvaluation from './pages/NewEvaluation';
-import Chat from './pages/Chat';
-import Recipes from './pages/Recipes';
-
+import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import Loader from "./common/Loader";
+import PageTitle from "./components/PageTitle";
+import Calendar from "./pages/Calendar";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import MyDashboard from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Authentication/Login";
+import Registration from "./pages/Authentication/Registration";
+import FeedBack from "./pages/Feedback";
+import FAQ from "./pages/Faqs";
+import FoodPlans from "./pages/FoodPlans";
+import ExercisePlans from "./pages/ExercisePlans";
+import FoodPlanCreation from "./pages/FoodPlanCreation";
+import ExercisepPlanCreation from "./pages/ExercisePlanCreation";
+import EvaluationHistory from "./pages/EvaluationHistory";
+import NewEvaluation from "./pages/NewEvaluation";
+import Chat from "./pages/Chat";
+import Recipes from "./pages/Recipes";
+import ShoppingList from "./pages/ShoppingList";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -58,6 +58,15 @@ function App() {
             <>
               <PageTitle title="Chat" />
               <Chat />
+            </>
+          }
+        />
+        <Route
+          path="/shoppinglist"
+          element={
+            <>
+              <PageTitle title="ShoppingList" />
+              <ShoppingList />
             </>
           }
         />

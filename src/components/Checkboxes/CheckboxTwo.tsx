@@ -1,26 +1,34 @@
 import { useState } from 'react';
 
-const CheckboxTwo = () => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+interface CheckboxTwoProps {
+  label: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}
+
+const CheckboxTwo: React.FC<CheckboxTwoProps> = ({ label, checked, onChange }) => {
+  const [isChecked, setIsChecked] = useState<boolean>(checked);
+
+  const handleChange = () => {
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+    onChange(newCheckedState); // Call the onChange callback with the new state
+  };
 
   return (
     <div>
-      <label
-        htmlFor="checkboxLabelTwo"
-        className="flex cursor-pointer select-none items-center"
-      >
+      <label htmlFor={`checkbox-${label}`} className="flex cursor-pointer select-none items-center">
         <div className="relative">
           <input
             type="checkbox"
-            id="checkboxLabelTwo"
+            id={`checkbox-${label}`} // Ensure unique ID for each checkbox
             className="sr-only"
-            onChange={() => {
-              setIsChecked(!isChecked);
-            }}
+            checked={isChecked} // Controlled state
+            onChange={handleChange}
           />
           <div
             className={`mr-4 flex h-5 w-5 items-center justify-center rounded border ${
-              isChecked && 'border-primary bg-gray dark:bg-transparent'
+              isChecked ? 'border-primary bg-gray dark:bg-transparent' : 'border-gray-300'
             }`}
           >
             <span className={`opacity-0 ${isChecked && '!opacity-100'}`}>
@@ -41,7 +49,7 @@ const CheckboxTwo = () => {
             </span>
           </div>
         </div>
-        Checkbox Text
+        {label} {/* Display the label text */}
       </label>
     </div>
   );
