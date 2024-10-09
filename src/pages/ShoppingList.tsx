@@ -118,6 +118,186 @@ const mealsData: Meal[] = [
       { name: "Chili Flakes", quantity: "1 tsp" },
     ],
   },
+  {
+    id: 11,
+    name: "Caprese Salad",
+    ingredients: [
+      { name: "Fresh Mozzarella", quantity: "250g" },
+      { name: "Tomatoes", quantity: "3 pcs" },
+      { name: "Basil", quantity: "1 bunch" },
+      { name: "Balsamic Vinegar", quantity: "2 tbsp" },
+    ],
+  },
+  {
+    id: 12,
+    name: "Stuffed Bell Peppers",
+    ingredients: [
+      { name: "Bell Peppers", quantity: "4 pcs" },
+      { name: "Quinoa", quantity: "1 cup" },
+      { name: "Black Beans", quantity: "1 can" },
+      { name: "Cheddar Cheese", quantity: "100g" },
+    ],
+  },
+  {
+    id: 13,
+    name: "Chicken Tikka Masala",
+    ingredients: [
+      { name: "Chicken Breast", quantity: "500g" },
+      { name: "Yogurt", quantity: "1 cup" },
+      { name: "Tikka Masala Paste", quantity: "2 tbsp" },
+      { name: "Coconut Milk", quantity: "1 cup" },
+    ],
+  },
+  {
+    id: 14,
+    name: "Vegetable Stir Fry",
+    ingredients: [
+      { name: "Mixed Vegetables", quantity: "300g" },
+      { name: "Soy Sauce", quantity: "2 tbsp" },
+      { name: "Garlic", quantity: "2 cloves" },
+      { name: "Sesame Oil", quantity: "1 tbsp" },
+    ],
+  },
+  {
+    id: 15,
+    name: "Omelette",
+    ingredients: [
+      { name: "Eggs", quantity: "3 pcs" },
+      { name: "Spinach", quantity: "1 cup" },
+      { name: "Feta Cheese", quantity: "50g" },
+      { name: "Olive Oil", quantity: "1 tbsp" },
+    ],
+  },
+  {
+    id: 16,
+    name: "Lentil Soup",
+    ingredients: [
+      { name: "Lentils", quantity: "1 cup" },
+      { name: "Carrots", quantity: "2 pcs" },
+      { name: "Onion", quantity: "1 pc" },
+      { name: "Vegetable Broth", quantity: "4 cups" },
+    ],
+  },
+  {
+    id: 17,
+    name: "Fish Tacos",
+    ingredients: [
+      { name: "White Fish", quantity: "300g" },
+      { name: "Corn Tortillas", quantity: "8 pcs" },
+      { name: "Cabbage", quantity: "1/2 head" },
+      { name: "Sour Cream", quantity: "1/2 cup" },
+    ],
+  },
+  {
+    id: 18,
+    name: "Chocolate Chip Cookies",
+    ingredients: [
+      { name: "All-purpose Flour", quantity: "2 cups" },
+      { name: "Brown Sugar", quantity: "1 cup" },
+      { name: "Butter", quantity: "1 cup" },
+      { name: "Chocolate Chips", quantity: "1 cup" },
+    ],
+  },
+  {
+    id: 19,
+    name: "Beef Stroganoff",
+    ingredients: [
+      { name: "Beef Strips", quantity: "400g" },
+      { name: "Mushrooms", quantity: "200g" },
+      { name: "Sour Cream", quantity: "1 cup" },
+      { name: "Egg Noodles", quantity: "250g" },
+    ],
+  },
+  {
+    id: 20,
+    name: "Eggplant Parmesan",
+    ingredients: [
+      { name: "Eggplant", quantity: "2 pcs" },
+      { name: "Marinara Sauce", quantity: "2 cups" },
+      { name: "Mozzarella Cheese", quantity: "200g" },
+      { name: "Parmesan Cheese", quantity: "100g" },
+    ],
+  },
+  {
+    id: 21,
+    name: "Caesar Salad",
+    ingredients: [
+      { name: "Romaine Lettuce", quantity: "1 head" },
+      { name: "Caesar Dressing", quantity: "1/2 cup" },
+      { name: "Croutons", quantity: "1 cup" },
+      { name: "Parmesan Cheese", quantity: "50g" },
+    ],
+  },
+  {
+    id: 22,
+    name: "Vegetable Quesadilla",
+    ingredients: [
+      { name: "Flour Tortillas", quantity: "4 pcs" },
+      { name: "Mixed Vegetables", quantity: "2 cups" },
+      { name: "Cheddar Cheese", quantity: "150g" },
+      { name: "Sour Cream", quantity: "1/2 cup" },
+    ],
+  },
+  {
+    id: 23,
+    name: "Pesto Pasta",
+    ingredients: [
+      { name: "Pasta", quantity: "250g" },
+      { name: "Pesto Sauce", quantity: "1/2 cup" },
+      { name: "Cherry Tomatoes", quantity: "1 cup" },
+      { name: "Parmesan Cheese", quantity: "50g" },
+    ],
+  },
+  {
+    id: 24,
+    name: "Honey Garlic Chicken",
+    ingredients: [
+      { name: "Chicken Thighs", quantity: "500g" },
+      { name: "Honey", quantity: "1/4 cup" },
+      { name: "Garlic", quantity: "4 cloves" },
+      { name: "Soy Sauce", quantity: "1/4 cup" },
+    ],
+  },
+  {
+    id: 25,
+    name: "Sweet Potato Fries",
+    ingredients: [
+      { name: "Sweet Potatoes", quantity: "2 pcs" },
+      { name: "Olive Oil", quantity: "2 tbsp" },
+      { name: "Paprika", quantity: "1 tsp" },
+      { name: "Salt", quantity: "1 tsp" },
+    ],
+  },
+  {
+    id: 26,
+    name: "Mango Smoothie",
+    ingredients: [
+      { name: "Mango", quantity: "1 pc" },
+      { name: "Yogurt", quantity: "1 cup" },
+      { name: "Milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 tbsp" },
+    ],
+  },
+  {
+    id: 27,
+    name: "Greek Yogurt Parfait",
+    ingredients: [
+      { name: "Greek Yogurt", quantity: "1 cup" },
+      { name: "Granola", quantity: "1/2 cup" },
+      { name: "Mixed Berries", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 tbsp" },
+    ],
+  },
+  {
+    id: 28,
+    name: "Spinach and Feta Stuffed Chicken",
+    ingredients: [
+      { name: "Chicken Breast", quantity: "4 pcs" },
+      { name: "Spinach", quantity: "2 cups" },
+      { name: "Feta Cheese", quantity: "100g" },
+      { name: "Olive Oil", quantity: "2 tbsp" },
+    ],
+  },
 ];
 
 const ShoppingList = () => {
@@ -171,15 +351,36 @@ const ShoppingList = () => {
   
     // Generate PDF from shopping list
     const generatePDF = () => {
-      const pdf = new jsPDF();
-      pdf.text("Shopping List", 20, 20);
-  
-      shoppingList.forEach((item, index) => {
-        pdf.text(`${item.name}: ${item.quantity}`, 20, 30 + index * 10);
-      });
-  
-      pdf.save("shopping-list.pdf");
-    };
+        const pdf = new jsPDF();
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const margin = 10; // Margin from the left
+        const columnWidth = (pageWidth - 2 * margin) / 3; // Divide the width by 3 columns
+      
+        pdf.setFontSize(10);
+        pdf.text("Shopping List", margin, 20);
+      
+        let xOffset = margin;
+        let yOffset = 30; // Initial y offset for the first row
+        let columnCount = 0; // Track the current column
+      
+        shoppingList.forEach((item, index) => {
+          // If the item fits in the current column
+          if (columnCount < 3) {
+            pdf.text(`${item.name}: ${item.quantity}`, xOffset, yOffset);
+            xOffset += columnWidth; // Move to the next column
+            columnCount++;
+          }
+      
+          // Move to the next row if we've filled the columns
+          if (columnCount === 3) {
+            columnCount = 0; // Reset column count
+            xOffset = margin; // Reset x offset to the left margin
+            yOffset += 10; // Move down to the next row
+          }
+        });
+      
+        pdf.save("shopping-list.pdf");
+      };
 
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
@@ -193,8 +394,8 @@ const ShoppingList = () => {
               key={meal.id}
               className={`p-4 border rounded-md cursor-pointer ${
                 selectedMeals.includes(meal)
-                  ? "border-blue-500 bg-blue-100 dark:bg-blue-500 dark:text-zinc-700"
-                  : "border-gray-300"
+                  ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
+                  : ""
               }`}
               onClick={() => handleMealSelect(meal)}
             >
