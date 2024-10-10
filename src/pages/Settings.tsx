@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import userThree from "../images/user/user-03.png";
 import DefaultLayout from "../layout/DefaultLoayout";
+import {useUser} from "../context/UserContext";
+
 const Settings = () => {
   const [isOpen] = useState(false);
+  const { user } = useUser();
+  const [, setBirthday] = useState(""); // Step 2: Initialize state
 
+  const handleBirthdayChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+    setBirthday(event.target.value);
+  };
   return (
     <DefaultLayout isModalOpen={isOpen}>
       <div className="mx-auto max-w-270">
@@ -58,8 +65,8 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Rúben Silva"
-                          defaultValue="Rúben Silva"
+                          placeholder={user?.name}
+                          defaultValue={user?.name}
                         />
                       </div>
                     </div>
@@ -76,8 +83,8 @@ const Settings = () => {
                         type="text"
                         name="phoneNumber"
                         id="phoneNumber"
-                        placeholder="+351999999999"
-                        defaultValue="+351999999999"
+                        placeholder={user?.phone}
+                        defaultValue={user?.phone}
                       />
                     </div>
                   </div>
@@ -120,6 +127,8 @@ const Settings = () => {
                         name="birthday"
                         id="birthday"
                         placeholder="Select your birthday"
+                        value={user?.birthday}
+                        onChange={handleBirthdayChange}
                       />
                     </div>
                   </div>
@@ -162,8 +171,8 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="rubensilva@gmail.com"
-                        defaultValue="rubensilva@gmail.com"
+                        placeholder={user?.email}
+                        defaultValue={user?.email}
                       />
                     </div>
                   </div>
@@ -205,8 +214,8 @@ const Settings = () => {
                         type="address"
                         name="address"
                         id="address"
-                        placeholder="Rua de Felgueiras 999, 4610-999 Felgueiras"
-                        defaultValue="Rua de Felgueiras 999, 4610-999 Felgueiras"
+                        placeholder={user?.address}
+                        defaultValue={user?.address}
                       />
                     </div>
                   </div>
@@ -222,8 +231,8 @@ const Settings = () => {
                       type="text"
                       name="Username"
                       id="Username"
-                      placeholder="rubensilva24"
-                      defaultValue="rubensilva24"
+                      placeholder={user?.username}
+                      defaultValue={user?.username}
                     />
                   </div>
 

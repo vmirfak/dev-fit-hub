@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 interface LoginProps {
   setLoading: (loading: boolean) => void;
@@ -10,38 +11,14 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ setLoading }) => {
   const [loginError, setLoginError] = useState<string | null>(null);
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
   });
-  /*
-  const handleLogin = async (values: { username: string; password: string }) => {
-    setLoading(true);
-    const { username, password } = values;
 
-    try {
-      const response = await fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Invalid username or password');
-      }
-
-      navigate('/dashboard');
-    } catch (err) {
-      setLoginError(err instanceof Error ? err.message : 'An unexpected error occurred.');
-    } finally {
-      setLoading(false);
-    }
-  };*/
   const handleLogin = async (values: {
     username: string;
     password: string;
@@ -49,12 +26,41 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
     setLoading(true);
     const { username, password } = values;
 
-    // Hardcoded dummy credentials check
-    if (username === "111" && password === "111") {
+    // Mocked user data for demonstration
+    const users = [
+      {
+        id: 1,
+        username: "111",
+        name: "Rúben Silva [Admin]",
+        email: "rubenSilva@example.com",
+        phone: "+351999999999",
+        address: "Rua de Flg 123, 4610-99 FLG",
+        birthday: "27 Set 1992",
+        role: "admin" as "administrator",
+      },
+      {
+        id: 2,
+        username: "222",
+        name: "Pedro Moreira [User]",
+        email: "pedromoreira@example.com",
+        phone: "+351111111111",
+        address: "Rua de Flg 999, 4610-555 FLG",
+        birthday: "26 Nov 1994",
+        role: "user" as "user",
+      },
+    ];
+
+    // Dummy authentication logic based on hardcoded credentials.
+    const user = users.find(
+      (u) => u.username === username && password === username
+    );
+    if (user) {
+      setUser(user); // Set the logged-in user in context
       navigate("/dashboard");
     } else {
       setLoginError("Invalid username or password");
     }
+
     setLoading(false);
   };
 
