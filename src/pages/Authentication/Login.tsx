@@ -80,7 +80,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
         
         {/* Welcome Back Text */}
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
-          Welcome Back
+          Welcome Back!
         </h2>
         <Formik
           initialValues={{ username: "", password: "" }}
