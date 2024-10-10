@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 import { FaPencilAlt, FaTrashAlt, FaPlus } from "react-icons/fa";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
+import NewDietPlanModal from "../components/Modal/NewDietPlanModal"
 
 interface DietPlan {
   id: number;
@@ -178,6 +179,7 @@ const DietPlansTable = () => {
   ]);
 
   const [currentPage, setCurrentPage] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const itemsPerPage = 8;
 
   const handleEdit = (id: number) => {
@@ -189,11 +191,20 @@ const DietPlansTable = () => {
   };
 
   const handleCreateNew = () => {
-    console.log("Create new diet plan");
+    setIsModalOpen(true);
   };
 
   const handlePageClick = (data: { selected: number }) => {
     setCurrentPage(data.selected);
+  };
+
+  const addDietPlan = (newDietPlan: { name: string; email: string; startDate: string; endDate: string }) => {
+    const newPlan = {
+      id: dietPlans.length + 1,
+      createdOn: new Date().toISOString().split('T')[0],
+      ...newDietPlan,
+    };
+    setDietPlans([...dietPlans, newPlan]);
   };
 
   const displayPlans = dietPlans.slice(
@@ -202,7 +213,7 @@ const DietPlansTable = () => {
   );
 
   return (
-    <DefaultLayout isModalOpen={false}>
+    <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Food Plan Creation" />
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="flex justify-between items-center mb-4">
@@ -300,6 +311,12 @@ const DietPlansTable = () => {
           pageClassName={"bg-gray-200 px-3 py-1 rounded-md"}
           previousClassName={"bg-gray-200 px-3 py-1 rounded-md"}
           nextClassName={"bg-gray-200 px-3 py-1 rounded-md"}
+        />
+        {/* Include the Modal */}
+        <NewDietPlanModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={addDietPlan}
         />
       </div>
     </DefaultLayout>
