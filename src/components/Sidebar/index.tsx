@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
-import Logo from "../../images/logo/fithub_promo.png";
+import Logo from "../../images/logo/b-whitestroke.png";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -63,9 +63,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+      <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+        <img
+            src={Logo}
+            alt="Company Logo"
+            className="w-20 md:w-22 lg:w-30 xl:w-25" // Responsive sizing based on breakpoints
+          />
         </NavLink>
 
         <button
