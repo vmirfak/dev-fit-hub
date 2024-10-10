@@ -3,7 +3,7 @@ import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
 import { jsPDF } from "jspdf";
 import GroceryModal from "../components/Modal/GroceryModal";
-import { FiMinus, FiPlus } from 'react-icons/fi';
+import { FiMinus, FiPlus } from "react-icons/fi";
 
 interface Ingredient {
   name: string;
@@ -302,16 +302,18 @@ const mealsData: Meal[] = [
 const ShoppingList = () => {
   // State management
   const [selectedMeals, setSelectedMeals] = useState<Meal[]>([]);
-  const [mealQuantities, setMealQuantities] = useState<{ [key: number]: number }>({});
+  const [mealQuantities, setMealQuantities] = useState<{
+    [key: number]: number;
+  }>({});
   const [shoppingList, setShoppingList] = useState<Ingredient[]>([]);
-  const [isModalOpen, setModalOpen] = useState(false); 
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleMealSelect = (meal: Meal) => {
     if (selectedMeals.includes(meal)) {
       setSelectedMeals(selectedMeals.filter((m) => m.id !== meal.id));
       setMealQuantities((prev) => {
         const updatedQuantities = { ...prev };
-        delete updatedQuantities[meal.id]; 
+        delete updatedQuantities[meal.id];
         return updatedQuantities;
       });
     } else {
@@ -330,26 +332,33 @@ const ShoppingList = () => {
   const decrementQuantity = (mealId: number) => {
     setMealQuantities((prevQuantities) => {
       const currentQuantity = prevQuantities[mealId];
-  
+
       if (currentQuantity === 1) {
         setSelectedMeals((prevSelected) =>
           prevSelected.filter((meal) => meal.id !== mealId)
         );
         return {
           ...prevQuantities,
-          [mealId]: 0, 
+          [mealId]: 0,
         };
       }
-  
+
       return {
         ...prevQuantities,
         [mealId]: currentQuantity - 1,
       };
     });
   };
-    
+
   const generateShoppingList = () => {
-    const list: { [key: string]: { name: string; quantity: string; amount: number; unit: string } } = {};
+    const list: {
+      [key: string]: {
+        name: string;
+        quantity: string;
+        amount: number;
+        unit: string;
+      };
+    } = {};
 
     selectedMeals.forEach((meal) => {
       const quantityMultiplier = mealQuantities[meal.id] || 1;
@@ -371,7 +380,9 @@ const ShoppingList = () => {
       });
     });
 
-    const sortedList = Object.values(list).sort((a, b) => a.name.localeCompare(b.name));
+    const sortedList = Object.values(list).sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
 
     setShoppingList(
       sortedList.map((item) => ({
@@ -386,15 +397,15 @@ const ShoppingList = () => {
   const generatePDF = () => {
     const pdf = new jsPDF();
     const pageWidth = pdf.internal.pageSize.getWidth();
-    const margin = 10; 
-    const columnWidth = (pageWidth - 2 * margin) / 3; 
+    const margin = 10;
+    const columnWidth = (pageWidth - 2 * margin) / 3;
 
     pdf.setFontSize(10);
     pdf.text("Shopping List", margin, 20);
 
     let xOffset = margin;
     let yOffset = 30;
-    let columnCount = 0; 
+    let columnCount = 0;
 
     shoppingList.forEach((item, _index) => {
       if (columnCount < 3) {
@@ -404,9 +415,9 @@ const ShoppingList = () => {
       }
 
       if (columnCount === 3) {
-        columnCount = 0; 
-        xOffset = margin; 
-        yOffset += 10; 
+        columnCount = 0;
+        xOffset = margin;
+        yOffset += 10;
       }
     });
 
