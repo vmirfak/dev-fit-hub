@@ -3,7 +3,7 @@ import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
 import { jsPDF } from "jspdf";
 import GroceryModal from "../components/Modal/GroceryModal";
-import { FiMinus, FiPlus } from "react-icons/fi";
+import { FiMinus, FiPlus, FiTrash2, FiList } from "react-icons/fi";
 
 interface Ingredient {
   name: string;
@@ -424,6 +424,11 @@ const ShoppingList = () => {
     pdf.save("shopping-list.pdf");
   };
 
+  const clearSelection = () => {
+    setSelectedMeals([]);
+    setMealQuantities({});
+  };
+
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Shopping List" />
@@ -433,52 +438,60 @@ const ShoppingList = () => {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4 lg:grid-cols-4">
           {mealsData.map((meal) => (
             <div
-              key={meal.id}
-              className={`p-4 border rounded-md cursor-pointer flex justify-between items-center ${
-                selectedMeals.includes(meal)
-                  ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
-                  : ""
-              }`}
-              onClick={() => handleMealSelect(meal)}
-            >
-              <h3 className="text-lg font-medium">{meal.name}</h3>
-
-              {selectedMeals.includes(meal) && (
-                <div className="flex items-center">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent deselection
-                      decrementQuantity(meal.id);
-                    }}
-                    className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
-                  >
-                    <FiMinus size={14} />
-                  </button>
-                  <span className="mx-1 px-2 py-1 bg-gray-100 text-gray-800">
-                    {mealQuantities[meal.id]}
-                  </span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent deselection
-                      incrementQuantity(meal.id);
-                    }}
-                    className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
-                  >
-                    <FiPlus size={14} />
-                  </button>
-                </div>
-              )}
-            </div>
+            key={meal.id}
+            className={`h-16 p-4 border rounded-md cursor-pointer flex justify-between items-center ${
+              selectedMeals.includes(meal)
+                ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
+                : ""
+            }`}
+            onClick={() => handleMealSelect(meal)}
+          >
+            <h3 className="text-lg font-medium">{meal.name}</h3>
+          
+            {selectedMeals.includes(meal) && (
+              <div className="flex items-center">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent deselection
+                    decrementQuantity(meal.id);
+                  }}
+                  className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                >
+                  <FiMinus size={14} />
+                </button>
+                <span className="mx-1 px-2 py-1 bg-gray-100 text-gray-800">
+                  {mealQuantities[meal.id]}
+                </span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent deselection
+                    incrementQuantity(meal.id);
+                  }}
+                  className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
+                >
+                  <FiPlus size={14} />
+                </button>
+              </div>
+            )}
+          </div>
           ))}
         </div>
-
-        {/* Generate Shopping List Button */}
-        <button
-          onClick={generateShoppingList}
-          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md"
-        >
-          Generate Shopping List
-        </button>
+        <div className="mt-4 flex space-x-4">
+          <button
+            onClick={clearSelection}
+            className="flex items-center px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+          >
+            <FiTrash2 className="mr-2" />
+            Clear Selection
+          </button>
+          <button
+            onClick={generateShoppingList}
+            className="flex items-center px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+          >
+            <FiList className="mr-2" />
+            Generate Shopping List
+          </button>
+        </div>
 
         <GroceryModal
           isOpen={isModalOpen}
