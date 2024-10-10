@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import Logo from "../../images/logo/b-blue-stroke.png"
 const Registration: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -66,6 +66,13 @@ const Registration: React.FC = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-500 to-green-600 p-6">
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
+      <div className="flex justify-center mb-6">
+          <img
+            src={Logo}
+            alt="Company Logo"
+            className="w-12 md:w-16 lg:w-20 xl:w-24"
+          />
+        </div>
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
           Create an Account
         </h2>

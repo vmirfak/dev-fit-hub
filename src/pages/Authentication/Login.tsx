@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
+import Logo from "../../images/logo/b-green-stroke.png";
 
 interface LoginProps {
   setLoading: (loading: boolean) => void;
@@ -66,7 +67,18 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-600 p-6">
+      {/* Card Container */}
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
+        {/* Logo Container (Inside the Card) */}
+        <div className="flex justify-center mb-6">
+          <img
+            src={Logo}
+            alt="Company Logo"
+            className="w-18 md:w-25 lg:w-35 xl:w-36" // Responsive sizing based on breakpoints
+          />
+        </div>
+        
+        {/* Welcome Back Text */}
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
           Welcome Back
         </h2>
