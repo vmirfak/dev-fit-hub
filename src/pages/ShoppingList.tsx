@@ -3,8 +3,8 @@ import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
 import { jsPDF } from "jspdf";
 import GroceryModal from "../components/Modal/GroceryModal";
+import { FiMinus, FiPlus } from 'react-icons/fi';
 
-// Define types for ingredients and meals
 interface Ingredient {
   name: string;
   quantity: string;
@@ -16,7 +16,6 @@ interface Meal {
   ingredients: Ingredient[];
 }
 
-// Mock data for meals
 const mealsData: Meal[] = [
   {
     id: 1,
@@ -301,86 +300,118 @@ const mealsData: Meal[] = [
 ];
 
 const ShoppingList = () => {
-    // State management
-    const [selectedMeals, setSelectedMeals] = useState<Meal[]>([]);
-    const [shoppingList, setShoppingList] = useState<Ingredient[]>([]);
-    const [isModalOpen, setModalOpen] = useState(false); // State to control modal visibility
-  
-    // Handle meal selection
-    const handleMealSelect = (meal: Meal) => {
-      setSelectedMeals((prevSelected) =>
-        prevSelected.includes(meal) ? prevSelected.filter((m) => m.id !== meal.id) : [...prevSelected, meal]
-      );
-    };
-  
-    // Generate shopping list based on selected meals
-    const generateShoppingList = () => {
-      const list: { [key: string]: { name: string; quantity: string; amount: number; unit: string } } = {};
-  
-      selectedMeals.forEach((meal) => {
-        meal.ingredients.forEach((ingredient) => {
-          const match = ingredient.quantity.match(/(\d+)(\s*)([a-zA-Z]*)/);
-          const parsedAmount = match ? parseFloat(match[1]) : 0;
-          const unit = match && match[3] ? match[3] : "";
-  
-          if (list[ingredient.name]) {
-            list[ingredient.name].amount += parsedAmount;
-          } else {
-            list[ingredient.name] = {
-              name: ingredient.name,
-              quantity: ingredient.quantity,
-              amount: parsedAmount,
-              unit,
-            };
-          }
-        });
+  // State management
+  const [selectedMeals, setSelectedMeals] = useState<Meal[]>([]);
+  const [mealQuantities, setMealQuantities] = useState<{ [key: number]: number }>({});
+  const [shoppingList, setShoppingList] = useState<Ingredient[]>([]);
+  const [isModalOpen, setModalOpen] = useState(false); 
+
+  const handleMealSelect = (meal: Meal) => {
+    if (selectedMeals.includes(meal)) {
+      setSelectedMeals(selectedMeals.filter((m) => m.id !== meal.id));
+      setMealQuantities((prev) => {
+        const updatedQuantities = { ...prev };
+        delete updatedQuantities[meal.id]; 
+        return updatedQuantities;
       });
+    } else {
+      setSelectedMeals([...selectedMeals, meal]);
+      setMealQuantities((prev) => ({ ...prev, [meal.id]: 1 }));
+    }
+  };
+
+  const incrementQuantity = (mealId: number) => {
+    setMealQuantities((prev) => ({
+      ...prev,
+      [mealId]: prev[mealId] + 1,
+    }));
+  };
+
+  const decrementQuantity = (mealId: number) => {
+    setMealQuantities((prevQuantities) => {
+      const currentQuantity = prevQuantities[mealId];
   
-      const sortedList = Object.values(list).sort((a, b) => a.name.localeCompare(b.name));
+      if (currentQuantity === 1) {
+        setSelectedMeals((prevSelected) =>
+          prevSelected.filter((meal) => meal.id !== mealId)
+        );
+        return {
+          ...prevQuantities,
+          [mealId]: 0, 
+        };
+      }
   
-      setShoppingList(
-        sortedList.map((item) => ({
-          name: item.name,
-          quantity: `${item.amount} ${item.unit}`,
-        }))
-      );
-  
-      // Open the modal after generating the list
-      setModalOpen(true);
-    };
-  
-    // Generate PDF from shopping list
-    const generatePDF = () => {
-        const pdf = new jsPDF();
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const margin = 10; // Margin from the left
-        const columnWidth = (pageWidth - 2 * margin) / 3; // Divide the width by 3 columns
-      
-        pdf.setFontSize(10);
-        pdf.text("Shopping List", margin, 20);
-      
-        let xOffset = margin;
-        let yOffset = 30; // Initial y offset for the first row
-        let columnCount = 0; // Track the current column
-      
-        shoppingList.forEach((item, _index) => {
-          // If the item fits in the current column
-          if (columnCount < 3) {
-            pdf.text(`${item.name}: ${item.quantity}`, xOffset, yOffset);
-            xOffset += columnWidth; // Move to the next column
-            columnCount++;
-          }
-      
-          // Move to the next row if we've filled the columns
-          if (columnCount === 3) {
-            columnCount = 0; // Reset column count
-            xOffset = margin; // Reset x offset to the left margin
-            yOffset += 10; // Move down to the next row
-          }
-        });
-      
-        pdf.save("shopping-list.pdf");
+      return {
+        ...prevQuantities,
+        [mealId]: currentQuantity - 1,
       };
+    });
+  };
+    
+  const generateShoppingList = () => {
+    const list: { [key: string]: { name: string; quantity: string; amount: number; unit: string } } = {};
+
+    selectedMeals.forEach((meal) => {
+      const quantityMultiplier = mealQuantities[meal.id] || 1;
+      meal.ingredients.forEach((ingredient) => {
+        const match = ingredient.quantity.match(/(\d+)(\s*)([a-zA-Z]*)/);
+        const parsedAmount = match ? parseFloat(match[1]) : 0;
+        const unit = match && match[3] ? match[3] : "";
+
+        if (list[ingredient.name]) {
+          list[ingredient.name].amount += parsedAmount * quantityMultiplier;
+        } else {
+          list[ingredient.name] = {
+            name: ingredient.name,
+            quantity: ingredient.quantity,
+            amount: parsedAmount * quantityMultiplier,
+            unit,
+          };
+        }
+      });
+    });
+
+    const sortedList = Object.values(list).sort((a, b) => a.name.localeCompare(b.name));
+
+    setShoppingList(
+      sortedList.map((item) => ({
+        name: item.name,
+        quantity: `${item.amount} ${item.unit}`,
+      }))
+    );
+
+    setModalOpen(true);
+  };
+
+  const generatePDF = () => {
+    const pdf = new jsPDF();
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const margin = 10; 
+    const columnWidth = (pageWidth - 2 * margin) / 3; 
+
+    pdf.setFontSize(10);
+    pdf.text("Shopping List", margin, 20);
+
+    let xOffset = margin;
+    let yOffset = 30;
+    let columnCount = 0; 
+
+    shoppingList.forEach((item, _index) => {
+      if (columnCount < 3) {
+        pdf.text(`${item.name}: ${item.quantity}`, xOffset, yOffset);
+        xOffset += columnWidth;
+        columnCount++;
+      }
+
+      if (columnCount === 3) {
+        columnCount = 0; 
+        xOffset = margin; 
+        yOffset += 10; 
+      }
+    });
+
+    pdf.save("shopping-list.pdf");
+  };
 
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
@@ -392,7 +423,7 @@ const ShoppingList = () => {
           {mealsData.map((meal) => (
             <div
               key={meal.id}
-              className={`p-4 border rounded-md cursor-pointer ${
+              className={`p-4 border rounded-md cursor-pointer flex justify-between items-center ${
                 selectedMeals.includes(meal)
                   ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
                   : ""
@@ -400,17 +431,50 @@ const ShoppingList = () => {
               onClick={() => handleMealSelect(meal)}
             >
               <h3 className="text-lg font-medium">{meal.name}</h3>
+
+              {selectedMeals.includes(meal) && (
+                <div className="flex items-center">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent deselection
+                      decrementQuantity(meal.id);
+                    }}
+                    className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                  >
+                    <FiMinus size={14} />
+                  </button>
+                  <span className="mx-1 px-2 py-1 bg-gray-100 text-gray-800">
+                    {mealQuantities[meal.id]}
+                  </span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent deselection
+                      incrementQuantity(meal.id);
+                    }}
+                    className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
+                  >
+                    <FiPlus size={14} />
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>
 
         {/* Generate Shopping List Button */}
-        <button onClick={generateShoppingList} className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md">
+        <button
+          onClick={generateShoppingList}
+          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md"
+        >
           Generate Shopping List
         </button>
 
-        <GroceryModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} shoppingList={shoppingList} generatePDF={generatePDF} />
-      
+        <GroceryModal
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          shoppingList={shoppingList}
+          generatePDF={generatePDF}
+        />
       </div>
     </DefaultLayout>
   );
