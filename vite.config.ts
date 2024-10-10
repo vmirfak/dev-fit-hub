@@ -32,12 +32,6 @@ export default defineConfig({
             purpose: 'apple touch icon',
           },
           {
-            src: '/icon-144x144.png',
-            sizes: '144x144',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
             src: '/icon-256x256.png',
             sizes: '256x256',
             type: 'image/png',
