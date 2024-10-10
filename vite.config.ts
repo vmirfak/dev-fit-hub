@@ -18,34 +18,11 @@ export default defineConfig({
             src: '/icon-192x192.png',
             sizes: '192x192',
             type: 'image/png',
+            purpose: 'any',
           },
           {
             src: '/icon-512x512.png',
             sizes: '512x512',
-            type: 'image/png',
-            purpose: 'favicon',
-          },
-          {
-            src: '/apple-touch-icon.png',
-            sizes: '180x180',
-            type: 'image/png',
-            purpose: 'apple touch icon',
-          },
-          {
-            src: '/icon-144x144.png',
-            sizes: '144x144',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
-            src: '/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png',
-            purpose: 'icon',
-          },
-          {
-            src: '/icon-384x384.png',
-            sizes: '384x384',
             type: 'image/png',
             purpose: 'any maskable',
           },
@@ -60,7 +37,7 @@ export default defineConfig({
               cacheName: 'images',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 30 * 24 * 60 * 60
+                maxAgeSeconds: 30 * 24 * 60 * 60,
               },
             },
           },
