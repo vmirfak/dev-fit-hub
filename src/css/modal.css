@@ -1,0 +1,49 @@
+/* General Modal Styles */
+.modalBackdrop {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modalBox {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    max-width: 90%;
+    border-radius: 16px;
+    box-shadow: 24px;
+    padding: 16px;
+    overflow: hidden;
+    color: #7c8a9d;
+    background-color: white;
+  }
+
+  .dark-mode .modalBox {
+    background-color: #24303f;
+    color: #7c8a9d;
+  }
+
+  .dark-mode .MuiInputLabel-root {
+    color: #7c8a9d;
+  }
+
+  .light-mode .MuiInputLabel-root {
+    color: #5a6e7a;
+  }
+
+  .dark-mode .MuiInputBase-input {
+    color: #7c8a9d;
+  }
+
+  .light-mode .MuiInputBase-input {
+    color: #5a6e7a;
+  }
+
+  .dark-mode .MuiSelect-root {
+    color: #7c8a9d;
+  }
+
+  .light-mode .MuiSelect-root {
+    color: #5a6e7a;
+  }
