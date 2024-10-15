@@ -19,6 +19,8 @@ import NewEvaluation from "./pages/NewEvaluation";
 import Chat from "./pages/Chat";
 import Recipes from "./pages/Recipes";
 import ShoppingList from "./pages/ShoppingList";
+import TestPlan from "./pages/TestPlant"
+import RecoverPassword from "./pages/Authentication/RecoverPassword";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -49,6 +51,24 @@ function App() {
             <>
               <PageTitle title="Registration" />
               <Registration />
+            </>
+          }
+        />
+        <Route
+          path="/recover"
+          element={
+            <>
+              <PageTitle title="Recover Password" />
+              <RecoverPassword />
+            </>
+          }
+        />
+        <Route
+          path="/testplan"
+          element={
+            <>
+              <PageTitle title="Test Plan" />
+              <TestPlan />
             </>
           }
         />

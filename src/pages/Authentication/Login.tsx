@@ -16,8 +16,8 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
-    password: Yup.string().required("Password is required"),
+    username: Yup.string().required("Nome de Utilizador é obrigatório"),
+    password: Yup.string().required("Palavra-passe é obrigatória"),
   });
 
   const handleLogin = async (values: {
@@ -59,7 +59,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
       setUser(user); // Set the logged-in user in context
       navigate("/dashboard");
     } else {
-      setLoginError("Invalid username or password");
+      setLoginError("Palavra-pass ou Nome de Utilizador Inválido!");
     }
 
     setLoading(false);
@@ -77,10 +77,10 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
             className="w-18 md:w-25 lg:w-35 xl:w-36" // Responsive sizing based on breakpoints
           />
         </div>
-        
+
         {/* Welcome Back Text */}
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
-          Welcome Back!
+          Bem-vindo!
         </h2>
         <Formik
           initialValues={{ username: "", password: "" }}
@@ -91,7 +91,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
             <Form className="space-y-6">
               <div>
                 <label className="block text-lg font-medium text-gray-700 mb-1">
-                  Username
+                  Nome de Utilizador
                 </label>
                 <Field
                   type="text"
@@ -107,7 +107,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
               </div>
               <div>
                 <label className="block text-lg font-medium text-gray-700 mb-1">
-                  Password
+                  Palavra-Passe
                 </label>
                 <Field
                   type="password"
@@ -131,11 +131,16 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
                     className="form-checkbox text-indigo-600"
                   />
                   <span className="ml-2 text-sm text-gray-600">
-                    Remember me
+                    Lembrar as minhas credenciais
                   </span>
                 </label>
                 <a href="#" className="text-sm text-indigo-600 hover:underline">
-                  Forgot Password?
+                  <NavLink
+                    to="/recover"
+                    className="text-indigo-600 hover:underline font-medium"
+                  >
+                    Esqueceste-te da Palavra-Passe?
+                  </NavLink>
                 </a>
               </div>
               <button
@@ -149,12 +154,12 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
           )}
         </Formik>
         <p className="text-center text-gray-600 mt-6">
-          Don't have an account?{" "}
+          Não tens uma conta?{" "}
           <NavLink
             to="/registration"
             className="text-indigo-600 hover:underline font-medium"
           >
-            Sign Up
+            Registar
           </NavLink>
         </p>
       </div>

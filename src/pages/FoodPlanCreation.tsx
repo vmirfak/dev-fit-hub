@@ -3,7 +3,8 @@ import ReactPaginate from "react-paginate";
 import { FaPencilAlt, FaTrashAlt, FaPlus } from "react-icons/fa";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
-import NewDietPlanModal from "../components/Modal/NewDietPlanModal"
+import NewDietPlanModal from "../components/Modal/NewDietPlanModal";
+import { NavLink } from "react-router-dom";
 
 interface DietPlan {
   id: number;
@@ -198,10 +199,15 @@ const DietPlansTable = () => {
     setCurrentPage(data.selected);
   };
 
-  const addDietPlan = (newDietPlan: { name: string; email: string; startDate: string; endDate: string }) => {
+  const addDietPlan = (newDietPlan: {
+    name: string;
+    email: string;
+    startDate: string;
+    endDate: string;
+  }) => {
     const newPlan = {
       id: dietPlans.length + 1,
-      createdOn: new Date().toISOString().split('T')[0],
+      createdOn: new Date().toISOString().split("T")[0],
       ...newDietPlan,
     };
     setDietPlans([...dietPlans, newPlan]);
@@ -222,9 +228,14 @@ const DietPlansTable = () => {
             onClick={handleCreateNew}
             className="flex items-center bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-200 hover:shadow-lg hover:scale-105"
           >
-            <FaPlus className="mr-2" /> 
+            <FaPlus className="mr-2" />
             Create New Diet Plan
           </button>
+          <NavLink to="/testplan">
+            <button className="bg-blue-600 text-white rounded-md px-4 py-2 flex items-center hover:bg-blue-700 transition duration-300 mt-4">
+              Test Page
+            </button>
+          </NavLink>
         </div>
 
         <div className="max-w-full overflow-x-auto">

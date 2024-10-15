@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../images/logo/b-blue-stroke.png"
-const Registration: React.FC = () => {
-  const [username, setUsername] = useState("");
+
+const RecoverPassword: React.FC = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const handleRegister = async () => {
+  const handleRecoverEmail = async () => {
     // Clear previous messages
     setError("");
     setSuccessMessage("");
 
-    // Input validations
-    if (!username || !email || !password || !confirmPassword) {
-      setError("All fields are required!");
+    // Input validation
+    if (!email) {
+      setError("E-mail é necessário!");
       return;
     }
 
@@ -27,46 +25,40 @@ const Registration: React.FC = () => {
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError("Palavras-pass não coincidem!");
-      return;
-    }
-
-    // Prepare user data for registration
-    const userData = {
-      username,
+    // Prepare data for recovery
+    const recoveryData = {
       email,
-      password,
     };
 
     try {
-      const response = await fetch("http://localhost:3000/register", {
+      const response = await fetch("http://localhost:3000/recover-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(recoveryData),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        // Registration successful
-        setSuccessMessage("Registration successful! You can now log in.");
+        // Email recovery successful
+        setSuccessMessage("Instruções de recuperação foram enviadas para o teu e-mail.");
       } else {
         // Handle server errors
-        setError(result.message || "Registration failed. Please try again.");
+        setError(result.message || "A recuperação falhou. Tenta novamente.");
       }
     } catch (error) {
-      setError("An error occurred while registering. Please try again later.");
-      console.error("Registration error:", error);
+      setError("Ocorreu um erro ao tentar recuperar o e-mail. Tenta novamente mais tarde.");
+      console.error("Recovery error:", error);
     }
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-500 to-green-600 p-6">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-purple-400 to-blue-500 p-6">
+
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
-      <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6">
           <img
             src={Logo}
             alt="Company Logo"
@@ -74,7 +66,7 @@ const Registration: React.FC = () => {
           />
         </div>
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
-          Criar uma Conta
+          Recuperar E-mail
         </h2>
         <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           {error && (
@@ -102,18 +94,6 @@ const Registration: React.FC = () => {
           )}
           <div>
             <label className="block text-lg font-medium text-gray-700 mb-1">
-              Nome de Utilizador
-            </label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
-              placeholder="Enter your username"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium text-gray-700 mb-1">
               E-mail
             </label>
             <input
@@ -124,46 +104,22 @@ const Registration: React.FC = () => {
               placeholder="Enter your email"
             />
           </div>
-          <div>
-            <label className="block text-lg font-medium text-gray-700 mb-1">
-              Palavra-Passe
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
-              placeholder="Enter your password"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium text-gray-700 mb-1">
-              Confirmar Palavra-Passe
-            </label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
-              placeholder="Confirm your password"
-            />
-          </div>
           <button
             type="button"
-            onClick={handleRegister}
+            onClick={handleRecoverEmail}
             className="w-full bg-gradient-to-r from-teal-500 to-green-600 hover:from-teal-600 hover:to-green-700 text-white font-bold py-3 rounded-xl shadow-md transition duration-300 transform hover:scale-105"
           >
-            Registar
+            Recuperar E-mail
           </button>
         </form>
 
         <p className="text-center text-gray-600 mt-6">
-          Já tens uma conta?{" "}
+          Lembraste da tua senha?{" "}
           <NavLink
             to="/"
             className="text-indigo-600 hover:underline font-medium"
           >
-            Registar
+            Voltar ao Login
           </NavLink>
         </p>
       </div>
@@ -171,4 +127,4 @@ const Registration: React.FC = () => {
   );
 };
 
-export default Registration;
+export default RecoverPassword;
