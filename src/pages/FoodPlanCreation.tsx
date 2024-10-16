@@ -224,16 +224,13 @@ const DietPlansTable = () => {
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold">My Diet Plans Creations</h1>
-          <button
-            onClick={handleCreateNew}
-            className="flex items-center bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-200 hover:shadow-lg hover:scale-105"
-          >
-            <FaPlus className="mr-2" />
-            Create New Diet Plan
-          </button>
           <NavLink to="/testplan">
-            <button className="bg-blue-600 text-white rounded-md px-4 py-2 flex items-center hover:bg-blue-700 transition duration-300 mt-4">
-              Test Page
+            <button
+              onClick={handleCreateNew}
+              className="flex items-center bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-200 hover:shadow-lg hover:scale-105"
+            >
+              <FaPlus className="mr-2" />
+              Create New Diet Plan
             </button>
           </NavLink>
         </div>
