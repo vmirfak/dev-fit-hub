@@ -220,17 +220,16 @@ const DietPlansTable = () => {
 
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
-      <Breadcrumb pageName="Food Plan Creation" />
+      <Breadcrumb pageName="As minhas Perscrições" />
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold">My Diet Plans Creations</h1>
+        <div className="flex justify-end items-center mb-4">
           <NavLink to="/testplan">
             <button
               onClick={handleCreateNew}
               className="flex items-center bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-200 hover:shadow-lg hover:scale-105"
             >
-              <FaPlus className="mr-2" />
-              Create New Diet Plan
+              <FaPlus className="mr-2 " />
+              Criar Novo
             </button>
           </NavLink>
         </div>
@@ -240,22 +239,22 @@ const DietPlansTable = () => {
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Name
+                  Nome
                 </th>
                 <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                   E-mail
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                  Creation-Date
+                  Criação
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                  Start-Date
+                  Início
                 </th>
                 <th className="py-4 px-4 font-medium text-black dark:text-white">
-                  End-Date
+                  Fim
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                  Actions
+                  Ações
                 </th>
               </tr>
             </thead>
@@ -310,8 +309,8 @@ const DietPlansTable = () => {
           </table>
         </div>
         <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
+          previousLabel={"Anterior"}
+          nextLabel={"Próximo"}
           pageCount={Math.ceil(dietPlans.length / itemsPerPage)}
           onPageChange={handlePageClick}
           containerClassName={"flex justify-center space-x-2 mt-4"}

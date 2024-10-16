@@ -20,12 +20,12 @@ interface Recipe {
 const initialRecipes: Recipe[] = [
   {
     id: 1,
-    recipeName: "Quinoa Salad",
+    recipeName: "Salada de Quinoa",
     ingredients: [
-      { name: "Quinoa", quantity: "1 cup" },
-      { name: "Cucumber", quantity: "1/2" },
-      { name: "Tomato", quantity: "1" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
+      { name: "Quinoa", quantity: "1 chávena" },
+      { name: "Pepino", quantity: "1/2" },
+      { name: "Tomate", quantity: "1" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
     ],
     filters: {
       glutenFree: true,
@@ -38,12 +38,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 2,
-    recipeName: "Chicken Stir Fry",
+    recipeName: "Frango Salteado",
     ingredients: [
-      { name: "Chicken Breast", quantity: "200g" },
-      { name: "Broccoli", quantity: "1 cup" },
-      { name: "Bell Pepper", quantity: "1" },
-      { name: "Soy Sauce", quantity: "2 tbsp" },
+      { name: "Peito de Frango", quantity: "200g" },
+      { name: "Brócolos", quantity: "1 chávena" },
+      { name: "Pimento", quantity: "1" },
+      { name: "Molho de Soja", quantity: "2 colheres de sopa" },
     ],
     filters: {
       glutenFree: false,
@@ -56,12 +56,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 3,
-    recipeName: "Vegetable Soup",
+    recipeName: "Sopa de Legumes",
     ingredients: [
-      { name: "Carrots", quantity: "2" },
-      { name: "Celery", quantity: "2 stalks" },
-      { name: "Onion", quantity: "1" },
-      { name: "Vegetable Broth", quantity: "4 cups" },
+      { name: "Cenouras", quantity: "2" },
+      { name: "Aipo", quantity: "2 talos" },
+      { name: "Cebola", quantity: "1" },
+      { name: "Caldo de Legumes", quantity: "4 chávenas" },
     ],
     filters: {
       glutenFree: true,
@@ -74,12 +74,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 4,
-    recipeName: "Beef Tacos",
+    recipeName: "Tacos de Carne de Vaca",
     ingredients: [
-      { name: "Ground Beef", quantity: "300g" },
-      { name: "Taco Shells", quantity: "6" },
-      { name: "Lettuce", quantity: "1 cup" },
-      { name: "Cheese", quantity: "1/2 cup" },
+      { name: "Carne de Vaca Picada", quantity: "300g" },
+      { name: "Tortilhas", quantity: "6" },
+      { name: "Alface", quantity: "1 chávena" },
+      { name: "Queijo", quantity: "1/2 chávena" },
     ],
     filters: {
       glutenFree: false,
@@ -94,10 +94,10 @@ const initialRecipes: Recipe[] = [
     id: 5,
     recipeName: "Pasta Primavera",
     ingredients: [
-      { name: "Pasta", quantity: "200g" },
-      { name: "Mixed Vegetables", quantity: "1 cup" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
-      { name: "Parmesan Cheese", quantity: "1/4 cup" },
+      { name: "Massa", quantity: "200g" },
+      { name: "Legumes Mistos", quantity: "1 chávena" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
+      { name: "Queijo Parmesão", quantity: "1/4 chávena" },
     ],
     filters: {
       glutenFree: false,
@@ -110,12 +110,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 6,
-    recipeName: "Grilled Chicken Salad",
+    recipeName: "Salada de Frango Grelhado",
     ingredients: [
-      { name: "Chicken Breast", quantity: "300g" },
-      { name: "Lettuce", quantity: "1 bunch" },
-      { name: "Tomato", quantity: "2" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
+      { name: "Peito de Frango", quantity: "300g" },
+      { name: "Alface", quantity: "1 molho" },
+      { name: "Tomate", quantity: "2" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
     ],
     filters: {
       glutenFree: true,
@@ -128,12 +128,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 7,
-    recipeName: "Spaghetti Bolognese",
+    recipeName: "Espaguete à Bolonhesa",
     ingredients: [
-      { name: "Spaghetti", quantity: "200g" },
-      { name: "Ground Beef", quantity: "250g" },
-      { name: "Tomato Sauce", quantity: "1 cup" },
-      { name: "Garlic", quantity: "3 cloves" },
+      { name: "Espaguete", quantity: "200g" },
+      { name: "Carne de Vaca Picada", quantity: "250g" },
+      { name: "Molho de Tomate", quantity: "1 chávena" },
+      { name: "Alho", quantity: "3 dentes" },
     ],
     filters: {
       glutenFree: false,
@@ -146,12 +146,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 8,
-    recipeName: "Vegetable Curry",
+    recipeName: "Caril de Legumes",
     ingredients: [
-      { name: "Potatoes", quantity: "3" },
-      { name: "Carrots", quantity: "2" },
-      { name: "Coconut Milk", quantity: "1 can" },
-      { name: "Curry Powder", quantity: "2 tbsp" },
+      { name: "Batatas", quantity: "3" },
+      { name: "Cenouras", quantity: "2" },
+      { name: "Leite de Coco", quantity: "1 lata" },
+      { name: "Pó de Caril", quantity: "2 colheres de sopa" },
     ],
     filters: {
       glutenFree: true,
@@ -164,12 +164,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 9,
-    recipeName: "Shrimp Alfredo Pasta",
+    recipeName: "Pasta Alfredo com Camarão",
     ingredients: [
-      { name: "Shrimp", quantity: "250g" },
-      { name: "Pasta", quantity: "200g" },
-      { name: "Heavy Cream", quantity: "1 cup" },
-      { name: "Parmesan Cheese", quantity: "1/2 cup" },
+      { name: "Camarão", quantity: "250g" },
+      { name: "Massa", quantity: "200g" },
+      { name: "Nata", quantity: "1 chávena" },
+      { name: "Queijo Parmesão", quantity: "1/2 chávena" },
     ],
     filters: {
       glutenFree: false,
@@ -182,12 +182,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 10,
-    recipeName: "Beef and Broccoli Stir Fry",
+    recipeName: "Frango e Brócolos Salteados",
     ingredients: [
-      { name: "Beef Strips", quantity: "300g" },
-      { name: "Broccoli", quantity: "1 head" },
-      { name: "Soy Sauce", quantity: "2 tbsp" },
-      { name: "Garlic", quantity: "3 cloves" },
+      { name: "Tiras de Carne de Vaca", quantity: "300g" },
+      { name: "Brócolos", quantity: "1 cabeça" },
+      { name: "Molho de Soja", quantity: "2 colheres de sopa" },
+      { name: "Alho", quantity: "3 dentes" },
     ],
     filters: {
       glutenFree: true,
@@ -200,12 +200,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 11,
-    recipeName: "Avocado Toast",
+    recipeName: "Tosta de Abacate",
     ingredients: [
-      { name: "Bread", quantity: "2 slices" },
-      { name: "Avocado", quantity: "1" },
-      { name: "Lemon Juice", quantity: "1 tbsp" },
-      { name: "Chili Flakes", quantity: "1 tsp" },
+      { name: "Pão", quantity: "2 fatias" },
+      { name: "Abacate", quantity: "1" },
+      { name: "Sumo de Limão", quantity: "1 colher de sopa" },
+      { name: "Flocos de Chili", quantity: "1 colher de chá" },
     ],
     filters: {
       glutenFree: false,
@@ -218,12 +218,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 12,
-    recipeName: "Egg Fried Rice",
+    recipeName: "Arroz Frito com Ovo",
     ingredients: [
-      { name: "Rice", quantity: "2 cups" },
-      { name: "Eggs", quantity: "2" },
-      { name: "Peas", quantity: "1/2 cup" },
-      { name: "Soy Sauce", quantity: "2 tbsp" },
+      { name: "Arroz", quantity: "2 chávenas" },
+      { name: "Ovos", quantity: "2" },
+      { name: "Ervilhas", quantity: "1/2 chávena" },
+      { name: "Molho de Soja", quantity: "2 colheres de sopa" },
     ],
     filters: {
       glutenFree: false,
@@ -236,12 +236,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 13,
-    recipeName: "Caprese Salad",
+    recipeName: "Salada Caprese",
     ingredients: [
-      { name: "Tomatoes", quantity: "2" },
-      { name: "Mozzarella Cheese", quantity: "150g" },
-      { name: "Basil", quantity: "1 bunch" },
-      { name: "Balsamic Vinegar", quantity: "1 tbsp" },
+      { name: "Tomates", quantity: "2" },
+      { name: "Queijo Mozarela", quantity: "150g" },
+      { name: "Manjericão", quantity: "1 molho" },
+      { name: "Vinagre Balsâmico", quantity: "1 colher de sopa" },
     ],
     filters: {
       glutenFree: true,
@@ -254,12 +254,12 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 14,
-    recipeName: "Pasta Salad",
+    recipeName: "Salada de Massa",
     ingredients: [
-      { name: "Pasta", quantity: "200g" },
-      { name: "Olives", quantity: "1/2 cup" },
-      { name: "Feta Cheese", quantity: "100g" },
-      { name: "Cherry Tomatoes", quantity: "1 cup" },
+      { name: "Massa", quantity: "200g" },
+      { name: "Azeitonas", quantity: "1/2 chávena" },
+      { name: "Queijo Feta", quantity: "100g" },
+      { name: "Tomates Cereja", quantity: "1 chávena" },
     ],
     filters: {
       glutenFree: false,
@@ -272,192 +272,192 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 15,
-    recipeName: "Chickpea Stew",
+    recipeName: "Guisado de Grão-de-Bico",
     ingredients: [
-      { name: "Chickpeas", quantity: "2 cups" },
-      { name: "Spinach", quantity: "2 cups" },
-      { name: "Onion", quantity: "1" },
-      { name: "Canned Tomatoes", quantity: "1 can" },
+      { name: "Grão-de-Bico", quantity: "2 chávenas" },
+      { name: "Espinafre", quantity: "2 chávenas" },
+      { name: "Cebola", quantity: "1" },
+      { name: "Alho", quantity: "3 dentes" },
     ],
     filters: {
       glutenFree: true,
       vegan: true,
       dairyFree: true,
       lowCarb: false,
-      highProtein: true,
+      highProtein: false,
       quickPrep: false,
     },
   },
   {
     id: 16,
-    recipeName: "Zucchini Noodles with Pesto",
+    recipeName: "Omelete de Espinafres",
     ingredients: [
-      { name: "Zucchini", quantity: "2" },
-      { name: "Pesto Sauce", quantity: "1/4 cup" },
-      { name: "Cherry Tomatoes", quantity: "1/2 cup" },
-      { name: "Parmesan Cheese", quantity: "2 tbsp" },
+      { name: "Ovos", quantity: "3" },
+      { name: "Espinafres", quantity: "1 chávena" },
+      { name: "Cebola", quantity: "1/2" },
+      { name: "Queijo", quantity: "50g" },
     ],
     filters: {
       glutenFree: true,
       vegan: false,
       dairyFree: false,
       lowCarb: true,
-      highProtein: false,
+      highProtein: true,
       quickPrep: true,
     },
   },
   {
     id: 17,
-    recipeName: "Stuffed Peppers",
+    recipeName: "Pudim de Chia",
     ingredients: [
-      { name: "Bell Peppers", quantity: "4" },
-      { name: "Ground Turkey", quantity: "300g" },
-      { name: "Rice", quantity: "1 cup" },
-      { name: "Tomato Sauce", quantity: "1 cup" },
+      { name: "Sementes de Chia", quantity: "1/4 chávena" },
+      { name: "Leite de Amêndoa", quantity: "1 chávena" },
+      { name: "Mel", quantity: "1 colher de sopa" },
+      { name: "Frutos Vermelhos", quantity: "1/2 chávena" },
     ],
     filters: {
-      glutenFree: false,
-      vegan: false,
+      glutenFree: true,
+      vegan: true,
       dairyFree: true,
       lowCarb: false,
-      highProtein: true,
-      quickPrep: false,
+      highProtein: false,
+      quickPrep: true,
     },
   },
   {
     id: 18,
-    recipeName: "Banana Oatmeal",
+    recipeName: "Smoothie Verde",
     ingredients: [
-      { name: "Rolled Oats", quantity: "1 cup" },
+      { name: "Espinafres", quantity: "1 chávena" },
       { name: "Banana", quantity: "1" },
-      { name: "Milk", quantity: "1 cup" },
-      { name: "Honey", quantity: "1 tbsp" },
+      { name: "Leite de Amêndoa", quantity: "1 chávena" },
+      { name: "Manteiga de Amendoim", quantity: "1 colher de sopa" },
     ],
     filters: {
-      glutenFree: false,
-      vegan: false,
-      dairyFree: false,
+      glutenFree: true,
+      vegan: true,
+      dairyFree: true,
       lowCarb: false,
-      highProtein: false,
+      highProtein: true,
       quickPrep: true,
     },
   },
   {
     id: 19,
-    recipeName: "Fish Tacos",
+    recipeName: "Bowl de Açaí",
     ingredients: [
-      { name: "White Fish", quantity: "300g" },
-      { name: "Taco Shells", quantity: "6" },
-      { name: "Cabbage", quantity: "1 cup" },
-      { name: "Salsa", quantity: "1/2 cup" },
+      { name: "Polpa de Açaí", quantity: "1 chávena" },
+      { name: "Banana", quantity: "1" },
+      { name: "Granola", quantity: "1/2 chávena" },
+      { name: "Mel", quantity: "1 colher de sopa" },
     ],
     filters: {
-      glutenFree: false,
-      vegan: false,
+      glutenFree: true,
+      vegan: true,
       dairyFree: true,
       lowCarb: false,
-      highProtein: true,
+      highProtein: false,
       quickPrep: true,
     },
   },
   {
     id: 20,
-    recipeName: "Mango Smoothie",
+    recipeName: "Frango ao Limão",
     ingredients: [
-      { name: "Mango", quantity: "1" },
-      { name: "Yogurt", quantity: "1 cup" },
-      { name: "Milk", quantity: "1/2 cup" },
-      { name: "Honey", quantity: "1 tbsp" },
+      { name: "Peito de Frango", quantity: "300g" },
+      { name: "Sumo de Limão", quantity: "2 colheres de sopa" },
+      { name: "Alho", quantity: "3 dentes" },
+      { name: "Azeite", quantity: "1 colher de sopa" },
     ],
     filters: {
       glutenFree: true,
       vegan: false,
-      dairyFree: false,
-      lowCarb: false,
-      highProtein: false,
-      quickPrep: true,
+      dairyFree: true,
+      lowCarb: true,
+      highProtein: true,
+      quickPrep: false,
     },
   },
   {
     id: 21,
-    recipeName: "Sweet Potato Fries",
+    recipeName: "Lasanha de Legumes",
     ingredients: [
-      { name: "Sweet Potatoes", quantity: "2" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
-      { name: "Salt", quantity: "1 tsp" },
-      { name: "Paprika", quantity: "1 tsp" },
+      { name: "Folhas de Lasanha", quantity: "9" },
+      { name: "Espinafres", quantity: "2 chávenas" },
+      { name: "Ricotta", quantity: "250g" },
+      { name: "Molho de Tomate", quantity: "1 chávena" },
     ],
     filters: {
-      glutenFree: true,
-      vegan: true,
-      dairyFree: true,
-      lowCarb: false,
-      highProtein: false,
-      quickPrep: true,
-    },
-  },
-  {
-    id: 22,
-    recipeName: "Lentil Soup",
-    ingredients: [
-      { name: "Lentils", quantity: "1 cup" },
-      { name: "Carrots", quantity: "2" },
-      { name: "Celery", quantity: "2 stalks" },
-      { name: "Vegetable Broth", quantity: "4 cups" },
-    ],
-    filters: {
-      glutenFree: true,
-      vegan: true,
-      dairyFree: true,
+      glutenFree: false,
+      vegan: false,
+      dairyFree: false,
       lowCarb: false,
       highProtein: true,
       quickPrep: false,
     },
   },
   {
-    id: 23,
-    recipeName: "Peanut Butter Banana Smoothie",
+    id: 22,
+    recipeName: "Salada de Grão-de-Bico",
     ingredients: [
-      { name: "Banana", quantity: "1" },
-      { name: "Peanut Butter", quantity: "2 tbsp" },
-      { name: "Milk", quantity: "1 cup" },
-      { name: "Honey", quantity: "1 tbsp" },
+      { name: "Grão-de-Bico", quantity: "1 chávena" },
+      { name: "Pimento Vermelho", quantity: "1" },
+      { name: "Cebola Roxa", quantity: "1/2" },
+      { name: "Salsa", quantity: "1 molho" },
+    ],
+    filters: {
+      glutenFree: true,
+      vegan: true,
+      dairyFree: true,
+      lowCarb: false,
+      highProtein: false,
+      quickPrep: true,
+    },
+  },
+  {
+    id: 23,
+    recipeName: "Salmão Grelhado",
+    ingredients: [
+      { name: "Salmão", quantity: "2 filés" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
+      { name: "Limão", quantity: "1" },
+      { name: "Ervas Finas", quantity: "a gosto" },
     ],
     filters: {
       glutenFree: true,
       vegan: false,
-      dairyFree: false,
-      lowCarb: false,
+      dairyFree: true,
+      lowCarb: true,
       highProtein: true,
       quickPrep: true,
     },
   },
   {
     id: 24,
-    recipeName: "Greek Yogurt Parfait",
+    recipeName: "Hambúrguer Vegetariano",
     ingredients: [
-      { name: "Greek Yogurt", quantity: "1 cup" },
-      { name: "Granola", quantity: "1/2 cup" },
-      { name: "Mixed Berries", quantity: "1 cup" },
-      { name: "Honey", quantity: "1 tbsp" },
+      { name: "Feijão Preto", quantity: "1 chávena" },
+      { name: "Aveia", quantity: "1/2 chávena" },
+      { name: "Cebola", quantity: "1/2" },
+      { name: "Alho", quantity: "2 dentes" },
     ],
     filters: {
       glutenFree: false,
-      vegan: false,
-      dairyFree: false,
+      vegan: true,
+      dairyFree: true,
       lowCarb: false,
       highProtein: true,
-      quickPrep: true,
+      quickPrep: false,
     },
   },
   {
     id: 25,
-    recipeName: "Oven-Baked Salmon",
+    recipeName: "Bife com Legumes",
     ingredients: [
-      { name: "Salmon Fillet", quantity: "300g" },
-      { name: "Lemon", quantity: "1" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
-      { name: "Garlic", quantity: "2 cloves" },
+      { name: "Bife", quantity: "200g" },
+      { name: "Cenoura", quantity: "1" },
+      { name: "Brócolos", quantity: "1 chávena" },
+      { name: "Azeite", quantity: "1 colher de sopa" },
     ],
     filters: {
       glutenFree: true,
@@ -470,23 +470,24 @@ const initialRecipes: Recipe[] = [
   },
   {
     id: 26,
-    recipeName: "Chia Seed Pudding",
+    recipeName: "Tortilha de Batata",
     ingredients: [
-      { name: "Chia Seeds", quantity: "1/4 cup" },
-      { name: "Milk", quantity: "1 cup" },
-      { name: "Vanilla Extract", quantity: "1 tsp" },
-      { name: "Honey", quantity: "1 tbsp" },
+      { name: "Batatas", quantity: "3" },
+      { name: "Ovos", quantity: "4" },
+      { name: "Cebola", quantity: "1" },
+      { name: "Azeite", quantity: "1/4 chávena" },
     ],
     filters: {
       glutenFree: true,
-      vegan: true,
-      dairyFree: true,
+      vegan: false,
+      dairyFree: false,
       lowCarb: false,
-      highProtein: true,
-      quickPrep: true,
+      highProtein: false,
+      quickPrep: false,
     },
   },
 ];
+
 
 const Recipes = () => {
   const [isOpen] = useState(false);
@@ -528,7 +529,7 @@ const Recipes = () => {
       <Breadcrumb pageName="Recipes" />
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         <div className="mb-4">
-          <h2 className="text-2xl font-bold mb-2">Filters</h2>
+          <h2 className="text-2xl font-bold mb-2">Filtros</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <CheckboxTwo
               label="Gluten-Free"
@@ -536,12 +537,12 @@ const Recipes = () => {
               onChange={() => toggleFilter("glutenFree")}
             />
             <CheckboxTwo
-              label="Vegan"
+              label="Vegano"
               checked={filters.vegan}
               onChange={() => toggleFilter("vegan")}
             />
             <CheckboxTwo
-              label="Dairy-Free"
+              label="Sem-Lactose"
               checked={filters.dairyFree}
               onChange={() => toggleFilter("dairyFree")}
             />
@@ -551,12 +552,12 @@ const Recipes = () => {
               onChange={() => toggleFilter("lowCarb")}
             />
             <CheckboxTwo
-              label="High-Protein"
+              label="Alta-Proteína"
               checked={filters.highProtein}
               onChange={() => toggleFilter("highProtein")}
             />
             <CheckboxTwo
-              label="Quick Prep"
+              label="Preparação Rápida"
               checked={filters.quickPrep}
               onChange={() => toggleFilter("quickPrep")}
             />
@@ -586,7 +587,7 @@ const Recipes = () => {
             >
               <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-2">
-                  Ingredients
+                  Ingredientes
                 </h4>
                 <ul className="list-disc pl-5">
                   {recipe.ingredients.map((ingredient, index) => (

@@ -6,104 +6,104 @@ import Modal from "../components/Modal";
 // Updated data structure to organize exercises by day
 const exercisePlansData = [
   {
-    planName: "Strength Training Program",
-    description: "A 4-week program focused on building strength and endurance.",
+    planName: "Programa de Treino de Força",
+    description: "Um programa de 4 semanas focado em aumentar a força e a resistência.",
     weeklyPlan: [
       {
-        day: "Day 1",
+        day: "Dia 1",
         exercises: [
           {
-            name: "Squats",
+            name: "Agachamentos",
             sets: 4,
             repetitions: 10,
             duration: "N/A",
-            instructions: "Keep your back straight.",
+            instructions: "Mantenha as costas retas.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Bench Press",
+            name: "Supino",
             sets: 3,
             repetitions: 8,
             duration: "N/A",
-            instructions: "Lower the bar to your chest.",
+            instructions: "Baixe a barra até o peito.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Deadlifts",
+            name: "Levantamento Terra",
             sets: 4,
             repetitions: 10,
             duration: "N/A",
-            instructions: "Maintain a straight back.",
+            instructions: "Mantenha as costas retas.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Plank",
+            name: "Prancha",
             sets: 3,
             repetitions: "N/A",
-            duration: "1 minute",
-            instructions: "Hold your body in a straight line.",
+            duration: "1 minuto",
+            instructions: "Mantenha o corpo em linha reta.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
       {
-        day: "Day 2",
+        day: "Dia 2",
         exercises: [
           {
             name: "Pull-ups",
             sets: 3,
             repetitions: 5,
             duration: "N/A",
-            instructions: "Pull your chin above the bar.",
+            instructions: "Puxe o queixo acima da barra.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Push-ups",
+            name: "Flexões",
             sets: 4,
             repetitions: 12,
             duration: "N/A",
-            instructions: "Keep your body straight.",
+            instructions: "Mantenha o corpo reto.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Lunges",
+            name: "Avanços",
             sets: 3,
             repetitions: 10,
             duration: "N/A",
-            instructions: "Step forward and lower your hips.",
+            instructions: "Dê um passo à frente e baixe os quadris.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Bicycle Crunches",
+            name: "Bicicleta Abdominal",
             sets: 3,
             repetitions: 15,
             duration: "N/A",
-            instructions: "Touch your elbow to the opposite knee.",
+            instructions: "Toque o cotovelo no joelho oposto.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
       {
-        day: "Day 3",
+        day: "Dia 3",
         exercises: [
           {
-            name: "Barbell Rows",
+            name: "Remadas com Barra",
             sets: 4,
             repetitions: 10,
             duration: "N/A",
-            instructions: "Keep your back straight.",
+            instructions: "Mantenha as costas retas.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Shoulder Press",
+            name: "Pressão de Ombros",
             sets: 3,
             repetitions: 10,
             duration: "N/A",
-            instructions: "Press above your head.",
+            instructions: "Pressione acima da cabeça.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
@@ -112,7 +112,7 @@ const exercisePlansData = [
             sets: 4,
             repetitions: 12,
             duration: "N/A",
-            instructions: "Push with your feet.",
+            instructions: "Empurre com os pés.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
@@ -121,29 +121,29 @@ const exercisePlansData = [
             sets: 3,
             repetitions: 20,
             duration: "N/A",
-            instructions: "Jump while spreading your arms and legs.",
+            instructions: "Salte enquanto espalha os braços e as pernas.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
       {
-        day: "Day 4",
+        day: "Dia 4",
         exercises: [
           {
-            name: "Zumba Class",
+            name: "Aula de Zumba",
             sets: 1,
             repetitions: "N/A",
-            duration: "45 minutes",
-            instructions: "Follow the instructor.",
+            duration: "45 minutos",
+            instructions: "Siga o instrutor.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Side Plank",
+            name: "Prancha Lateral",
             sets: 3,
             repetitions: "N/A",
-            duration: "30 seconds each side",
-            instructions: "Keep your body straight.",
+            duration: "30 segundos de cada lado",
+            instructions: "Mantenha o corpo reto.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
@@ -152,15 +152,15 @@ const exercisePlansData = [
             sets: 3,
             repetitions: 10,
             duration: "N/A",
-            instructions: "Squat, jump back, and jump up.",
+            instructions: "Agache, salte para trás e salte para cima.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Russian Twists",
+            name: "Torções Russas",
             sets: 3,
             repetitions: 15,
             duration: "N/A",
-            instructions: "Twist your torso.",
+            instructions: "Gire o tronco.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
@@ -169,57 +169,57 @@ const exercisePlansData = [
     ],
   },
   {
-    planName: "Cardio Conditioning Plan",
-    description: "A 2-week plan to improve cardiovascular health.",
+    planName: "Plano de Condicionamento Cardíaco",
+    description: "Um plano de 2 semanas para melhorar a saúde cardiovascular.",
     weeklyPlan: [
       {
-        day: "Day 1",
+        day: "Dia 1",
         exercises: [
           {
-            name: "Running",
+            name: "Corrida",
             sets: "N/A",
             repetitions: "N/A",
-            duration: "30 minutes",
-            instructions: "Maintain a steady pace.",
+            duration: "30 minutos",
+            instructions: "Mantenha um ritmo constante.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Cycling",
+            name: "Ciclismo",
             sets: "N/A",
             repetitions: "N/A",
-            duration: "45 minutes",
-            instructions: "Keep a consistent rhythm.",
+            duration: "45 minutos",
+            instructions: "Mantenha um ritmo consistente.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Jump Rope",
+            name: "Pular Corda",
             sets: 5,
-            repetitions: "1 minute",
+            repetitions: "1 minuto",
             duration: "N/A",
-            instructions: "Skip rope at a steady pace.",
+            instructions: "Pule a corda em um ritmo constante.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "High Knees",
+            name: "Elevações de Joelho",
             sets: 3,
             repetitions: 30,
             duration: "N/A",
-            instructions: "Drive your knees to your chest.",
+            instructions: "Leve os joelhos até o peito.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
       {
-        day: "Day 2",
+        day: "Dia 2",
         exercises: [
           {
-            name: "Rowing",
+            name: "Remo",
             sets: 1,
             repetitions: "N/A",
-            duration: "20 minutes",
-            instructions: "Row at a moderate pace.",
+            duration: "20 minutos",
+            instructions: "Remar em um ritmo moderado.",
             videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
@@ -227,7 +227,7 @@ const exercisePlansData = [
             sets: 3,
             repetitions: 10,
             duration: "N/A",
-            instructions: "Squat, jump back, and jump up.",
+            instructions: "Agache, salte para trás e salte para cima.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
@@ -236,16 +236,16 @@ const exercisePlansData = [
             sets: 3,
             repetitions: 20,
             duration: "N/A",
-            instructions: "Jump while spreading your arms and legs.",
+            instructions: "Salte enquanto espalha os braços e as pernas.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
-            name: "Mountain Climbers",
+            name: "Escaladores",
             sets: 3,
             repetitions: 15,
             duration: "N/A",
-            instructions: "Drive your knees towards your chest.",
+            instructions: "Leve os joelhos em direção ao peito.",
             videoLink:
               "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
@@ -254,6 +254,7 @@ const exercisePlansData = [
     ],
   },
 ];
+
 
 const ExercisePlans: React.FC = () => {
   const [expandedPlan, setExpandedPlan] = useState<number | null>(null);
@@ -282,7 +283,7 @@ const ExercisePlans: React.FC = () => {
   
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
-      <Breadcrumb pageName="My Exercise Plans" />
+      <Breadcrumb pageName="O meu Plano de Treino" />
 
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         {/* Exercise Plans List */}
@@ -310,7 +311,7 @@ const ExercisePlans: React.FC = () => {
             {expandedPlan === planIndex && (
               <div className="p-4 border-gray-200 dark:border-gray-600">
                 <h4 className="text-lg font-medium mb-2">
-                  Weekly Training Schedule
+                  Treino Semanal
                 </h4>
 
                 {/* Day List */}
@@ -332,7 +333,7 @@ const ExercisePlans: React.FC = () => {
                     {/* Expandable Day Details */}
                     {expandedDay === dayIndex && (
                       <div className="p-3 border border-gray-300 dark:border-gray-600 rounded mt-2 bg-gray-50 dark:bg-gray-800">
-                        <h5 className="text-md font-medium mb-2">Exercises</h5>
+                        <h5 className="text-md font-medium mb-2">Exercícios</h5>
 
                         {/* Exercise List */}
                         {dayPlan.exercises.map((exercise, exerciseIndex) => (
@@ -349,8 +350,8 @@ const ExercisePlans: React.FC = () => {
                                   {exercise.name}
                                 </h6>
                                 <p className="text-xs text-gray-600 dark:text-gray-400">
-                                  Sets: {exercise.sets} | Repetitions:{" "}
-                                  {exercise.repetitions} | Duration:{" "}
+                                  Sets: {exercise.sets} | Repetições:{" "}
+                                  {exercise.repetitions} | Duração:{" "}
                                   {exercise.duration}
                                 </p>
                               </div>
@@ -363,7 +364,7 @@ const ExercisePlans: React.FC = () => {
                             {expandedExercise === exerciseIndex && (
                               <div className="p-3 border border-gray-300 dark:border-gray-600 rounded mt-2 bg-gray-50 dark:bg-gray-800">
                                 <p className="text-sm text-gray-800 dark:text-gray-200">
-                                  <strong>Instructions:</strong>{" "}
+                                  <strong>Instruções:</strong>{" "}
                                   {exercise.instructions}
                                 </p>
                                 <button
@@ -374,7 +375,7 @@ const ExercisePlans: React.FC = () => {
                                     setselectedExerciseName(exercise.name);
                                   }}
                                 >
-                                  Watch Video
+                                  Ver Vídeo
                                 </button>
                               </div>
                             )}

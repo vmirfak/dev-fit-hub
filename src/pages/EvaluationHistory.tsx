@@ -15,10 +15,13 @@ const EvaluationHistory: React.FC = () => {
 
   // Dummy data for table rows
   const evaluations: Evaluation[] = [
-    { date: '2023-10-01', evaluator: 'John Doe', details: 'Evaluation 1 Details: Score - 85%, Remarks - Satisfactory.' },
-    { date: '2023-09-15', evaluator: 'Jane Smith', details: 'Evaluation 2 Details: Score - 90%, Remarks - Excellent.' },
-    { date: '2023-08-30', evaluator: 'Alex Johnson', details: 'Evaluation 3 Details: Score - 72%, Remarks - Needs Improvement.' },
-  ];
+    { date: '2023-10-01', evaluator: 'João Silva', details: 'Avaliação 1 Detalhes: Pontuação - 85%, Observações - Satisfatório.' },
+  { date: '2023-09-15', evaluator: 'Maria Santos', details: 'Avaliação 2 Detalhes: Pontuação - 90%, Observações - Excelente.' },
+  { date: '2023-08-30', evaluator: 'Alexandre Costa', details: 'Avaliação 3 Detalhes: Pontuação - 72%, Observações - Necessita Melhorar.' },
+  { date: '2023-07-20', evaluator: 'Inês Almeida', details: 'Avaliação 4 Detalhes: Pontuação - 88%, Observações - Bom desempenho.' },
+  { date: '2023-06-05', evaluator: 'Pedro Ferreira', details: 'Avaliação 5 Detalhes: Pontuação - 95%, Observações - Excecional.' },
+  { date: '2023-05-10', evaluator: 'Ana Lopes', details: 'Avaliação 6 Detalhes: Pontuação - 67%, Observações - Abaixo do esperado.' },
+];
 
   // Toggle row expansion for multiple rows
   const toggleRow = (index: number) => {
@@ -33,16 +36,15 @@ const EvaluationHistory: React.FC = () => {
   
   return (
     <DefaultLayout isModalOpen={isOpen}>
-      <Breadcrumb pageName="Evaluation History" />
+      <Breadcrumb pageName="Histórico de Avaliações" />
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="p-6">
-          <h2 className="text-xl font-semibold mb-4">Evaluation History</h2>
           <table className="w-full border-collapse bg-white shadow-sm dark:bg-boxdark">
             <thead>
               <tr className="bg-gray-100 dark:bg-strokedark text-center">
-                <th className="py-3 px-4 text-sm font-medium text-center">Date</th>
-                <th className="py-3 px-4 text-sm font-medium text-center">Evaluator</th>
-                <th className="py-3 px-4 text-sm font-medium text-center">Actions</th>
+                <th className="py-3 px-4 text-sm font-medium text-center">Data</th>
+                <th className="py-3 px-4 text-sm font-medium text-center">Avaliador</th>
+                <th className="py-3 px-4 text-sm font-medium text-center">Ações</th>
               </tr>
             </thead>
             <tbody>

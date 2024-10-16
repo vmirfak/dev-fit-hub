@@ -73,9 +73,6 @@ const Feedback = () => {
         <div className="grid grid-cols-4 gap-8">
           <div className="col-span-5 xl:col-span-3">
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-              <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">Feedback Form</h3>
-              </div>
               <div className="p-7">
                 <form onSubmit={handleSubmit}>
                   {/* Error Message */}
@@ -94,36 +91,36 @@ const Feedback = () => {
                   {/* Feedback Category */}
                   <div className="mb-5.5">
                     <label className="mb-3 block text-sm font-medium text-black dark:text-white" htmlFor="category">
-                      Feedback Category
+                      Categoria
                     </label>
                     <select
-                      className="w-full rounded border border-stroke bg-gray-100 py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary cursor-pointer"
+                      className="w-full cursor-pointer rounded border border-stroke bg-gray-100 py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary cursor-pointer"
                       name="category"
                       id="category"
                       value={category}
                       onChange={handleCategoryChange}
                       required
                     >
-                      <option value="">Select category</option>
-                      <option value="suggestion">Suggestion</option>
-                      <option value="somethingnotright">Something is not right</option>
-                      <option value="compliment">Compliment</option>
-                      <option value="complaint">Complaint</option>
-                      <option value="other">Other</option>
+                      <option value="">Seleciona uma Categoria</option>
+                      <option value="suggestion">Segestão</option>
+                      <option value="somethingnotright">Algo está errado</option>
+                      <option value="compliment">Elogio</option>
+                      <option value="complaint">Queixa</option>
+                      <option value="other">Outro</option>
                     </select>
                   </div>
 
                   {/* Full Name */}
                   <div className="mb-5.5">
                     <label className="mb-3 block text-sm font-medium text-black dark:text-white" htmlFor="fullName">
-                      Your Name
+                      Nome
                     </label>
                     <input
                       className="w-full rounded border border-stroke bg-gray-100 py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                       type="text"
                       name="fullName"
                       id="fullName"
-                      placeholder="Enter your full name"
+                      placeholder="Introduz o teu Nome"
                       required
                     />
                   </div>
@@ -131,14 +128,14 @@ const Feedback = () => {
                   {/* Email Address */}
                   <div className="mb-5.5">
                     <label className="mb-3 block text-sm font-medium text-black dark:text-white" htmlFor="emailAddress">
-                      Email Address
+                      E-mail
                     </label>
                     <input
                       className="w-full rounded border border-stroke bg-gray-100 py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                       type="email"
                       name="emailAddress"
                       id="emailAddress"
-                      placeholder="Enter your email address"
+                      placeholder="Introduz o teu E-mail"
                       required
                     />
                   </div>
@@ -146,14 +143,14 @@ const Feedback = () => {
                   {/* Feedback Message */}
                   <div className="mb-5.5">
                     <label className="mb-3 block text-sm font-medium text-black dark:text-white" htmlFor="feedbackMessage">
-                      Feedback Message
+                      Mensagem de Feedback
                     </label>
                     <textarea
                       className="w-full rounded border border-stroke bg-gray-100 py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                       name="feedbackMessage"
                       id="feedbackMessage"
                       rows={6}
-                      placeholder="Write your feedback here"
+                      placeholder="Escreve o teu Feedback aqui"
                       required
                     ></textarea>
                   </div>
@@ -162,7 +159,7 @@ const Feedback = () => {
                   <div className="mb-5.5 flex items-center gap-1.5">
                     <div className="w-1/2">
                       <label className="mb-3 block text-sm font-medium text-black dark:text-white" htmlFor="rating">
-                        Rate your overall experience
+                        Classifica a tua experiência
                       </label>
                       <div className="flex gap-1 items-center">
                         {[1, 2, 3, 4, 5].map((value) => (
@@ -191,13 +188,13 @@ const Feedback = () => {
                       className="flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
                       type="reset"
                     >
-                      Cancel
+                      Cancelar
                     </button>
                     <button
                       className="flex justify-center rounded bg-primary py-2 px-6 font-medium text-white hover:bg-opacity-90"
                       type="submit"
                     >
-                      Submit Feedback
+                      Enviar Feedback
                     </button>
                   </div>
                 </form>

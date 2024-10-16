@@ -19,282 +19,272 @@ interface Meal {
 const mealsData: Meal[] = [
   {
     id: 1,
-    name: "Grilled Chicken Salad",
+    name: "Salada de Frango Grelhado",
     ingredients: [
-      { name: "Chicken Breast", quantity: "300g" },
-      { name: "Lettuce", quantity: "1 bunch" },
-      { name: "Tomato", quantity: "2 pcs" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
+      { name: "Peito de Frango", quantity: "300g" },
+      { name: "Alface", quantity: "1 molho" },
+      { name: "Tomate", quantity: "2 unidades" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
     ],
   },
   {
     id: 2,
-    name: "Spaghetti Bolognese",
+    name: "Espaguete à Bolonhesa",
     ingredients: [
-      { name: "Spaghetti", quantity: "200g" },
-      { name: "Ground Beef", quantity: "250g" },
-      { name: "Tomato Sauce", quantity: "1 cup" },
-      { name: "Garlic", quantity: "3 cloves" },
+      { name: "Espaguete", quantity: "200g" },
+      { name: "Carne Moída", quantity: "250g" },
+      { name: "Molho de Tomate", quantity: "1 chávena" },
+      { name: "Alho", quantity: "3 dentes" },
     ],
   },
   {
     id: 3,
-    name: "Chicken Stir Fry",
+    name: "Frango Salteado",
     ingredients: [
-      { name: "Chicken Breast", quantity: "300g" },
-      { name: "Bell Peppers", quantity: "2 pcs" },
-      { name: "Onion", quantity: "1 pc" },
-      { name: "Soy Sauce", quantity: "3 tbsp" },
+      { name: "Peito de Frango", quantity: "300g" },
+      { name: "Pimentos", quantity: "2 unidades" },
+      { name: "Cebola", quantity: "1 unidade" },
+      { name: "Molho de Soja", quantity: "3 colheres de sopa" },
     ],
   },
   {
     id: 4,
-    name: "Vegetable Curry",
+    name: "Caril de Legumes",
     ingredients: [
-      { name: "Potatoes", quantity: "3 pcs" },
-      { name: "Carrots", quantity: "2 pcs" },
-      { name: "Coconut Milk", quantity: "1 can" },
-      { name: "Curry Powder", quantity: "2 tbsp" },
+      { name: "Batatas", quantity: "3 unidades" },
+      { name: "Cenouras", quantity: "2 unidades" },
+      { name: "Leite de Coco", quantity: "1 lata" },
+      { name: "Pó de Caril", quantity: "2 colheres de sopa" },
     ],
   },
   {
     id: 5,
-    name: "Beef Tacos",
+    name: "Tacos de Carne",
     ingredients: [
-      { name: "Ground Beef", quantity: "200 g" },
-      { name: "Taco Shells", quantity: "8 pcs" },
-      { name: "Lettuce", quantity: "1 bunch" },
-      { name: "Cheddar Cheese", quantity: "100g" },
+      { name: "Carne Moída", quantity: "200g" },
+      { name: "Tortilhas de Taco", quantity: "8 unidades" },
+      { name: "Alface", quantity: "1 molho" },
+      { name: "Queijo Cheddar", quantity: "100g" },
     ],
   },
   {
     id: 6,
-    name: "Pancakes with Berries",
+    name: "Panquecas com Frutos Vermelhos",
     ingredients: [
-      { name: "All-purpose Flour", quantity: "1 cup" },
-      { name: "Milk", quantity: "1 cup" },
-      { name: "Eggs", quantity: "2 pcs" },
-      { name: "Mixed Berries", quantity: "1 cup" },
+      { name: "Farinha de Trigo", quantity: "1 chávena" },
+      { name: "Leite", quantity: "1 chávena" },
+      { name: "Ovos", quantity: "2 unidades" },
+      { name: "Frutos Vermelhos Mistos", quantity: "1 chávena" },
     ],
   },
   {
     id: 7,
-    name: "Quinoa Salad",
+    name: "Salada de Quinoa",
     ingredients: [
-      { name: "Quinoa", quantity: "1 cup" },
-      { name: "Cucumber", quantity: "1 pc" },
-      { name: "Cherry Tomatoes", quantity: "1 cup" },
-      { name: "Feta Cheese", quantity: "100g" },
+      { name: "Quinoa", quantity: "1 chávena" },
+      { name: "Pepino", quantity: "1 unidade" },
+      { name: "Tomates Cereja", quantity: "1 chávena" },
+      { name: "Queijo Feta", quantity: "100g" },
     ],
   },
   {
     id: 8,
-    name: "Shrimp Alfredo Pasta",
+    name: "Massa Alfredo com Camarão",
     ingredients: [
-      { name: "Shrimp", quantity: "250 g" },
-      { name: "Pasta", quantity: "200 g" },
-      { name: "Heavy Cream", quantity: "1 cup" },
-      { name: "Parmesan Cheese", quantity: "1/2 cup" },
+      { name: "Camarão", quantity: "250g" },
+      { name: "Massa", quantity: "200g" },
+      { name: "Natas", quantity: "1 chávena" },
+      { name: "Queijo Parmesão", quantity: "1/2 chávena" },
     ],
   },
   {
     id: 9,
-    name: "Beef and Broccoli Stir Fry",
+    name: "Frango e Brócolos Salteados",
     ingredients: [
-      { name: "Beef Strips", quantity: "300g" },
-      { name: "Broccoli", quantity: "1 head" },
-      { name: "Soy Sauce", quantity: "2 tbsp" },
-      { name: "Garlic", quantity: "3 cloves" },
+      { name: "Tiras de Carne", quantity: "300g" },
+      { name: "Brócolos", quantity: "1 cabeça" },
+      { name: "Molho de Soja", quantity: "2 colheres de sopa" },
+      { name: "Alho", quantity: "3 dentes" },
     ],
   },
   {
     id: 10,
-    name: "Avocado Toast",
+    name: "Tosta de Abacate",
     ingredients: [
-      { name: "Bread", quantity: "2 slices" },
-      { name: "Avocado", quantity: "1 pc" },
-      { name: "Lemon Juice", quantity: "1 tbsp" },
-      { name: "Chili Flakes", quantity: "1 tsp" },
+      { name: "Pão", quantity: "2 fatias" },
+      { name: "Abacate", quantity: "1 unidade" },
+      { name: "Sumo de Limão", quantity: "1 colher de sopa" },
+      { name: "Flocos de Chili", quantity: "1 colher de chá" },
     ],
   },
   {
     id: 11,
-    name: "Caprese Salad",
+    name: "Salada Caprese",
     ingredients: [
-      { name: "Fresh Mozzarella", quantity: "250g" },
-      { name: "Tomatoes", quantity: "3 pcs" },
-      { name: "Basil", quantity: "1 bunch" },
-      { name: "Balsamic Vinegar", quantity: "2 tbsp" },
+      { name: "Mozzarella Fresca", quantity: "250g" },
+      { name: "Tomates", quantity: "3 unidades" },
+      { name: "Manjericão", quantity: "1 molho" },
+      { name: "Vinagre Balsâmico", quantity: "2 colheres de sopa" },
     ],
   },
   {
     id: 12,
-    name: "Stuffed Bell Peppers",
+    name: "Pimentos Recheados",
     ingredients: [
-      { name: "Bell Peppers", quantity: "4 pcs" },
-      { name: "Quinoa", quantity: "1 cup" },
-      { name: "Black Beans", quantity: "1 can" },
-      { name: "Cheddar Cheese", quantity: "100g" },
+      { name: "Pimentos", quantity: "4 unidades" },
+      { name: "Quinoa", quantity: "1 chávena" },
+      { name: "Feijão Preto", quantity: "1 lata" },
+      { name: "Queijo Cheddar", quantity: "100g" },
     ],
   },
   {
     id: 13,
-    name: "Chicken Tikka Masala",
+    name: "Frango Tikka Masala",
     ingredients: [
-      { name: "Chicken Breast", quantity: "500g" },
-      { name: "Yogurt", quantity: "1 cup" },
-      { name: "Tikka Masala Paste", quantity: "2 tbsp" },
-      { name: "Coconut Milk", quantity: "1 cup" },
+      { name: "Peito de Frango", quantity: "500g" },
+      { name: "Iogurte", quantity: "1 chávena" },
+      { name: "Pasta Tikka Masala", quantity: "2 colheres de sopa" },
+      { name: "Leite de Coco", quantity: "1 chávena" },
     ],
   },
   {
     id: 14,
-    name: "Vegetable Stir Fry",
+    name: "Legumes Salteados",
     ingredients: [
-      { name: "Mixed Vegetables", quantity: "300g" },
-      { name: "Soy Sauce", quantity: "2 tbsp" },
-      { name: "Garlic", quantity: "2 cloves" },
-      { name: "Sesame Oil", quantity: "1 tbsp" },
+      { name: "Legumes Mistos", quantity: "300g" },
+      { name: "Molho de Soja", quantity: "2 colheres de sopa" },
+      { name: "Alho", quantity: "2 dentes" },
+      { name: "Óleo de Sésamo", quantity: "1 colher de sopa" },
     ],
   },
   {
     id: 15,
-    name: "Omelette",
+    name: "Omelete",
     ingredients: [
-      { name: "Eggs", quantity: "3 pcs" },
-      { name: "Spinach", quantity: "1 cup" },
-      { name: "Feta Cheese", quantity: "50g" },
-      { name: "Olive Oil", quantity: "1 tbsp" },
+      { name: "Ovos", quantity: "3 unidades" },
+      { name: "Espinafre", quantity: "1 chávena" },
+      { name: "Queijo Feta", quantity: "50g" },
+      { name: "Azeite", quantity: "1 colher de sopa" },
     ],
   },
   {
     id: 16,
-    name: "Lentil Soup",
+    name: "Sopa de Lentilhas",
     ingredients: [
-      { name: "Lentils", quantity: "1 cup" },
-      { name: "Carrots", quantity: "2 pcs" },
-      { name: "Onion", quantity: "1 pc" },
-      { name: "Vegetable Broth", quantity: "4 cups" },
+      { name: "Lentilhas", quantity: "1 chávena" },
+      { name: "Cenouras", quantity: "2 unidades" },
+      { name: "Cebola", quantity: "1 unidade" },
+      { name: "Caldo de Legumes", quantity: "4 chávenas" },
     ],
   },
   {
     id: 17,
-    name: "Fish Tacos",
+    name: "Tacos de Peixe",
     ingredients: [
-      { name: "White Fish", quantity: "300g" },
-      { name: "Corn Tortillas", quantity: "8 pcs" },
-      { name: "Cabbage", quantity: "1/2 head" },
-      { name: "Sour Cream", quantity: "1/2 cup" },
+      { name: "Peixe Branco", quantity: "300g" },
+      { name: "Tortilhas de Milho", quantity: "8 unidades" },
+      { name: "Repolho", quantity: "1/2 cabeça" },
+      { name: "Natas", quantity: "1/2 chávena" },
     ],
   },
   {
     id: 18,
-    name: "Chocolate Chip Cookies",
+    name: "Biscoitos com Pepitas de Chocolate",
     ingredients: [
-      { name: "All-purpose Flour", quantity: "2 cups" },
-      { name: "Brown Sugar", quantity: "1 cup" },
-      { name: "Butter", quantity: "1 cup" },
-      { name: "Chocolate Chips", quantity: "1 cup" },
+      { name: "Farinha de Trigo", quantity: "2 chávenas" },
+      { name: "Açúcar Mascavado", quantity: "1 chávena" },
+      { name: "Manteiga", quantity: "1 chávena" },
+      { name: "Pepitas de Chocolate", quantity: "1 chávena" },
     ],
   },
   {
     id: 19,
-    name: "Beef Stroganoff",
+    name: "Estrogonofe de Carne",
     ingredients: [
-      { name: "Beef Strips", quantity: "400g" },
-      { name: "Mushrooms", quantity: "200g" },
-      { name: "Sour Cream", quantity: "1 cup" },
-      { name: "Egg Noodles", quantity: "250g" },
+      { name: "Tiras de Carne", quantity: "400g" },
+      { name: "Cogumelos", quantity: "200g" },
+      { name: "Natas", quantity: "1 chávena" },
+      { name: "Massa de Ovos", quantity: "250g" },
     ],
   },
   {
     id: 20,
-    name: "Eggplant Parmesan",
+    name: "Berinjela à Parmegiana",
     ingredients: [
-      { name: "Eggplant", quantity: "2 pcs" },
-      { name: "Marinara Sauce", quantity: "2 cups" },
-      { name: "Mozzarella Cheese", quantity: "200g" },
-      { name: "Parmesan Cheese", quantity: "100g" },
-    ],
-  },
-  {
-    id: 21,
-    name: "Caesar Salad",
-    ingredients: [
-      { name: "Romaine Lettuce", quantity: "1 head" },
-      { name: "Caesar Dressing", quantity: "1/2 cup" },
-      { name: "Croutons", quantity: "1 cup" },
-      { name: "Parmesan Cheese", quantity: "50g" },
+      { name: "Berinjela", quantity: "2 unidades" },
+      { name: "Molho Marinara", quantity: "2 chávenas" },
+      { name: "Queijo Mozzarella", quantity: "200g" },
+      { name: "Queijo Parmesão", quantity: "100g" },
     ],
   },
   {
     id: 22,
-    name: "Vegetable Quesadilla",
+    name: "Quesadilla de Legumes",
     ingredients: [
-      { name: "Flour Tortillas", quantity: "4 pcs" },
-      { name: "Mixed Vegetables", quantity: "2 cups" },
-      { name: "Cheddar Cheese", quantity: "150g" },
-      { name: "Sour Cream", quantity: "1/2 cup" },
+      { name: "Tortilhas de Trigo", quantity: "4 pcs" },
+      { name: "Legumes Mistos", quantity: "2 chávenas" },
+      { name: "Queijo Cheddar", quantity: "150g" },
+      { name: "Natas", quantity: "1/2 chávena" },
     ],
   },
   {
     id: 23,
-    name: "Pesto Pasta",
+    name: "Massa Pesto",
     ingredients: [
-      { name: "Pasta", quantity: "250g" },
-      { name: "Pesto Sauce", quantity: "1/2 cup" },
-      { name: "Cherry Tomatoes", quantity: "1 cup" },
-      { name: "Parmesan Cheese", quantity: "50g" },
+      { name: "Massa", quantity: "250g" },
+      { name: "Molho Pesto", quantity: "1/2 chávena" },
+      { name: "Tomates Cereja", quantity: "1 chávena" },
+      { name: "Queijo Parmesão", quantity: "50g" },
     ],
   },
   {
     id: 24,
-    name: "Honey Garlic Chicken",
+    name: "Frango com Mel e Alho",
     ingredients: [
-      { name: "Chicken Thighs", quantity: "500g" },
-      { name: "Honey", quantity: "1/4 cup" },
-      { name: "Garlic", quantity: "4 cloves" },
-      { name: "Soy Sauce", quantity: "1/4 cup" },
+      { name: "Coxas de Frango", quantity: "500g" },
+      { name: "Mel", quantity: "1/4 chávena" },
+      { name: "Alho", quantity: "4 dentes" },
+      { name: "Molho de Soja", quantity: "1/4 chávena" },
     ],
   },
   {
     id: 25,
-    name: "Sweet Potato Fries",
+    name: "Batatas Doces Fritas",
     ingredients: [
-      { name: "Sweet Potatoes", quantity: "2 pcs" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
-      { name: "Paprika", quantity: "1 tsp" },
-      { name: "Salt", quantity: "1 tsp" },
+      { name: "Batatas Doces", quantity: "2 pcs" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
+      { name: "Páprica", quantity: "1 colher de chá" },
+      { name: "Sal", quantity: "1 colher de chá" },
     ],
   },
   {
     id: 26,
-    name: "Mango Smoothie",
+    name: "Smoothie de Manga",
     ingredients: [
-      { name: "Mango", quantity: "1 pc" },
-      { name: "Yogurt", quantity: "1 cup" },
-      { name: "Milk", quantity: "1 cup" },
-      { name: "Honey", quantity: "1 tbsp" },
+      { name: "Manga", quantity: "1 pc" },
+      { name: "Iogurte", quantity: "1 chávena" },
+      { name: "Leite", quantity: "1 chávena" },
+      { name: "Mel", quantity: "1 colher de sopa" },
     ],
   },
   {
     id: 27,
-    name: "Greek Yogurt Parfait",
+    name: "Parfait de Iogurte Grego",
     ingredients: [
-      { name: "Greek Yogurt", quantity: "1 cup" },
-      { name: "Granola", quantity: "1/2 cup" },
-      { name: "Mixed Berries", quantity: "1 cup" },
-      { name: "Honey", quantity: "1 tbsp" },
+      { name: "Iogurte Grego", quantity: "1 chávena" },
+      { name: "Granola", quantity: "1/2 chávena" },
+      { name: "Frutos Vermelhos Mistos", quantity: "1 chávena" },
+      { name: "Mel", quantity: "1 colher de sopa" },
     ],
   },
   {
     id: 28,
-    name: "Spinach and Feta Stuffed Chicken",
+    name: "Frango Recheado com Espinafres e Feta",
     ingredients: [
-      { name: "Chicken Breast", quantity: "4 pcs" },
-      { name: "Spinach", quantity: "2 cups" },
-      { name: "Feta Cheese", quantity: "100g" },
-      { name: "Olive Oil", quantity: "2 tbsp" },
+      { name: "Peito de Frango", quantity: "4 pcs" },
+      { name: "Espinafre", quantity: "2 chávenas" },
+      { name: "Queijo Feta", quantity: "100g" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
     ],
   },
 ];
@@ -431,10 +421,8 @@ const ShoppingList = () => {
 
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
-      <Breadcrumb pageName="Shopping List" />
+      <Breadcrumb pageName="Lista de Compras" />
       <div className="p-4 overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        {/* Meal Selection Section */}
-        <h2 className="text-xl font-bold mb-4">Select Meals for the Week</h2>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4 lg:grid-cols-4">
           {mealsData.map((meal) => (
             <div
@@ -446,7 +434,7 @@ const ShoppingList = () => {
             }`}
             onClick={() => handleMealSelect(meal)}
           >
-            <h3 className="text-lg font-medium">{meal.name}</h3>
+            <h3 className="text-sm font-medium">{meal.name}</h3>
           
             {selectedMeals.includes(meal) && (
               <div className="flex items-center">
@@ -482,14 +470,14 @@ const ShoppingList = () => {
             className="flex items-center px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
           >
             <FiTrash2 className="mr-2" />
-            Clear Selection
+            Limpar Seleção
           </button>
           <button
             onClick={generateShoppingList}
             className="flex items-center px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
           >
             <FiList className="mr-2" />
-            Generate Shopping List
+            Gerar Lista de Compras
           </button>
         </div>
 

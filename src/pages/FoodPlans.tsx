@@ -8,336 +8,337 @@ const FoodPlans = () => {
 
   const meals = [
     {
-      mealName: 'Meal 1 - Breakfast',
-      recipes: [
-        {
-          recipeName: 'Oatmeal',
-          ingredients: [
-            { name: 'Oats', quantity: '100g' },
-            { name: 'Milk', quantity: '250ml' },
-            { name: 'Honey', quantity: '1 tbsp' },
-            { name: 'Banana', quantity: '1 medium' },
-            { name: 'Cinnamon', quantity: '1 tsp' },
-          ],
-        },
-        {
-          recipeName: 'Scrambled Eggs',
-          ingredients: [
-            { name: 'Eggs', quantity: '3 large' },
-            { name: 'Butter', quantity: '1 tbsp' },
-            { name: 'Salt', quantity: 'to taste' },
-            { name: 'Pepper', quantity: 'to taste' },
-            { name: 'Spinach', quantity: '50g' },
-          ],
-        },
-        {
-          recipeName: 'Greek Yogurt Parfait',
-          ingredients: [
-            { name: 'Greek Yogurt', quantity: '200g' },
-            { name: 'Granola', quantity: '50g' },
-            { name: 'Mixed Berries', quantity: '100g' },
-            { name: 'Honey', quantity: '1 tbsp' },
-            { name: 'Chia Seeds', quantity: '1 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Smoothie Bowl',
-          ingredients: [
-            { name: 'Frozen Berries', quantity: '150g' },
-            { name: 'Banana', quantity: '1 medium' },
-            { name: 'Almond Milk', quantity: '200ml' },
-            { name: 'Granola', quantity: '30g' },
-            { name: 'Coconut Flakes', quantity: '1 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Avocado Toast',
-          ingredients: [
-            { name: 'Whole Grain Bread', quantity: '2 slices' },
-            { name: 'Avocado', quantity: '1 medium' },
-            { name: 'Salt', quantity: 'to taste' },
-            { name: 'Pepper', quantity: 'to taste' },
-            { name: 'Cherry Tomatoes', quantity: '5 pcs' },
-          ],
-        },
-      ],
+        mealName: 'Refeição 1 - Pequeno-Almoço',
+        recipes: [
+            {
+                recipeName: 'Aveia',
+                ingredients: [
+                    { name: 'Flocos de Aveia', quantity: '100g' },
+                    { name: 'Leite', quantity: '250ml' },
+                    { name: 'Mel', quantity: '1 colher de sopa' },
+                    { name: 'Banana', quantity: '1 média' },
+                    { name: 'Canela', quantity: '1 colher de chá' },
+                ],
+            },
+            {
+                recipeName: 'Ovos Mexidos',
+                ingredients: [
+                    { name: 'Ovos', quantity: '3 grandes' },
+                    { name: 'Manteiga', quantity: '1 colher de sopa' },
+                    { name: 'Sal', quantity: 'a gosto' },
+                    { name: 'Pimenta', quantity: 'a gosto' },
+                    { name: 'Espinafre', quantity: '50g' },
+                ],
+            },
+            {
+                recipeName: 'Parfait de Iogurte Grego',
+                ingredients: [
+                    { name: 'Iogurte Grego', quantity: '200g' },
+                    { name: 'Granola', quantity: '50g' },
+                    { name: 'Frutos Vermelhos Mistos', quantity: '100g' },
+                    { name: 'Mel', quantity: '1 colher de sopa' },
+                    { name: 'Sementes de Chia', quantity: '1 colher de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Tigela de Smoothie',
+                ingredients: [
+                    { name: 'Frutos Vermelhos Congelados', quantity: '150g' },
+                    { name: 'Banana', quantity: '1 média' },
+                    { name: 'Leite de Amêndoa', quantity: '200ml' },
+                    { name: 'Granola', quantity: '30g' },
+                    { name: 'Flocos de Coco', quantity: '1 colher de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Tosta de Abacate',
+                ingredients: [
+                    { name: 'Pão Integral', quantity: '2 fatias' },
+                    { name: 'Abacate', quantity: '1 médio' },
+                    { name: 'Sal', quantity: 'a gosto' },
+                    { name: 'Pimenta', quantity: 'a gosto' },
+                    { name: 'Tomates-Cereja', quantity: '5 unidades' },
+                ],
+            },
+        ],
     },
     {
-      mealName: 'Meal 2 - Morning Snack',
-      recipes: [
-        {
-          recipeName: 'Fruit Salad',
-          ingredients: [
-            { name: 'Apple', quantity: '1 medium' },
-            { name: 'Banana', quantity: '1 medium' },
-            { name: 'Orange', quantity: '1 medium' },
-            { name: 'Grapes', quantity: '100g' },
-            { name: 'Yogurt', quantity: '100g' },
-          ],
-        },
-        {
-          recipeName: 'Nut Mix',
-          ingredients: [
-            { name: 'Almonds', quantity: '30g' },
-            { name: 'Walnuts', quantity: '30g' },
-            { name: 'Cashews', quantity: '30g' },
-            { name: 'Dried Cranberries', quantity: '20g' },
-            { name: 'Pumpkin Seeds', quantity: '20g' },
-          ],
-        },
-        {
-          recipeName: 'Rice Cakes with Peanut Butter',
-          ingredients: [
-            { name: 'Rice Cakes', quantity: '2 pcs' },
-            { name: 'Peanut Butter', quantity: '2 tbsp' },
-            { name: 'Banana Slices', quantity: '1 medium' },
-            { name: 'Honey', quantity: '1 tsp' },
-            { name: 'Chia Seeds', quantity: '1 tsp' },
-          ],
-        },
-        {
-          recipeName: 'Hummus and Veggies',
-          ingredients: [
-            { name: 'Hummus', quantity: '100g' },
-            { name: 'Carrot Sticks', quantity: '100g' },
-            { name: 'Cucumber Slices', quantity: '100g' },
-            { name: 'Bell Pepper Strips', quantity: '100g' },
-            { name: 'Cherry Tomatoes', quantity: '100g' },
-          ],
-        },
-        {
-          recipeName: 'Protein Shake',
-          ingredients: [
-            { name: 'Protein Powder', quantity: '1 scoop' },
-            { name: 'Milk or Water', quantity: '300ml' },
-            { name: 'Banana', quantity: '1 medium' },
-            { name: 'Peanut Butter', quantity: '1 tbsp' },
-            { name: 'Spinach', quantity: '1 cup' },
-          ],
-        },
-      ],
+        mealName: 'Refeição 2 - Lanche da Manhã',
+        recipes: [
+            {
+                recipeName: 'Salada de Fruta',
+                ingredients: [
+                    { name: 'Maçã', quantity: '1 média' },
+                    { name: 'Banana', quantity: '1 média' },
+                    { name: 'Laranja', quantity: '1 média' },
+                    { name: 'Uvas', quantity: '100g' },
+                    { name: 'Iogurte', quantity: '100g' },
+                ],
+            },
+            {
+                recipeName: 'Mistura de Frutos Secos',
+                ingredients: [
+                    { name: 'Amêndoas', quantity: '30g' },
+                    { name: 'Nozes', quantity: '30g' },
+                    { name: 'Anacardos', quantity: '30g' },
+                    { name: 'Cranberries Secas', quantity: '20g' },
+                    { name: 'Sementes de Abóbora', quantity: '20g' },
+                ],
+            },
+            {
+                recipeName: 'Bolos de Arroz com Manteiga de Amendoim',
+                ingredients: [
+                    { name: 'Bolos de Arroz', quantity: '2 unidades' },
+                    { name: 'Manteiga de Amendoim', quantity: '2 colheres de sopa' },
+                    { name: 'Fatias de Banana', quantity: '1 média' },
+                    { name: 'Mel', quantity: '1 colher de chá' },
+                    { name: 'Sementes de Chia', quantity: '1 colher de chá' },
+                ],
+            },
+            {
+                recipeName: 'Hummus e Legumes',
+                ingredients: [
+                    { name: 'Hummus', quantity: '100g' },
+                    { name: 'Palitos de Cenoura', quantity: '100g' },
+                    { name: 'Fatias de Pepino', quantity: '100g' },
+                    { name: 'Tiras de Pimento', quantity: '100g' },
+                    { name: 'Tomates-Cereja', quantity: '100g' },
+                ],
+            },
+            {
+                recipeName: 'Batido de Proteína',
+                ingredients: [
+                    { name: 'Pó de Proteína', quantity: '1 medida' },
+                    { name: 'Leite ou Água', quantity: '300ml' },
+                    { name: 'Banana', quantity: '1 média' },
+                    { name: 'Manteiga de Amendoim', quantity: '1 colher de sopa' },
+                    { name: 'Espinafre', quantity: '1 chávena' },
+                ],
+            },
+        ],
     },
     {
-      mealName: 'Meal 3 - Lunch',
-      recipes: [
-        {
-          recipeName: 'Grilled Chicken Salad',
-          ingredients: [
-            { name: 'Chicken Breast', quantity: '200g' },
-            { name: 'Mixed Greens', quantity: '100g' },
-            { name: 'Cherry Tomatoes', quantity: '10 pcs' },
-            { name: 'Olive Oil', quantity: '2 tbsp' },
-            { name: 'Balsamic Vinegar', quantity: '1 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Veggie Stir Fry',
-          ingredients: [
-            { name: 'Broccoli', quantity: '150g' },
-            { name: 'Bell Peppers', quantity: '100g' },
-            { name: 'Carrots', quantity: '100g' },
-            { name: 'Soy Sauce', quantity: '2 tbsp' },
-            { name: 'Sesame Oil', quantity: '1 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Pasta Primavera',
-          ingredients: [
-            { name: 'Pasta', quantity: '200g' },
-            { name: 'Zucchini', quantity: '1 medium' },
-            { name: 'Cherry Tomatoes', quantity: '10 pcs' },
-            { name: 'Parmesan Cheese', quantity: '50g' },
-            { name: 'Olive Oil', quantity: '2 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Quinoa Bowl',
-          ingredients: [
-            { name: 'Quinoa', quantity: '150g' },
-            { name: 'Black Beans', quantity: '100g' },
-            { name: 'Corn', quantity: '50g' },
-            { name: 'Avocado', quantity: '1 medium' },
-            { name: 'Lime Juice', quantity: '2 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Fruit Smoothie',
-          ingredients: [
-            { name: 'Banana', quantity: '1 medium' },
-            { name: 'Berries', quantity: '100g' },
-            { name: 'Greek Yogurt', quantity: '150g' },
-            { name: 'Honey', quantity: '1 tbsp' },
-            { name: 'Almond Milk', quantity: '200ml' },
-          ],
-        },
-      ],
+        mealName: 'Refeição 3 - Almoço',
+        recipes: [
+            {
+                recipeName: 'Salada de Frango Grelhado',
+                ingredients: [
+                    { name: 'Peito de Frango', quantity: '200g' },
+                    { name: 'Mistura de Verduras', quantity: '100g' },
+                    { name: 'Tomates-Cereja', quantity: '10 unidades' },
+                    { name: 'Azeite', quantity: '2 colheres de sopa' },
+                    { name: 'Vinagre Balsâmico', quantity: '1 colher de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Salteado de Legumes',
+                ingredients: [
+                    { name: 'Brócolos', quantity: '150g' },
+                    { name: 'Pimentos', quantity: '100g' },
+                    { name: 'Cenouras', quantity: '100g' },
+                    { name: 'Molho de Soja', quantity: '2 colheres de sopa' },
+                    { name: 'Óleo de Sésamo', quantity: '1 colher de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Pasta Primavera',
+                ingredients: [
+                    { name: 'Pasta', quantity: '200g' },
+                    { name: 'Courgette', quantity: '1 média' },
+                    { name: 'Tomates-Cereja', quantity: '10 unidades' },
+                    { name: 'Queijo Parmesão', quantity: '50g' },
+                    { name: 'Azeite', quantity: '2 colheres de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Tigela de Quinoa',
+                ingredients: [
+                    { name: 'Quinoa', quantity: '150g' },
+                    { name: 'Feijão Preto', quantity: '100g' },
+                    { name: 'Milho', quantity: '50g' },
+                    { name: 'Abacate', quantity: '1 médio' },
+                    { name: 'Sumo de Lima', quantity: '2 colheres de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Smoothie de Fruta',
+                ingredients: [
+                    { name: 'Banana', quantity: '1 média' },
+                    { name: 'Frutos Vermelhos', quantity: '100g' },
+                    { name: 'Iogurte Grego', quantity: '150g' },
+                    { name: 'Mel', quantity: '1 colher de sopa' },
+                    { name: 'Leite de Amêndoa', quantity: '200ml' },
+                ],
+            },
+        ],
     },
     {
-      mealName: 'Meal 4 - Afternoon Snack',
-      recipes: [
-        {
-          recipeName: 'Veggie Sticks and Hummus',
-          ingredients: [
-            { name: 'Carrot', quantity: '1 medium' },
-            { name: 'Celery', quantity: '1 stalk' },
-            { name: 'Cucumber', quantity: '1 medium' },
-            { name: 'Hummus', quantity: '100g' },
-            { name: 'Bell Pepper', quantity: '1 medium' },
-          ],
-        },
-        {
-          recipeName: 'Yogurt with Honey',
-          ingredients: [
-            { name: 'Yogurt', quantity: '150g' },
-            { name: 'Honey', quantity: '1 tbsp' },
-            { name: 'Almonds', quantity: '20g' },
-            { name: 'Chia Seeds', quantity: '1 tbsp' },
-            { name: 'Cinnamon', quantity: '1 tsp' },
-          ],
-        },
-        {
-          recipeName: 'Cheese and Crackers',
-          ingredients: [
-            { name: 'Cheese', quantity: '100g' },
-            { name: 'Whole Wheat Crackers', quantity: '5-6 pcs' },
-            { name: 'Apple Slices', quantity: '1 medium' },
-            { name: 'Walnuts', quantity: '10 pcs' },
-            { name: 'Grapes', quantity: '50g' },
-          ],
-        },
-        {
-          recipeName: 'Smoothie',
-          ingredients: [
-            { name: 'Banana', quantity: '1 medium' },
-            { name: 'Spinach', quantity: '1 cup' },
-            { name: 'Almond Milk', quantity: '250ml' },
-            { name: 'Protein Powder', quantity: '1 scoop' },
-            { name: 'Berries', quantity: '100g' },
-          ],
-        },
-        {
-          recipeName: 'Nut Butter on Rice Cakes',
-          ingredients: [
-            { name: 'Rice Cakes', quantity: '2 pcs' },
-            { name: 'Almond Butter', quantity: '2 tbsp' },
-            { name: 'Sliced Banana', quantity: '1 medium' },
-            { name: 'Honey', quantity: '1 tsp' },
-            { name: 'Chia Seeds', quantity: '1 tsp' },
-          ],
-        },
-      ],
+        mealName: 'Refeição 4 - Lanche da Tarde',
+        recipes: [
+            {
+                recipeName: 'Palitos de Legumes e Hummus',
+                ingredients: [
+                    { name: 'Cenoura', quantity: '1 média' },
+                    { name: 'Aipo', quantity: '1 talo' },
+                    { name: 'Pepino', quantity: '1 médio' },
+                    { name: 'Hummus', quantity: '100g' },
+                    { name: 'Pimento', quantity: '1 médio' },
+                ],
+            },
+            {
+                recipeName: 'Iogurte com Mel',
+                ingredients: [
+                    { name: 'Iogurte', quantity: '150g' },
+                    { name: 'Mel', quantity: '1 colher de sopa' },
+                    { name: 'Amêndoas', quantity: '20g' },
+                    { name: 'Sementes de Chia', quantity: '1 colher de sopa' },
+                    { name: 'Canela', quantity: '1 colher de chá' },
+                ],
+            },
+            {
+                recipeName: 'Queijo e Biscoitos',
+                ingredients: [
+                    { name: 'Queijo', quantity: '100g' },
+                    { name: 'Biscoitos Integrais', quantity: '5-6 unidades' },
+                    { name: 'Fatias de Maçã', quantity: '1 média' },
+                    { name: 'Nozes', quantity: '10 unidades' },
+                    { name: 'Uvas', quantity: '100g' },
+                ],
+            },
+            {
+                recipeName: 'Bolachas de Arroz com Abacate',
+                ingredients: [
+                    { name: 'Bolachas de Arroz', quantity: '2 unidades' },
+                    { name: 'Abacate', quantity: '1 pequeno' },
+                    { name: 'Sal', quantity: 'a gosto' },
+                    { name: 'Pimenta', quantity: 'a gosto' },
+                    { name: 'Sementes de Sésamo', quantity: '1 colher de chá' },
+                ],
+            },
+            {
+                recipeName: 'Batido de Banana',
+                ingredients: [
+                    { name: 'Banana', quantity: '1 média' },
+                    { name: 'Leite de Amêndoa', quantity: '200ml' },
+                    { name: 'Manteiga de Amendoim', quantity: '1 colher de sopa' },
+                    { name: 'Sementes de Linhaça', quantity: '1 colher de sopa' },
+                    { name: 'Gelo', quantity: '1 chávena' },
+                ],
+            },
+        ],
     },
     {
-      mealName: 'Meal 5 - Dinner',
-      recipes: [
-        {
-          recipeName: 'Baked Salmon',
-          ingredients: [
-            { name: 'Salmon Fillet', quantity: '200g' },
-            { name: 'Lemon', quantity: '1 medium' },
-            { name: 'Asparagus', quantity: '150g' },
-            { name: 'Olive Oil', quantity: '2 tbsp' },
-            { name: 'Garlic', quantity: '2 cloves' },
-          ],
-        },
-        {
-          recipeName: 'Chicken Stir Fry',
-          ingredients: [
-            { name: 'Chicken Breast', quantity: '200g' },
-            { name: 'Bell Peppers', quantity: '100g' },
-            { name: 'Broccoli', quantity: '100g' },
-            { name: 'Soy Sauce', quantity: '2 tbsp' },
-            { name: 'Sesame Oil', quantity: '1 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Vegetable Curry',
-          ingredients: [
-            { name: 'Mixed Vegetables', quantity: '300g' },
-            { name: 'Coconut Milk', quantity: '400ml' },
-            { name: 'Curry Paste', quantity: '2 tbsp' },
-            { name: 'Rice', quantity: '150g' },
-            { name: 'Cilantro', quantity: 'to garnish' },
-          ],
-        },
-        {
-          recipeName: 'Beef Tacos',
-          ingredients: [
-            { name: 'Ground Beef', quantity: '200g' },
-            { name: 'Taco Shells', quantity: '4 pcs' },
-            { name: 'Lettuce', quantity: '100g' },
-            { name: 'Tomato', quantity: '1 medium' },
-            { name: 'Cheese', quantity: '50g' },
-          ],
-        },
-        {
-          recipeName: 'Pasta with Marinara Sauce',
-          ingredients: [
-            { name: 'Pasta', quantity: '200g' },
-            { name: 'Marinara Sauce', quantity: '200g' },
-            { name: 'Parmesan Cheese', quantity: '50g' },
-            { name: 'Basil', quantity: 'to taste' },
-            { name: 'Olive Oil', quantity: '1 tbsp' },
-          ],
-        },
-      ],
+        mealName: 'Refeição 5 - Jantar',
+        recipes: [
+            {
+                recipeName: 'Salmão Grelhado',
+                ingredients: [
+                    { name: 'Salmão', quantity: '200g' },
+                    { name: 'Limão', quantity: '1 médio' },
+                    { name: 'Aspargos', quantity: '100g' },
+                    { name: 'Azeite', quantity: '1 colher de sopa' },
+                    { name: 'Ervas Aromáticas', quantity: 'a gosto' },
+                ],
+            },
+            {
+                recipeName: 'Peito de Frango com Legumes Assados',
+                ingredients: [
+                    { name: 'Peito de Frango', quantity: '200g' },
+                    { name: 'Batata-doce', quantity: '200g' },
+                    { name: 'Brócolos', quantity: '100g' },
+                    { name: 'Cebola', quantity: '1 média' },
+                    { name: 'Azeite', quantity: '2 colheres de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Strogonoff de Cogumelos',
+                ingredients: [
+                    { name: 'Cogumelos', quantity: '200g' },
+                    { name: 'Natas', quantity: '100ml' },
+                    { name: 'Cebola', quantity: '1 média' },
+                    { name: 'Alho', quantity: '2 dentes' },
+                    { name: 'Arroz', quantity: '150g' },
+                ],
+            },
+            {
+                recipeName: 'Taco de Carne Moída',
+                ingredients: [
+                    { name: 'Carne Moída', quantity: '200g' },
+                    { name: 'Tortilhas', quantity: '2 unidades' },
+                    { name: 'Alface', quantity: '50g' },
+                    { name: 'Tomate', quantity: '1 médio' },
+                    { name: 'Queijo Ralado', quantity: '50g' },
+                ],
+            },
+            {
+                recipeName: 'Sopa de Legumes',
+                ingredients: [
+                    { name: 'Cenoura', quantity: '1 média' },
+                    { name: 'Batata', quantity: '1 média' },
+                    { name: 'Cebola', quantity: '1 média' },
+                    { name: 'Alho', quantity: '2 dentes' },
+                    { name: 'Caldo de Legumes', quantity: '1 litro' },
+                ],
+            },
+        ],
     },
     {
-      mealName: 'Meal 6 - Supper',
-      recipes: [
-        {
-          recipeName: 'Cottage Cheese with Fruit',
-          ingredients: [
-            { name: 'Cottage Cheese', quantity: '200g' },
-            { name: 'Peach or Pear', quantity: '1 medium' },
-            { name: 'Honey', quantity: '1 tbsp' },
-            { name: 'Almonds', quantity: '20g' },
-            { name: 'Chia Seeds', quantity: '1 tsp' },
-          ],
-        },
-        {
-          recipeName: 'Vegetable Soup',
-          ingredients: [
-            { name: 'Mixed Vegetables', quantity: '200g' },
-            { name: 'Vegetable Broth', quantity: '500ml' },
-            { name: 'Onion', quantity: '1 medium' },
-            { name: 'Garlic', quantity: '2 cloves' },
-            { name: 'Olive Oil', quantity: '1 tbsp' },
-          ],
-        },
-        {
-          recipeName: 'Peanut Butter Banana Sandwich',
-          ingredients: [
-            { name: 'Whole Wheat Bread', quantity: '2 slices' },
-            { name: 'Peanut Butter', quantity: '2 tbsp' },
-            { name: 'Banana', quantity: '1 medium' },
-            { name: 'Honey', quantity: '1 tsp' },
-            { name: 'Chia Seeds', quantity: '1 tsp' },
-          ],
-        },
-        {
-          recipeName: 'Dark Chocolate and Almonds',
-          ingredients: [
-            { name: 'Dark Chocolate', quantity: '30g' },
-            { name: 'Almonds', quantity: '30g' },
-            { name: 'Raisins', quantity: '20g' },
-            { name: 'Coconut Flakes', quantity: '10g' },
-            { name: 'Honey', quantity: '1 tsp' },
-          ],
-        },
-        {
-          recipeName: 'Chia Pudding',
-          ingredients: [
-            { name: 'Chia Seeds', quantity: '30g' },
-            { name: 'Almond Milk', quantity: '200ml' },
-            { name: 'Honey', quantity: '1 tbsp' },
-            { name: 'Vanilla Extract', quantity: '1 tsp' },
-            { name: 'Berries', quantity: '100g' },
-          ],
-        },
-      ],
+        mealName: 'Refeição 6 - Ceia',
+        recipes: [
+            {
+                recipeName: 'Iogurte com Frutos Secos',
+                ingredients: [
+                    { name: 'Iogurte', quantity: '150g' },
+                    { name: 'Frutos Secos', quantity: '30g' },
+                    { name: 'Mel', quantity: '1 colher de chá' },
+                    { name: 'Canela', quantity: '1 colher de chá' },
+                    { name: 'Sementes de Chia', quantity: '1 colher de sopa' },
+                ],
+            },
+            {
+                recipeName: 'Queijo com Fruta',
+                ingredients: [
+                    { name: 'Queijo', quantity: '100g' },
+                    { name: 'Maçã', quantity: '1 média' },
+                    { name: 'Pêra', quantity: '1 média' },
+                    { name: 'Nozes', quantity: '10 unidades' },
+                    { name: 'Uvas', quantity: '100g' },
+                ],
+            },
+            {
+                recipeName: 'Batido de Proteína',
+                ingredients: [
+                    { name: 'Pó de Proteína', quantity: '1 medida' },
+                    { name: 'Leite', quantity: '300ml' },
+                    { name: 'Banana', quantity: '1 média' },
+                    { name: 'Manteiga de Amendoim', quantity: '1 colher de sopa' },
+                    { name: 'Espinafre', quantity: '1 chávena' },
+                ],
+            },
+            {
+                recipeName: 'Bolachas de Arroz com Abacate',
+                ingredients: [
+                    { name: 'Bolachas de Arroz', quantity: '2 unidades' },
+                    { name: 'Abacate', quantity: '1 pequeno' },
+                    { name: 'Sal', quantity: 'a gosto' },
+                    { name: 'Pimenta', quantity: 'a gosto' },
+                    { name: 'Sementes de Sésamo', quantity: '1 colher de chá' },
+                ],
+            },
+            {
+                recipeName: 'Frutos Secos e Fruta Fresca',
+                ingredients: [
+                    { name: 'Frutos Secos', quantity: '30g' },
+                    { name: 'Fruta Fresca', quantity: '1 peça' },
+                    { name: 'Iogurte', quantity: '100g' },
+                    { name: 'Mel', quantity: '1 colher de chá' },
+                    { name: 'Sementes de Chia', quantity: '1 colher de sopa' },
+                ],
+            },
+        ],
     },
-  ];
+];
+
 
   const toggleMealExpansion = (mealIndex: number) => {
     setExpandedMeal(expandedMeal === mealIndex ? null : mealIndex);
@@ -351,7 +352,7 @@ const FoodPlans = () => {
   
   return (
     <DefaultLayout isModalOpen={isOpen}>
-      <Breadcrumb pageName="My Diet Plans" />
+      <Breadcrumb pageName="Meu Plano de Nutrição" />
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         {meals.map((meal, mealIndex) => (
           <div key={mealIndex} className="mb-6">

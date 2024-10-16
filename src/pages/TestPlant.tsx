@@ -3,36 +3,37 @@ import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
 import { Stepper, Step, StepLabel, Button, Typography } from "@mui/material";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import Slider from "@mui/material/Slider";
 
 const steps = [
-  "User Profile Setup",
-  "Nutritional Assessment",
-  "Meal Plan Structure",
-  "Food Selection & Recipes",
-  "Review and Finalize Plan",
+  "Configuração do Perfil do Utilizador",
+  "Avaliação Nutricional",
+  "Estrutura do Plano de Refeições",
+  "Seleção de Alimentos e Receitas",
+  "Revisão e Finalização do Plano",
 ];
 
 const healthConditionsList = [
   "Diabetes",
-  "Hypertension",
-  "Heart Disease",
-  "Asthma",
-  "Kidney Disease",
-  "Thyroid Issues",
-  "High Cholesterol",
-  "Obesity",
+  "Hipertensão",
+  "Doença Cardíaca",
+  "Asma",
+  "Doença Renal",
+  "Problemas na Tiroide",
+  "Colesterol Alto",
+  "Obesidade",
 ];
 
 const allergiesList = [
-  "Peanuts",
-  "Shellfish",
-  "Dairy",
-  "Gluten",
-  "Soy",
-  "Eggs",
-  "Tree Nuts",
-  "Wheat",
-  "Fish",
+  "Amendoins",
+  "Marisco",
+  "Laticínios",
+  "Glúten",
+  "Soja",
+  "Ovos",
+  "Nozes",
+  "Trigo",
+  "Peixe",
 ];
 
 interface UserProfile {
@@ -44,11 +45,12 @@ interface UserProfile {
   healthGoals: string;
   dietaryRestrictions: string;
   foodPreferences: string;
-  currentDiet: string; 
-  dailyCaloricIntake: string; 
+  currentDiet: string;
+  dailyCaloricIntake: string;
   allergies: string[];
+  mealsPerDay: string;
   healthConditions: string[];
-  [key: string]: any; 
+  [key: string]: any;
 }
 
 const DietPlan = () => {
@@ -62,10 +64,11 @@ const DietPlan = () => {
     healthGoals: "",
     dietaryRestrictions: "",
     foodPreferences: "",
-    currentDiet: "", 
-    dailyCaloricIntake: "", 
-    allergies: [], 
-    healthConditions: [], 
+    currentDiet: "",
+    dailyCaloricIntake: "",
+    allergies: [],
+    mealsPerDay: "",
+    healthConditions: [],
   });
   const [caloricNeeds, setCaloricNeeds] = useState(0);
   const [macronutrients, setMacronutrients] = useState({
@@ -89,17 +92,17 @@ const DietPlan = () => {
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked, type } = e.target;
-  
+
     setUserProfile((prevState) => {
-      if (type === 'checkbox') {
+      if (type === "checkbox") {
         return {
           ...prevState,
           [name]: checked
-            ? [...(prevState[name] as string[]), value] 
+            ? [...(prevState[name] as string[]), value]
             : (prevState[name] as string[]).filter((item) => item !== value),
         };
       }
-      
+
       return {
         ...prevState,
         [name]: value,
@@ -189,7 +192,7 @@ const DietPlan = () => {
                 {/* Age */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Age
+                    Idade
                   </label>
                   <input
                     type="number"
@@ -197,7 +200,7 @@ const DietPlan = () => {
                     value={userProfile.age}
                     onChange={handleInputChange}
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
-                    placeholder="Enter age"
+                    placeholder="Introduz a Idade"
                     required
                   />
                 </div>
@@ -205,7 +208,7 @@ const DietPlan = () => {
                 {/* Gender */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Gender
+                    Género
                   </label>
                   <select
                     name="gender"
@@ -214,17 +217,17 @@ const DietPlan = () => {
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
                     required
                   >
-                    <option value="">Select gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="">Seleciona Géreno</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Feminino</option>
+                    <option value="other">Outro</option>
                   </select>
                 </div>
 
                 {/* Weight */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Weight (kg)
+                    Peso (kg)
                   </label>
                   <input
                     type="number"
@@ -232,7 +235,7 @@ const DietPlan = () => {
                     value={userProfile.weight}
                     onChange={handleInputChange}
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
-                    placeholder="Enter weight"
+                    placeholder="Introduz Peso"
                     required
                   />
                 </div>
@@ -240,7 +243,7 @@ const DietPlan = () => {
                 {/* Height */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Height (cm)
+                    Altura (cm)
                   </label>
                   <input
                     type="number"
@@ -248,7 +251,7 @@ const DietPlan = () => {
                     value={userProfile.height}
                     onChange={handleInputChange}
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
-                    placeholder="Enter height"
+                    placeholder="Introduz Altura"
                     required
                   />
                 </div>
@@ -256,7 +259,7 @@ const DietPlan = () => {
                 {/* Activity Level */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Activity Level
+                    Nível de Atividade
                   </label>
                   <select
                     name="activityLevel"
@@ -265,19 +268,19 @@ const DietPlan = () => {
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
                     required
                   >
-                    <option value="">Select activity level</option>
-                    <option value="sedentary">Sedentary</option>
-                    <option value="light">Light activity</option>
-                    <option value="moderate">Moderate activity</option>
-                    <option value="active">Active</option>
-                    <option value="very-active">Very active</option>
+                    <option value="">Selecionar nível de atividade</option>
+                    <option value="sedentary">Sedentário</option>
+                    <option value="light">Atividade leve</option>
+                    <option value="moderate">Atividade moderada</option>
+                    <option value="active">Ativo</option>
+                    <option value="very-active">Muito ativo</option>
                   </select>
                 </div>
 
                 {/* Health Goals */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Health Goals
+                    Objetivos
                   </label>
                   <input
                     type="text"
@@ -285,7 +288,7 @@ const DietPlan = () => {
                     value={userProfile.healthGoals}
                     onChange={handleInputChange}
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
-                    placeholder="Enter your health goals"
+                    placeholder="Introduz os Objetivos"
                     required
                   />
                 </div>
@@ -293,7 +296,7 @@ const DietPlan = () => {
                 {/* Dietary Restrictions */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Dietary Restrictions
+                    Restrições
                   </label>
                   <input
                     type="text"
@@ -301,14 +304,14 @@ const DietPlan = () => {
                     value={userProfile.dietaryRestrictions}
                     onChange={handleInputChange}
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
-                    placeholder="Enter any dietary restrictions"
+                    placeholder="Introduz restrições"
                   />
                 </div>
 
                 {/* Food Preferences */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Food Preferences
+                    Preferências Alimentares
                   </label>
                   <input
                     type="text"
@@ -316,7 +319,7 @@ const DietPlan = () => {
                     value={userProfile.foodPreferences}
                     onChange={handleInputChange}
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
-                    placeholder="Enter food preferences"
+                    placeholder="Introduz as Preferências"
                   />
                 </div>
               </div>
@@ -331,14 +334,14 @@ const DietPlan = () => {
                 {/* Current Diet */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Current Diet
+                    Dieta Atual
                   </label>
                   <textarea
                     name="currentDiet"
                     value={userProfile.currentDiet}
                     onChange={handleTextareaChange}
                     className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-full h-40"
-                    placeholder="Describe your current diet"
+                    placeholder="Desceve a dieta atual"
                     rows={6}
                     required
                   />
@@ -346,14 +349,14 @@ const DietPlan = () => {
                 {/* Display Caloric Needs */}
                 <div className="md:col-span-2">
                   <Typography className="text-center">
-                    Your calculated caloric needs are:{" "}
+                    As tuas necessidades calóricas:{" "}
                     <strong>{caloricNeeds.toFixed(1)} kcal</strong>
                   </Typography>
                 </div>
                 {/* Daily Caloric Intake */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Daily Caloric Intake (kcal)
+                    Ingestão Calórica Diária (kcal)
                   </label>
                   <input
                     type="number"
@@ -361,7 +364,7 @@ const DietPlan = () => {
                     value={userProfile.dailyCaloricIntake}
                     onChange={handleInputChange}
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-1/3"
-                    placeholder="Enter daily caloric intake"
+                    placeholder="Introduz a Ingestão Calórica Diária"
                     required
                   />
                 </div>
@@ -369,12 +372,12 @@ const DietPlan = () => {
                 {/* Preferred Macronutrient Ratios */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Preferred Macronutrient Ratios
+                    Quantidades de Macro-nutrientes
                   </label>
                   <div className="grid grid-cols-3 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-black dark:text-white">
-                        Carbs [g]
+                        HC [g]
                       </label>
                       <input
                         type="number"
@@ -382,7 +385,6 @@ const DietPlan = () => {
                         value={macronutrients.carbs}
                         onChange={handleGoalAdjustmentChange}
                         className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-full h-12"
-                        placeholder="Enter carbs ratio"
                         min={0}
                         max={100}
                         required
@@ -390,7 +392,7 @@ const DietPlan = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-black dark:text-white">
-                        Protein [g]
+                        P [g]
                       </label>
                       <input
                         type="number"
@@ -398,7 +400,6 @@ const DietPlan = () => {
                         value={macronutrients.protein}
                         onChange={handleGoalAdjustmentChange}
                         className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-full h-12"
-                        placeholder="Enter protein ratio"
                         min={0}
                         max={100}
                         required
@@ -406,7 +407,7 @@ const DietPlan = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-black dark:text-white">
-                        Fats [g]
+                        G [g]
                       </label>
                       <input
                         type="number"
@@ -414,7 +415,6 @@ const DietPlan = () => {
                         value={macronutrients.fats}
                         onChange={handleGoalAdjustmentChange}
                         className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-full h-12"
-                        placeholder="Enter fats ratio"
                         min={0}
                         max={100}
                         required
@@ -426,7 +426,7 @@ const DietPlan = () => {
                 {/* Allergies */}
                 <div className="md:col-span-2">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Allergies
+                    Alergias
                   </label>
                   <div className="flex flex-wrap gap-4 justify-center items-center">
                     {allergiesList.map((allergy) => (
@@ -437,7 +437,7 @@ const DietPlan = () => {
                           value={allergy}
                           checked={userProfile.allergies.includes(allergy)}
                           onChange={handleInputChange}
-                          className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
+                          className="border scale-150 border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                         />
                         <label className="ml-2 text-sm text-black dark:text-white">
                           {allergy}
@@ -450,7 +450,7 @@ const DietPlan = () => {
                 {/* Health Conditions */}
                 <div className="md:col-span-2 ">
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Health Conditions
+                    Condições Físicas
                   </label>
                   <div className="flex flex-wrap gap-4 justify-center items-center">
                     {healthConditionsList.map((condition) => (
@@ -463,7 +463,7 @@ const DietPlan = () => {
                             condition
                           )}
                           onChange={handleInputChange}
-                          className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
+                          className="border scale-150 border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                         />
                         <label className="ml-2 text-sm text-black dark:text-white">
                           {condition}
@@ -478,12 +478,104 @@ const DietPlan = () => {
         );
       case 2: // Meal Plan Structure
         return (
-          <Typography variant="body1">
-            <strong>Meal Plan Structure:</strong> Determine how many meals per
-            day, their timing, portion sizes, and nutritional focus based on the
-            calculated needs.
-          </Typography>
+          <div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="md:col-span-2">
+                {/* Bloco de Resumo destacado com itens lado a lado */}
+                <div className="flex justify-center items-center">
+                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50">
+                    <h3 className="text-lg font-bold mb-4 text-green-700">
+                      Resumo:
+                    </h3>
+                    <div className="flex space-x-6">
+                      <div className="p-4 border border-green-400 rounded bg-white">
+                        <p className="text-green-600 font-semibold">
+                          HC: {macronutrients.carbs} g
+                        </p>
+                      </div>
+                      <div className="p-4 border border-green-400 rounded bg-white">
+                        <p className="text-green-600 font-semibold">
+                          P: {macronutrients.protein} g
+                        </p>
+                      </div>
+                      <div className="p-4 border border-green-400 rounded bg-white">
+                        <p className="text-green-600 font-semibold">
+                          G: {macronutrients.fats} g
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Formulário para número de refeições e secções dinâmicas */}
+                <form>
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mt-6">
+                    <label htmlFor="mealsPerDay">
+                      Número de Refeições por Dia:
+                    </label>
+                    <Slider
+                      aria-label="Número de Refeições"
+                      value={Number(userProfile.mealsPerDay)}
+                      onChange={(_e, value) => {
+                        setUserProfile((prevState) => ({
+                          ...prevState,
+                          mealsPerDay: value.toString(),
+                        }));
+                      }}
+                      valueLabelDisplay="auto"
+                      step={1}
+                      marks
+                      min={0}
+                      max={8}
+                    />
+                  </div>
+
+                  {/* Secções dinâmicas baseadas no número de refeições */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    {Array.from(
+                      { length: Number(userProfile.mealsPerDay) },
+                      (_, index) => (
+                        <div
+                          key={index}
+                          className="meal-section p-4 border border-gray-300 rounded-lg bg-gray-50"
+                        >
+                          <h4 className="font-semibold">
+                            Refeição {index + 1}
+                          </h4>
+                          <p>
+                            HC para esta refeição:{" "}
+                            {(
+                              macronutrients.carbs /
+                              Number(userProfile.mealsPerDay)
+                            ).toFixed(1)}{" "}
+                            g
+                          </p>
+                          <p>
+                            Proteínas para esta refeição:{" "}
+                            {(
+                              macronutrients.protein /
+                              Number(userProfile.mealsPerDay)
+                            ).toFixed(1)}{" "}
+                            g
+                          </p>
+                          <p>
+                            Gorduras para esta refeição:{" "}
+                            {(
+                              macronutrients.fats /
+                              Number(userProfile.mealsPerDay)
+                            ).toFixed(1)}{" "}
+                            g
+                          </p>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         );
+
       case 3: // Food Selection & Recipes
         return (
           <Typography variant="body1">
@@ -521,7 +613,7 @@ const DietPlan = () => {
         <div className="flex flex-col items-center mt-6">
           {isLastStep ? (
             <Typography variant="h6" className="text-green-600">
-              All steps completed
+              Todos os Passos Completos
             </Typography>
           ) : (
             <div className="text-center">
@@ -538,7 +630,7 @@ const DietPlan = () => {
                   className="transition duration-600 transform hover:scale-105 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-full"
                   startIcon={<GrPrevious />}
                 >
-                  Back
+                  Passo Anterior
                 </Button>
 
                 <Button
@@ -548,7 +640,7 @@ const DietPlan = () => {
                   className="transition duration-600 transform hover:scale-105 bg-green-600 text-white hover:bg-green-700 rounded-full"
                   endIcon={<GrNext />}
                 >
-                  {isLastStep ? "Finish" : "Next"}
+                  {isLastStep ? "Terminar" : "Próximo Passo"}
                 </Button>
               </div>
             </div>

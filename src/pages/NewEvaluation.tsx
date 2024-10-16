@@ -113,7 +113,7 @@ const NewEvaluation: React.FC = () => {
                     htmlFor="date"
                     className="mb-2.5 block text-black dark:text-white"
                   >
-                    Date
+                    Data
                   </label>
                   <input
                     type="date"
@@ -129,7 +129,7 @@ const NewEvaluation: React.FC = () => {
                     htmlFor="evaluator"
                     className="mb-2.5 block text-black dark:text-white"
                   >
-                    Evaluator Name
+                    Nome do Avaliador
                   </label>
                   <input
                     type="text"
@@ -144,61 +144,61 @@ const NewEvaluation: React.FC = () => {
                 {/* Body Measurements */}
                 <div className="mb-4.5 col-span-full">
                   <h3 className="text-lg font-medium text-black dark:text-white">
-                    Body Measurements
+                    Medições Corporais
                   </h3>
                 </div>
                 {[
                   {
-                    label: "Body Weight (kg)",
+                    label: "Peso Corporal (kg)",
                     id: "weight",
                     state: weight,
                     setState: setWeight,
                   },
                   {
-                    label: "Height (cm)",
+                    label: "Altura (cm)",
                     id: "height",
                     state: height,
                     setState: setHeight,
                   },
                   {
-                    label: "BMI (kg/m2) ",
+                    label: "IMC (kg/m2)",
                     id: "bmi",
                     state: bmi,
                     setState: setBmi,
                     readOnly: true,
                   }, 
                   {
-                    label: "Waist (cm)",
+                    label: "Cintura (cm)",
                     id: "waist",
                     state: waist,
                     setState: setWaist,
                   },
                   {
-                    label: "Hip (cm)",
+                    label: "Anca (cm)",
                     id: "hip",
                     state: hip,
                     setState: setHip,
                   },
                   {
-                    label: "Arm (cm)",
+                    label: "Braço (cm)",
                     id: "arm",
                     state: arm,
                     setState: setArm,
                   },
                   {
-                    label: "Thigh (cm)",
+                    label: "Coxa (cm)",
                     id: "thigh",
                     state: thigh,
                     setState: setThigh,
                   },
                   {
-                    label: "Calf (cm)",
+                    label: "Perna (cm)",
                     id: "calf",
                     state: calf,
                     setState: setCalf,
                   },
                   {
-                    label: "Abdomen (cm)",
+                    label: "Abdómen (cm)",
                     id: "abdomen",
                     state: abdomen,
                     setState: setAbdomen,
@@ -233,30 +233,30 @@ const NewEvaluation: React.FC = () => {
                 {/* Skinfold Measurements */}
                 <div className="mb-4.5 col-span-full">
                   <h3 className="text-lg font-medium text-black dark:text-white">
-                    Skinfold Measurements
+                    Medições da Pele
                   </h3>
                 </div>
                 {[
                   {
-                    label: "Triceps (mm)",
+                    label: "Tríceps (mm)",
                     id: "triceps",
                     state: triceps,
                     setState: setTriceps,
                   },
                   {
-                    label: "Biceps (mm)",
+                    label: "Díceps (mm)",
                     id: "biceps",
                     state: biceps,
                     setState: setBiceps,
                   },
                   {
-                    label: "Subscapular (mm)",
+                    label: "Subescapular (mm)",
                     id: "subscapular",
                     state: subscapular,
                     setState: setSubscapular,
                   },
                   {
-                    label: "Suprailiac (mm)",
+                    label: "Suprailiaco (mm)",
                     id: "suprailiac",
                     state: suprailiac,
                     setState: setSuprailiac,
@@ -268,17 +268,18 @@ const NewEvaluation: React.FC = () => {
                     setState: setAbdominal,
                   },
                   {
-                    label: "Thigh (mm)",
+                    label: "Coxa (mm)",
                     id: "thigh",
                     state: thigh,
                     setState: setThigh,
                   },
                   {
-                    label: "Chest (mm)",
+                    label: "Peito (mm)",
                     id: "chest",
                     state: chest,
                     setState: setChest,
                   },
+                  
                 ].map(({ label, id, state, setState }) => (
                   <div key={id} className="mb-4.5">
                     <label
@@ -306,34 +307,35 @@ const NewEvaluation: React.FC = () => {
                 {/* Other Measurements */}
                 <div className="mb-4.5 col-span-full">
                   <h3 className="text-lg font-medium text-black dark:text-white">
-                    Other Measurements
+                    Outras Medições
                   </h3>
                 </div>
                 {[
                   {
-                    label: "Body Fat Percentage (%)",
+                    label: "Percentagem de Gordura Corporal (%)",
                     id: "bodyFatPercentage",
                     state: bodyFatPercentage,
                     setState: setBodyFatPercentage,
                   },
                   {
-                    label: "Lean Mass (kg)",
+                    label: "Massa Magra (kg)",
                     id: "leanMass",
                     state: leanMass,
                     setState: setLeanMass,
                   },
                   {
-                    label: "Fat Mass (kg)",
+                    label: "Massa de Gordura (kg)",
                     id: "fatMass",
                     state: fatMass,
                     setState: setFatMass,
                   },
                   {
-                    label: "BMR (kcal)",
+                    label: "Taxa Metabólica Basal (kcal)",
                     id: "bmr",
                     state: bmr,
                     setState: setBmr,
                   },
+                  
                 ].map(({ label, id, state, setState }) => (
                   <div key={id} className="mb-4.5">
                     <label
@@ -364,7 +366,7 @@ const NewEvaluation: React.FC = () => {
                     htmlFor="bloodPressure"
                     className="mb-2.5 block text-black dark:text-white"
                   >
-                    Blood Pressure
+                    Pressão Arterial
                   </label>
                   <input
                     type="text"
@@ -380,7 +382,7 @@ const NewEvaluation: React.FC = () => {
                     htmlFor="remarks"
                     className="mb-2.5 block text-black dark:text-white"
                   >
-                    Remarks
+                    Observações
                   </label>
                   <textarea
                     id="remarks"
@@ -396,7 +398,7 @@ const NewEvaluation: React.FC = () => {
                     type="submit"
                     className="rounded bg-primary py-3 px-8 text-base font-medium text-white"
                   >
-                    Submit
+                    Submeter
                   </button>
                 </div>
               </div>

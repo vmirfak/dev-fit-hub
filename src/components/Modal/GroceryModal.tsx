@@ -36,7 +36,7 @@ const ShoppingListModal: React.FC<ShoppingListModalProps> = ({
               className="text-lg font-bold dark:text-slate-200 flex-grow text-center"
               id="modal-title"
             >
-              Your Shopping List
+              A tua Lista de Compras
             </h2>
             <button
               onClick={onClose}
@@ -75,7 +75,7 @@ const ShoppingListModal: React.FC<ShoppingListModalProps> = ({
             >
               <path d="M21.2 15c.7-1.2 1-2.5.7-3.9-.6-2-2.4-3.5-4.4-3.5h-1.2c-.7-3-3.2-5.2-6.2-5.6-3-.3-5.9 1.3-7.3 4-1.2 2.5-1 6.5.5 8.8M12 19.8V12M16 17l-4 4-4-4" />
             </svg>
-            Download as PDF
+            Fazer Download
           </button>
         </div>
       </div>

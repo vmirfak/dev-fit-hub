@@ -131,7 +131,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <rect x="14" y="14" width="7" height="7"></rect>
                     <rect x="3" y="14" width="7" height="7"></rect>
                   </svg>
-                  My Home Page
+                  Página Inicial
                 </NavLink>
               </li>
               {/* <!-- Menu Item Evaluations --> */}
@@ -172,7 +172,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           <path d="M3 3v18h18" />
                           <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
                         </svg>
-                        Evaluations
+                        Avaliações
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
                             open && "rotate-180"
@@ -206,7 +206,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && "!text-white")
                               }
                             >
-                              History
+                              Histórico
                             </NavLink>
                           </li>
                           <li>
@@ -217,7 +217,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && "!text-white")
                               }
                             >
-                              Submit New
+                              Criar Nova
                             </NavLink>
                           </li>
                         </ul>
@@ -264,7 +264,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           <path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
                           <path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" />
                         </svg>
-                        My Plans
+                        Os meus Planos
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
                             open && "rotate-180"
@@ -298,7 +298,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && "!text-white")
                               }
                             >
-                              My Exercise Plans
+                              Plano de Exercício
                             </NavLink>
                           </li>
                           <li>
@@ -309,7 +309,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && "!text-white")
                               }
                             >
-                              My Diet Plans
+                              Plano de Nutrição
                             </NavLink>
                           </li>
                         </ul>
@@ -349,7 +349,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </g>{" "}
                     </g>
                   </svg>
-                  Diet Plans
+                  Planos de Nutrição
                 </NavLink>
               </li>
               {/* <!-- Menu Item Recipes --> */}
@@ -385,7 +385,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </g>{" "}
                     </g>
                   </svg>
-                  Recipes
+                  Receitas
                 </NavLink>
               </li>
               {/* <!-- Menu Item Shopping List --> */}
@@ -412,7 +412,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <circle cx="18" cy="20.5" r="1" />
                     <path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" />
                   </svg>
-                  Shopping List
+                  Lista de Compras
                 </NavLink>
               </li>
               {/* <!-- Menu Item Chat --> */}
@@ -436,7 +436,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   >
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                   </svg>
-                  Chat
+                  Conversa
                 </NavLink>
               </li>
               {/* <!-- Menu Item Profile --> */}
@@ -462,7 +462,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
-                  Profile
+                  Perfil
                 </NavLink>
               </li>
               {/* <!-- Menu Item Feedback --> */}
