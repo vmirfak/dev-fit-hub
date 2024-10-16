@@ -603,9 +603,9 @@ const DietPlan = () => {
           <div>
             <form>
               <div>
-                <div className="flex flex-col space-x-5 md:flex-row justify-between space-y-4 md:space-y-0">
+                <div className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
                   {/* Resumo Projetado Section */}
-                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50 flex-1">
+                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50 flex-1 w-full">
                     <h3 className="text-lg font-bold mb-4 text-green-700">
                       Resumo Projetado:
                     </h3>
@@ -629,7 +629,7 @@ const DietPlan = () => {
                   </div>
 
                   {/* Resumo Calculado Section */}
-                  <div className="p-6 border-2 border-blue-500 rounded-lg shadow-lg bg-blue-50 flex-1">
+                  <div className="p-6 border-2 border-blue-500 rounded-lg shadow-lg bg-blue-50 flex-1 w-full">
                     <h3 className="text-lg font-bold mb-4 text-blue-700">
                       Resumo Calculado:
                     </h3>
@@ -762,7 +762,6 @@ const DietPlan = () => {
             </div>
           </div>
         );
-
       case 3: // Review and Finalize Plan
         return (
           <Typography variant="body1">
@@ -780,6 +779,7 @@ const DietPlan = () => {
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Diet Plan" />
       <div className="overflow-hidden p-6 mt-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="mx-auto">
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
             <Step key={label}>
@@ -791,6 +791,8 @@ const DietPlan = () => {
             </Step>
           ))}
         </Stepper>
+        </div>
+        
         <div className="flex flex-col items-center mt-6">
           {isLastStep ? (
             <Typography variant="h6" className="text-green-600">
