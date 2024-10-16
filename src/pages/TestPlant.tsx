@@ -7,9 +7,10 @@ import Slider from "@mui/material/Slider";
 import { FaPlus } from "react-icons/fa";
 import AddRecipeModal from "../components/Modal/RecipeModal";
 import { FiMinus } from "react-icons/fi";
+import { ActivityLevel, HealthGoals } from "../enum/enum";
 
 const steps = [
-  "Configuração do Perfil do Utilizador",
+  "Perfil do Utilizador",
   "Avaliação Nutricional",
   "Estrutura do Plano de Refeições",
   "Revisão e Finalização do Plano",
@@ -95,11 +96,13 @@ const allergiesList = [
 
 interface UserProfile {
   age: string;
+  name: string;
   gender: string;
+  email: string;
   weight: string;
   height: string;
-  activityLevel: string;
-  healthGoals: string;
+  activityLevel: ActivityLevel;
+  healthGoals: HealthGoals;
   dietaryRestrictions: string;
   foodPreferences: string;
   currentDiet: string;
@@ -116,9 +119,11 @@ const DietPlan = () => {
     age: "",
     gender: "",
     weight: "",
+    name: "",
     height: "",
-    activityLevel: "",
-    healthGoals: "",
+    email: "",
+    activityLevel: ActivityLevel.Sedentaria,
+    healthGoals: HealthGoals.ManterPeso,
     dietaryRestrictions: "",
     foodPreferences: "",
     currentDiet: "",
@@ -142,10 +147,7 @@ const DietPlan = () => {
       Math.min(prevActiveStep + 1, steps.length - 1)
     );
 
-    // Mantém o cálculo da avaliação nutricional se avançar do primeiro passo
-    if (activeStep === 0) {
-      calculateNutritionalNeeds();
-    }
+    calculateNutritionalNeeds();
   };
   const [addedRecipes, setAddedRecipes] = useState<Recipe[][]>([]);
   const handleBack = () => {
@@ -172,12 +174,11 @@ const DietPlan = () => {
   const handleGoalAdjustmentChange = (e: { target: { value: any } }) => {
     const newAdjustment = Number(e.target.value);
     setGoalAdjustment(newAdjustment);
-    // Recalculate nutritional needs with the new adjustment immediately
     calculateNutritionalNeeds();
   };
 
   const calculateNutritionalNeeds = () => {
-    const { weight, height, age, activityLevel } = userProfile;
+    const { weight, height, age, activityLevel, healthGoals } = userProfile;
 
     const weightNum = Number(weight);
     const heightNum = Number(height);
@@ -185,48 +186,79 @@ const DietPlan = () => {
 
     let bmr: number;
 
-    // Basic BMR calculation
+    // Cálculo básico de BMR
     if (userProfile.gender === "male") {
       bmr = 88.362 + 13.397 * weightNum + 4.799 * heightNum - 5.677 * ageNum;
     } else {
       bmr = 447.593 + 9.247 * weightNum + 3.098 * heightNum - 4.33 * ageNum;
     }
 
-    const activityMultipliers: { [key: string]: number } = {
-      sedentary: 1.2,
-      light: 1.375,
-      moderate: 1.55,
-      active: 1.725,
-      "very-active": 1.9,
+    // Multiplicadores de atividade baseados no enum
+    const activityMultipliers: { [key in ActivityLevel]: number } = {
+      [ActivityLevel.Sedentaria]: 1.2,
+      [ActivityLevel.Ligeira]: 1.375,
+      [ActivityLevel.Moderada]: 1.55,
+      [ActivityLevel.Ativa]: 1.725,
+      [ActivityLevel.MuitoAtiva]: 1.9,
     };
 
-    const activityMultiplier =
-      activityMultipliers[activityLevel as keyof typeof activityMultipliers];
-    const calories = bmr * activityMultiplier + goalAdjustment; // Calculate total calories
+    const activityMultiplier = activityMultipliers[activityLevel];
 
-    // Round caloric needs to one decimal place
+    console.log("Activity Multiplier:", activityMultiplier);
+
+    if (activityMultiplier === undefined) {
+      console.error("Invalid activity level:", activityLevel);
+      return; // Saída antecipada se o multiplicador não for encontrado
+    }
+
+    const calories = bmr * activityMultiplier + goalAdjustment; // Calcula as calorias totais
+
+    console.log("Calculated Calories (before rounding):", calories);
+
+    // Arredondar as calorias para uma casa decimal
     const roundedCalories = Number(calories.toFixed(1));
 
+    console.log("Rounded Calories:", roundedCalories);
+
+    // Proporções padrão de macronutrientes
     let proteinRatio = 0.25;
     let fatRatio = 0.25;
     let carbsRatio = 0.5;
 
-    if (userProfile.healthGoals.toLowerCase().includes("weight loss")) {
+    // Ajustar as proporções de macronutrientes de acordo com o objetivo de saúde
+    if (healthGoals === HealthGoals.PerderPeso) {
       proteinRatio = 0.3;
       fatRatio = 0.2;
       carbsRatio = 0.5;
-    } else if (userProfile.healthGoals.toLowerCase().includes("muscle gain")) {
+    } else if (healthGoals === HealthGoals.GanharMassaMuscular) {
       proteinRatio = 0.4;
       fatRatio = 0.3;
       carbsRatio = 0.3;
     }
 
-    const protein = Number(((roundedCalories * proteinRatio) / 4).toFixed(1)); // Round to 1 decimal place
-    const fats = Number(((roundedCalories * fatRatio) / 9).toFixed(1)); // Round to 1 decimal place
-    const carbs = Number(((roundedCalories * carbsRatio) / 4).toFixed(1)); // Round to 1 decimal place
+    console.log("Protein Ratio:", proteinRatio);
+    console.log("Fat Ratio:", fatRatio);
+    console.log("Carbs Ratio:", carbsRatio);
 
-    setCaloricNeeds(roundedCalories); // Set rounded caloric needs
+    // Calcular os macronutrientes
+    const protein = Number(((roundedCalories * proteinRatio) / 4).toFixed(1));
+    const fats = Number(((roundedCalories * fatRatio) / 9).toFixed(1));
+    const carbs = Number(((roundedCalories * carbsRatio) / 4).toFixed(1));
+
+    console.log(
+      "Calculated Macronutrients -> Protein:",
+      protein,
+      " Fats:",
+      fats,
+      " Carbs:",
+      carbs
+    );
+
+    // Atualizar o estado com as necessidades calóricas e de macronutrientes
+    setCaloricNeeds(roundedCalories);
     setMacronutrients({ carbs, protein, fats });
+
+    console.log("Updated Macronutrients State:", { carbs, protein, fats });
   };
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -323,6 +355,36 @@ const DietPlan = () => {
           <div>
             <form>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {/* Nome */}
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+                    Nome
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={userProfile.name}
+                    onChange={handleInputChange}
+                    className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
+                    placeholder="Introduz o Nome"
+                    required
+                  />
+                </div>
+                {/* Nome */}
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+                    E-mail
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    value={userProfile.email}
+                    onChange={handleInputChange}
+                    className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
+                    placeholder="Introduz o e-mail"
+                    required
+                  />
+                </div>
                 {/* Age */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
@@ -391,44 +453,62 @@ const DietPlan = () => {
                 </div>
 
                 {/* Activity Level */}
-                <div className="md:col-span-2">
+                <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
                     Nível de Atividade
                   </label>
                   <select
                     name="activityLevel"
                     value={userProfile.activityLevel}
-                    onChange={handleSelectChange}
+                    onChange={(e) =>
+                      setUserProfile({
+                        ...userProfile,
+                        activityLevel: Number(e.target.value) as ActivityLevel,
+                      })
+                    }
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
                     required
                   >
-                    <option value="">Selecionar nível de atividade</option>
-                    <option value="Sedentária">Sedentário</option>
-                    <option value="Leve">Atividade leve</option>
-                    <option value="Moderada">Atividade moderada</option>
-                    <option value="Ativa">Ativo</option>
-                    <option value="Muito-Ativa">Muito ativo</option>
+                    <option value={ActivityLevel.Sedentaria}>Sedentária</option>
+                    <option value={ActivityLevel.Ligeira}>Ligeira</option>
+                    <option value={ActivityLevel.Moderada}>Moderada</option>
+                    <option value={ActivityLevel.Ativa}>Ativa</option>
+                    <option value={ActivityLevel.MuitoAtiva}>
+                      Muito Ativa
+                    </option>
                   </select>
                 </div>
 
                 {/* Health Goals */}
-                <div className="md:col-span-2">
+                <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
                     Objetivos
                   </label>
-                  <input
-                    type="text"
-                    name="healthGoals"
+                  <select
+                    name="healthGoals" 
                     value={userProfile.healthGoals}
-                    onChange={handleInputChange}
-                    className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
-                    placeholder="Introduz os Objetivos"
+                    onChange={(e) =>
+                      setUserProfile({
+                        ...userProfile,
+                        healthGoals: Number(e.target.value) as HealthGoals, 
+                      })
+                    }
+                    className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
                     required
-                  />
+                  >
+                    <option value={HealthGoals.PerderPeso}>Perder Peso</option>
+                    <option value={HealthGoals.GanharMassaMuscular}>
+                      Ganhar Massa Muscular
+                    </option>
+                    <option value={HealthGoals.ManterPeso}>Manter Peso</option>
+                    <option value={HealthGoals.MelhorarCondicaoFisica}>
+                      Melhorar Condição Física
+                    </option>
+                  </select>
                 </div>
 
                 {/* Dietary Restrictions */}
-                <div className="md:col-span-2">
+                <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
                     Restrições
                   </label>
@@ -443,7 +523,7 @@ const DietPlan = () => {
                 </div>
 
                 {/* Food Preferences */}
-                <div className="md:col-span-2">
+                <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
                     Preferências Alimentares
                   </label>
@@ -848,7 +928,6 @@ const DietPlan = () => {
             </Typography>
           </div>
         );
-
       default:
         return null;
     }
