@@ -488,7 +488,6 @@ const initialRecipes: Recipe[] = [
   },
 ];
 
-
 const Recipes = () => {
   const [isOpen] = useState(false);
   const [expandedRecipe, setExpandedRecipe] = useState<number | null>(null);

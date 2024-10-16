@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
 import { Stepper, Step, StepLabel, Button, Typography } from "@mui/material";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Slider from "@mui/material/Slider";
+import { FaPlus } from "react-icons/fa";
+import AddRecipeModal from "../components/Modal/RecipeModal";
 
 const steps = [
   "Configuração do Perfil do Utilizador",
   "Avaliação Nutricional",
   "Estrutura do Plano de Refeições",
-  "Seleção de Alimentos e Receitas",
   "Revisão e Finalização do Plano",
+];
+
+interface Recipe {
+  name: string;
+  calories: number;
+  carbs: number;
+  protein: number;
+  fats: number;
+}
+
+const recipesData: Recipe[] = [
+  { name: "Salada de Quinoa", calories: 220, carbs: 40, protein: 8, fats: 5 },
+  { name: "Frango grelhado", calories: 300, carbs: 0, protein: 35, fats: 10 },
+  { name: "Batata doce assada", calories: 180, carbs: 41, protein: 4, fats: 0 },
 ];
 
 const healthConditionsList = [
@@ -70,6 +85,7 @@ const DietPlan = () => {
     mealsPerDay: "",
     healthConditions: [],
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [caloricNeeds, setCaloricNeeds] = useState(0);
   const [macronutrients, setMacronutrients] = useState({
     carbs: 0,
@@ -78,6 +94,7 @@ const DietPlan = () => {
   });
   const [goalAdjustment, setGoalAdjustment] = useState(0);
   const isLastStep = activeStep === steps.length - 1;
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) =>
       Math.min(prevActiveStep + 1, steps.length - 1)
@@ -87,12 +104,12 @@ const DietPlan = () => {
       calculateNutritionalNeeds();
     }
   };
+  const [addedRecipes, setAddedRecipes] = useState<Recipe[][]>([]);
   const handleBack = () => {
     setActiveStep((prevActiveStep) => Math.max(prevActiveStep - 1, 0));
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked, type } = e.target;
-
     setUserProfile((prevState) => {
       if (type === "checkbox") {
         return {
@@ -115,6 +132,7 @@ const DietPlan = () => {
     // Recalculate nutritional needs with the new adjustment immediately
     calculateNutritionalNeeds();
   };
+
   const calculateNutritionalNeeds = () => {
     const { weight, height, age, activityLevel } = userProfile;
 
@@ -167,6 +185,7 @@ const DietPlan = () => {
     setCaloricNeeds(roundedCalories); // Set rounded caloric needs
     setMacronutrients({ carbs, protein, fats });
   };
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setUserProfile((prevState) => ({
@@ -174,6 +193,7 @@ const DietPlan = () => {
       [name]: value,
     }));
   };
+
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setUserProfile((prevState) => ({
@@ -181,6 +201,44 @@ const DietPlan = () => {
       [name]: value,
     }));
   };
+
+  const [expandedMeal, setExpandedMeal] = useState<number | null>(null);
+
+  const toggleMealExpansion = (index: number) => {
+    setExpandedMeal((prev) => (prev === index ? null : index));
+  };
+
+  const [currentMealIndex, setCurrentMealIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const mealsCount = Number(userProfile.mealsPerDay) || 0;
+    setAddedRecipes((prevRecipes) => {
+      const updatedRecipes = Array.from({ length: mealsCount }, (_, index) => {
+        // Retain existing recipes if they exist
+        return prevRecipes[index] || [];
+      });
+      return updatedRecipes;
+    });
+  }, [userProfile.mealsPerDay]);
+
+  const handleAddRecipe = (newRecipe: Recipe, mealIndex: number) => {
+    setAddedRecipes((prevRecipes) => {
+      const updatedRecipes = [...prevRecipes];
+      updatedRecipes[mealIndex].push(newRecipe);
+      return updatedRecipes;
+    });
+    setIsModalOpen(false);
+  };
+
+  const openModal = (index: number) => {
+    console.log("Opening modal for meal index:", index);
+    setCurrentMealIndex(index);
+    setIsModalOpen(true);
+  };
+
+  useEffect(() => {
+    console.log(addedRecipes);
+  }, [addedRecipes]);
 
   const renderStepContent = (step: number) => {
     switch (step) {
@@ -479,112 +537,111 @@ const DietPlan = () => {
       case 2: // Meal Plan Structure
         return (
           <div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <div className="md:col-span-2">
-                {/* Bloco de Resumo destacado com itens lado a lado */}
-                <div className="flex justify-center items-center">
-                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50">
+            <form>
+              <div>
+                {/* Resumo Projetado */}
+                <div className="flex justify-center items-center p-4">
+                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50 w-full max-w-5xl">
                     <h3 className="text-lg font-bold mb-4 text-green-700">
-                      Resumo:
+                      Resumo Projetado:
                     </h3>
                     <div className="flex space-x-6">
                       <div className="p-4 border border-green-400 rounded bg-white">
                         <p className="text-green-600 font-semibold">
-                          HC: {macronutrients.carbs} g
+                          HC: {macronutrients.carbs}g
                         </p>
                       </div>
                       <div className="p-4 border border-green-400 rounded bg-white">
                         <p className="text-green-600 font-semibold">
-                          P: {macronutrients.protein} g
+                          P: {macronutrients.protein}g
                         </p>
                       </div>
                       <div className="p-4 border border-green-400 rounded bg-white">
                         <p className="text-green-600 font-semibold">
-                          G: {macronutrients.fats} g
+                          G: {macronutrients.fats}g
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Formulário para número de refeições e secções dinâmicas */}
-                <form>
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mt-6">
-                    <label htmlFor="mealsPerDay">
-                      Número de Refeições por Dia:
-                    </label>
-                    <Slider
-                      aria-label="Número de Refeições"
-                      value={Number(userProfile.mealsPerDay)}
-                      onChange={(_e, value) => {
-                        setUserProfile((prevState) => ({
-                          ...prevState,
-                          mealsPerDay: value.toString(),
-                        }));
-                      }}
-                      valueLabelDisplay="auto"
-                      step={1}
-                      marks
-                      min={0}
-                      max={8}
-                    />
-                  </div>
-
-                  {/* Secções dinâmicas baseadas no número de refeições */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    {Array.from(
-                      { length: Number(userProfile.mealsPerDay) },
-                      (_, index) => (
-                        <div
-                          key={index}
-                          className="meal-section p-4 border border-gray-300 rounded-lg bg-gray-50"
-                        >
-                          <h4 className="font-semibold">
-                            Refeição {index + 1}
-                          </h4>
-                          <p>
-                            HC para esta refeição:{" "}
-                            {(
-                              macronutrients.carbs /
-                              Number(userProfile.mealsPerDay)
-                            ).toFixed(1)}{" "}
-                            g
-                          </p>
-                          <p>
-                            Proteínas para esta refeição:{" "}
-                            {(
-                              macronutrients.protein /
-                              Number(userProfile.mealsPerDay)
-                            ).toFixed(1)}{" "}
-                            g
-                          </p>
-                          <p>
-                            Gorduras para esta refeição:{" "}
-                            {(
-                              macronutrients.fats /
-                              Number(userProfile.mealsPerDay)
-                            ).toFixed(1)}{" "}
-                            g
-                          </p>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </form>
+                <div>
+                  <label htmlFor="mealsPerDay">
+                    Número de Refeições por Dia:
+                  </label>
+                  <Slider
+                    aria-label="Número de Refeições"
+                    value={Number(userProfile.mealsPerDay)}
+                    onChange={(_e, value) => {
+                      setUserProfile((prevState) => ({
+                        ...prevState,
+                        mealsPerDay: value.toString(),
+                      }));
+                    }}
+                    valueLabelDisplay="auto"
+                    step={1}
+                    marks
+                    min={0}
+                    max={8}
+                  />
+                </div>
               </div>
+            </form>
+            <div className="mt-6 w-full">
+              <div className="grid grid-cols-1 gap-3">
+                {Array.from(
+                  { length: Number(userProfile.mealsPerDay) },
+                  (_, index) => (
+                    <div key={index} className="mb-6">
+                      <div
+                        className="flex justify-between items-center p-4 bg-blue-100 dark:bg-gray-800 cursor-pointer rounded-lg"
+                        onClick={() => toggleMealExpansion(index)}
+                      >
+                        <h4 className="text-xl font-bold text-gray-900 dark:text-neutral-600">
+                          Refeição {index + 1}
+                        </h4>
+                        <span className="text-2xl">
+                          {expandedMeal === index ? "-" : "+"}
+                        </span>
+                      </div>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          expandedMeal === index
+                            ? "max-h-40 opacity-100"
+                            : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                          <button
+                            type="button"
+                            className="mt-4 p-2 bg-green-500 text-white rounded-full hover:bg-green-600 flex items-center justify-center w-10 h-10"
+                            onClick={() => openModal(index)} // Pass the current meal index
+                          >
+                            <FaPlus className="text-2xl" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+              <AddRecipeModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                recipesData={recipesData}
+                onAddRecipe={(newRecipe: Recipe) => {
+                  if (currentMealIndex !== null) {
+                    handleAddRecipe(newRecipe, currentMealIndex);
+                  } else {
+                    console.error(
+                      "Current meal index is null when adding recipe"
+                    );
+                  }
+                }}
+              />
             </div>
           </div>
         );
-
-      case 3: // Food Selection & Recipes
-        return (
-          <Typography variant="body1">
-            <strong>Food Selection & Recipes:</strong> Select appropriate foods
-            and recipes that match the user’s dietary preferences and
-            nutritional needs, offering customization options.
-          </Typography>
-        );
-      case 4: // Review and Finalize Plan
+      case 3: // Review and Finalize Plan
         return (
           <Typography variant="body1">
             <strong>Review and Finalize Plan:</strong> Display the complete diet
@@ -598,14 +655,16 @@ const DietPlan = () => {
   };
 
   return (
-    <DefaultLayout isModalOpen={false}>
+    <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Diet Plan" />
       <div className="overflow-hidden p-6 mt-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
             <Step key={label}>
               <StepLabel>
-                <span className="font-semibold text-gray-700">{label}</span>
+                <span className="font-semibold text-gray-700 dark:text-white">
+                  {label}
+                </span>
               </StepLabel>
             </Step>
           ))}
