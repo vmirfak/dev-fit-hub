@@ -141,7 +141,8 @@ const DietPlan = () => {
     setActiveStep((prevActiveStep) =>
       Math.min(prevActiveStep + 1, steps.length - 1)
     );
-    // Calculate nutritional assessment if moving to the next step
+
+    // Mantém o cálculo da avaliação nutricional se avançar do primeiro passo
     if (activeStep === 0) {
       calculateNutritionalNeeds();
     }
@@ -402,11 +403,11 @@ const DietPlan = () => {
                     required
                   >
                     <option value="">Selecionar nível de atividade</option>
-                    <option value="sedentary">Sedentário</option>
-                    <option value="light">Atividade leve</option>
-                    <option value="moderate">Atividade moderada</option>
-                    <option value="active">Ativo</option>
-                    <option value="very-active">Muito ativo</option>
+                    <option value="Sedentária">Sedentário</option>
+                    <option value="Leve">Atividade leve</option>
+                    <option value="Moderada">Atividade moderada</option>
+                    <option value="Ativa">Ativo</option>
+                    <option value="Muito-Ativa">Muito ativo</option>
                   </select>
                 </div>
 
@@ -733,26 +734,28 @@ const DietPlan = () => {
                         <div className="p-4 flex flex-col items-center bg-gray-100 dark:bg-gray-700 rounded-lg">
                           {addedRecipes[index]?.map((recipe, recipeIndex) => (
                             <div
-                            key={recipeIndex}
-                            className="flex items-center justify-between w-full mb-2 p-2 border-b border-gray-300"
-                          >
-                            <span className="font-bold">{recipe.name}</span>
-                            
-                            <div className="flex-1 flex justify-center">
-                              <span className="text-sm text-gray-500 px-2 py-1 rounded border border-yellow-100 font-semibold text-center">
-                                {recipe.calories} kcal | {recipe.protein}g P | {recipe.carbs}g C | {recipe.fats}g F
-                              </span>
-                            </div>
-                            
-                            <button
-                              type="button"
-                              className="w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
-                              onClick={() => handleRemoveRecipe(index, recipeIndex)}
+                              key={recipeIndex}
+                              className="flex items-center justify-between w-full mb-2 p-2 border-b border-gray-300"
                             >
-                              <FiMinus size={14} />
-                            </button>
-                          </div>
-                          
+                              <span className="font-bold">{recipe.name}</span>
+
+                              <div className="flex-1 flex justify-center">
+                                <span className="text-sm text-gray-500 px-2 py-1 rounded border border-yellow-100 font-semibold text-center">
+                                  {recipe.calories} kcal | {recipe.protein}g P |{" "}
+                                  {recipe.carbs}g C | {recipe.fats}g F
+                                </span>
+                              </div>
+
+                              <button
+                                type="button"
+                                className="w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                                onClick={() =>
+                                  handleRemoveRecipe(index, recipeIndex)
+                                }
+                              >
+                                <FiMinus size={14} />
+                              </button>
+                            </div>
                           ))}
 
                           <button
@@ -785,14 +788,67 @@ const DietPlan = () => {
             </div>
           </div>
         );
-      case 3: // Review and Finalize Plan
+      case 3: // Revisão e Finalização do Plano
         return (
-          <Typography variant="body1">
-            <strong>Review and Finalize Plan:</strong> Display the complete diet
-            plan with all meals, nutritional breakdowns, and customizable
-            options for user approval.
-          </Typography>
+          <div>
+            <Typography variant="body1">
+              <strong>Perfil do Utilizador:</strong>
+              <br />
+              Idade: {userProfile.age} <br />
+              Género: {userProfile.gender} <br />
+              Peso: {userProfile.weight} kg
+              <br />
+              Altura: {userProfile.height} cm
+              <br />
+              Nível de Atividade: {userProfile.activityLevel} <br />
+              Calorias Diárias: {caloricNeeds} kcal
+              <br />
+              Objectivo: {userProfile.healthGoals}
+            </Typography>
+
+            <Typography variant="body1">
+              <strong>Alergias:</strong>
+              <br />
+              {userProfile.allergies.length > 0
+                ? userProfile.allergies.join(", ")
+                : "Nenhuma alergia"}
+            </Typography>
+
+            <Typography variant="body1">
+              <strong>Condições de Saúde:</strong>
+              <br />
+              {userProfile.healthConditions.length > 0
+                ? userProfile.healthConditions.join(", ")
+                : "Nenhuma condição de saúde"}
+            </Typography>
+
+            {addedRecipes.map((mealRecipes, mealIndex) => (
+              <div key={mealIndex} className="my-4">
+                <Typography variant="h6">
+                  <strong>Refeição {mealIndex + 1}:</strong>
+                </Typography>
+                <ul>
+                  {mealRecipes.map((recipe, recipeIndex) => (
+                    <li key={recipeIndex}>
+                      {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
+                      carbs, {recipe.protein}g proteína, {recipe.fats}g
+                      gorduras)
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            <Typography variant="body1">
+              <strong>Total Nutricional:</strong>
+              <br />
+              Carboidratos: {calculatedMacros.carbs}g<br />
+              Proteínas: {calculatedMacros.protein}g<br />
+              Gorduras: {calculatedMacros.fats}g
+            </Typography>
+          </div>
         );
+
       default:
         return null;
     }
@@ -817,42 +873,40 @@ const DietPlan = () => {
         </div>
 
         <div className="flex flex-col items-center mt-6">
-          {isLastStep ? (
-            <Typography variant="h6" className="text-green-600">
-              Todos os Passos Completos
+          <div className="text-center">
+            <Typography
+              variant="h4"
+              className="mb-12 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-500 to-purple-600 tracking-wider"
+            >
+              Passo {activeStep + 1}: {steps[activeStep]}
             </Typography>
-          ) : (
-            <div className="text-center">
-              <Typography variant="body1" className="mb-4">
-                Step {activeStep + 1}: {steps[activeStep]}
-              </Typography>
-              <div className="mb-4">{renderStepContent(activeStep)}</div>
-              <div className="flex justify-center space-x-4">
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}
-                  className="transition duration-600 transform hover:scale-105 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-full"
-                  style={{ textTransform: "none" }} // Remove caps lock
-                  startIcon={<GrPrevious />}
-                >
-                  Passo Anterior
-                </Button>
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                  className="transition duration-600 transform hover:scale-105 bg-green-600 text-white hover:bg-green-700 rounded-full"
-                  style={{ textTransform: "none" }} // Remove caps lock
-                  endIcon={<GrNext />}
-                >
-                  {isLastStep ? "Terminar" : "Próximo Passo"}
-                </Button>
-              </div>
+            <div className="mb-10 mt-10">{renderStepContent(activeStep)}</div>
+            <div className="flex justify-center space-x-4">
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleBack}
+                disabled={activeStep === 0}
+                className="transition duration-600 transform hover:scale-105 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-full"
+                style={{ textTransform: "none" }} // Remove caps lock
+                startIcon={<GrPrevious />}
+              >
+                Passo Anterior
+              </Button>
+
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleNext}
+                className="transition duration-600 transform hover:scale-105 bg-green-600 text-white hover:bg-green-700 rounded-full"
+                style={{ textTransform: "none" }} // Remove caps lock
+                endIcon={<GrNext />}
+              >
+                {isLastStep ? "Terminar" : "Próximo Passo"}
+              </Button>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </DefaultLayout>
