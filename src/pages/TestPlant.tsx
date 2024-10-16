@@ -606,11 +606,22 @@ const DietPlan = () => {
                       <div
                         className={`overflow-hidden transition-all duration-300 ease-in-out ${
                           expandedMeal === index
-                            ? "max-h-40 opacity-100"
+                            ? "max-h-screen opacity-100" // Adjust max height here
                             : "max-h-0 opacity-0"
                         }`}
                       >
-                        <div className="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                        <div className="p-4 flex flex-col items-center bg-gray-100 dark:bg-gray-700 rounded-lg">
+                          {addedRecipes[index]?.map((recipe, recipeIndex) => (
+                            <div
+                              key={recipeIndex}
+                              className="flex items-center justify-between w-full mb-2 p-2 border-b border-gray-300"
+                            >
+                              <span>{recipe.name}</span>
+                              <span className="text-sm text-gray-500">
+                                {recipe.calories} kcal | {recipe.protein}g P| {recipe.carbs}g C | {recipe.fats}g F
+                              </span>
+                            </div>
+                          ))}
                           <button
                             type="button"
                             className="mt-4 p-2 bg-green-500 text-white rounded-full hover:bg-green-600 flex items-center justify-center w-10 h-10"
