@@ -584,58 +584,59 @@ const DietPlan = () => {
                 </div>
 
                 {/* Preferred Macronutrient Ratios */}
-                <div className="md:col-span-2">
-                  <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Quantidades de Macro-nutrientes
-                  </label>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-black dark:text-white">
-                        HC [g]
-                      </label>
-                      <input
-                        type="number"
-                        name="carbsRatio"
-                        value={macronutrients.carbs}
-                        onChange={handleGoalAdjustmentChange}
-                        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-full h-12"
-                        min={0}
-                        max={100}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black dark:text-white">
-                        P [g]
-                      </label>
-                      <input
-                        type="number"
-                        name="proteinRatio"
-                        value={macronutrients.protein}
-                        onChange={handleGoalAdjustmentChange}
-                        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-full h-12"
-                        min={0}
-                        max={100}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black dark:text-white">
-                        G [g]
-                      </label>
-                      <input
-                        type="number"
-                        name="fatRatio"
-                        value={macronutrients.fats}
-                        onChange={handleGoalAdjustmentChange}
-                        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-full h-12"
-                        min={0}
-                        max={100}
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
+<div className="md:col-span-2">
+  <label className="mb-6 block text-sm font-medium text-black dark:text-white ">
+    Quantidades de Macro-nutrientes
+  </label>
+  <div className="grid grid-cols-3 gap-0">
+    <div>
+      <label className="block text-sm font-medium text-black dark:text-white">
+        HC [g]
+      </label>
+      <input
+        type="number"
+        name="carbsRatio"
+        value={macronutrients.carbs}
+        onChange={handleGoalAdjustmentChange}
+        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
+        min={0}
+        max={100}
+        required
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-medium text-black dark:text-white">
+        P [g]
+      </label>
+      <input
+        type="number"
+        name="proteinRatio"
+        value={macronutrients.protein}
+        onChange={handleGoalAdjustmentChange}
+        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
+        min={0}
+        max={100}
+        required
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-medium text-black dark:text-white">
+        G [g]
+      </label>
+      <input
+        type="number"
+        name="fatRatio"
+        value={macronutrients.fats}
+        onChange={handleGoalAdjustmentChange}
+        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
+        min={0}
+        max={100}
+        required
+      />
+    </div>
+  </div>
+</div>
+
 
                 {/* Allergies */}
                 <div className="md:col-span-2">
