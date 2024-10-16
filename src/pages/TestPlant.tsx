@@ -6,6 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import Slider from "@mui/material/Slider";
 import { FaPlus } from "react-icons/fa";
 import AddRecipeModal from "../components/Modal/RecipeModal";
+import { FiMinus } from "react-icons/fi";
 
 const steps = [
   "Configuração do Perfil do Utilizador",
@@ -303,6 +304,16 @@ const DietPlan = () => {
 
   // Call this function whenever you add or remove a recipe
   const calculatedMacros = calculateMacros();
+
+  const handleRemoveRecipe = (mealIndex: number, recipeIndex: number) => {
+    setAddedRecipes((prevRecipes) => {
+      const updatedMeals = [...prevRecipes];
+      updatedMeals[mealIndex] = updatedMeals[mealIndex].filter(
+        (_, i) => i !== recipeIndex
+      );
+      return updatedMeals;
+    });
+  };
 
   const renderStepContent = (step: number) => {
     switch (step) {
@@ -722,16 +733,28 @@ const DietPlan = () => {
                         <div className="p-4 flex flex-col items-center bg-gray-100 dark:bg-gray-700 rounded-lg">
                           {addedRecipes[index]?.map((recipe, recipeIndex) => (
                             <div
-                              key={recipeIndex}
-                              className="flex items-center justify-between w-full mb-2 p-2 border-b border-gray-300"
-                            >
-                              <span>{recipe.name}</span>
-                              <span className="text-sm text-gray-500">
-                                {recipe.calories} kcal | {recipe.protein}g P |{" "}
-                                {recipe.carbs}g C | {recipe.fats}g F
+                            key={recipeIndex}
+                            className="flex items-center justify-between w-full mb-2 p-2 border-b border-gray-300"
+                          >
+                            <span className="font-bold">{recipe.name}</span>
+                            
+                            <div className="flex-1 flex justify-center">
+                              <span className="text-sm text-gray-500 px-2 py-1 rounded border border-yellow-100 font-semibold text-center">
+                                {recipe.calories} kcal | {recipe.protein}g P | {recipe.carbs}g C | {recipe.fats}g F
                               </span>
                             </div>
+                            
+                            <button
+                              type="button"
+                              className="w-5 h-5 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                              onClick={() => handleRemoveRecipe(index, recipeIndex)}
+                            >
+                              <FiMinus size={14} />
+                            </button>
+                          </div>
+                          
                           ))}
+
                           <button
                             type="button"
                             className="mt-4 p-2 bg-green-500 text-white rounded-full hover:bg-green-600 flex items-center justify-center w-10 h-10"
@@ -780,19 +803,19 @@ const DietPlan = () => {
       <Breadcrumb pageName="Diet Plan" />
       <div className="overflow-hidden p-6 mt-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="mx-auto">
-        <Stepper activeStep={activeStep} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>
-                <span className="font-semibold text-gray-700 dark:text-white">
-                  {label}
-                </span>
-              </StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>
+                  <span className="font-semibold text-gray-700 dark:text-white">
+                    {label}
+                  </span>
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
         </div>
-        
+
         <div className="flex flex-col items-center mt-6">
           {isLastStep ? (
             <Typography variant="h6" className="text-green-600">
