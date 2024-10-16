@@ -24,8 +24,49 @@ interface Recipe {
 
 const recipesData: Recipe[] = [
   { name: "Salada de Quinoa", calories: 220, carbs: 40, protein: 8, fats: 5 },
-  { name: "Frango grelhado", calories: 300, carbs: 0, protein: 35, fats: 10 },
-  { name: "Batata doce assada", calories: 180, carbs: 41, protein: 4, fats: 0 },
+  { name: "Frango Grelhado", calories: 300, carbs: 0, protein: 35, fats: 10 },
+  { name: "Batata Doce Assada", calories: 180, carbs: 41, protein: 4, fats: 0 },
+  { name: "Salmão ao Forno", calories: 250, carbs: 0, protein: 28, fats: 15 },
+  { name: "Tigela de Aveia", calories: 350, carbs: 60, protein: 10, fats: 9 },
+  {
+    name: "Esparguete de Abóbora",
+    calories: 150,
+    carbs: 30,
+    protein: 4,
+    fats: 2,
+  },
+  { name: "Frutas Frescas", calories: 100, carbs: 25, protein: 1, fats: 0 },
+  {
+    name: "Omelete de Espinafres",
+    calories: 200,
+    carbs: 2,
+    protein: 16,
+    fats: 14,
+  },
+  { name: "Arroz Integral", calories: 215, carbs: 45, protein: 5, fats: 1 },
+  { name: "Wrap de Frango", calories: 350, carbs: 40, protein: 30, fats: 10 },
+  { name: "Sopa de Lentilhas", calories: 180, carbs: 32, protein: 12, fats: 3 },
+  { name: "Peito de Peru", calories: 240, carbs: 0, protein: 35, fats: 8 },
+  { name: "Torta de Legumes", calories: 210, carbs: 28, protein: 6, fats: 8 },
+  {
+    name: "Risoto de Cogumelos",
+    calories: 330,
+    carbs: 55,
+    protein: 8,
+    fats: 10,
+  },
+  {
+    name: "Hambúrguer Vegetariano",
+    calories: 250,
+    carbs: 30,
+    protein: 15,
+    fats: 8,
+  },
+  { name: "Panqueca de Banana", calories: 200, carbs: 40, protein: 6, fats: 4 },
+  { name: "Peixe Grelhado", calories: 220, carbs: 0, protein: 30, fats: 10 },
+  { name: "Massa Integral", calories: 320, carbs: 60, protein: 10, fats: 5 },
+  { name: "Tofu Grelhado", calories: 150, carbs: 4, protein: 15, fats: 8 },
+  { name: "Sanduíche de Atum", calories: 270, carbs: 35, protein: 20, fats: 7 },
 ];
 
 const healthConditionsList = [
@@ -239,6 +280,29 @@ const DietPlan = () => {
   useEffect(() => {
     console.log(addedRecipes);
   }, [addedRecipes]);
+
+  const calculateMacros = () => {
+    let totalCarbs = 0;
+    let totalProtein = 0;
+    let totalFats = 0;
+
+    addedRecipes.forEach((recipes) => {
+      recipes.forEach((recipe) => {
+        totalCarbs += recipe.carbs;
+        totalProtein += recipe.protein;
+        totalFats += recipe.fats;
+      });
+    });
+
+    return {
+      carbs: totalCarbs,
+      protein: totalProtein,
+      fats: totalFats,
+    };
+  };
+
+  // Call this function whenever you add or remove a recipe
+  const calculatedMacros = calculateMacros();
 
   const renderStepContent = (step: number) => {
     switch (step) {
@@ -539,32 +603,75 @@ const DietPlan = () => {
           <div>
             <form>
               <div>
-                {/* Resumo Projetado */}
-                <div className="flex justify-center items-center p-4">
-                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50 w-full max-w-5xl">
+                <div className="flex flex-col space-x-5 md:flex-row justify-between space-y-4 md:space-y-0">
+                  {/* Resumo Projetado Section */}
+                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50 flex-1">
                     <h3 className="text-lg font-bold mb-4 text-green-700">
                       Resumo Projetado:
                     </h3>
                     <div className="flex space-x-6">
-                      <div className="p-4 border border-green-400 rounded bg-white">
+                      <div className="p-4 border border-green-400 rounded bg-white flex-1">
                         <p className="text-green-600 font-semibold">
                           HC: {macronutrients.carbs}g
                         </p>
                       </div>
-                      <div className="p-4 border border-green-400 rounded bg-white">
+                      <div className="p-4 border border-green-400 rounded bg-white flex-1">
                         <p className="text-green-600 font-semibold">
                           P: {macronutrients.protein}g
                         </p>
                       </div>
-                      <div className="p-4 border border-green-400 rounded bg-white">
+                      <div className="p-4 border border-green-400 rounded bg-white flex-1">
                         <p className="text-green-600 font-semibold">
                           G: {macronutrients.fats}g
                         </p>
                       </div>
                     </div>
                   </div>
+
+                  {/* Resumo Calculado Section */}
+                  <div className="p-6 border-2 border-blue-500 rounded-lg shadow-lg bg-blue-50 flex-1">
+                    <h3 className="text-lg font-bold mb-4 text-blue-700">
+                      Resumo Calculado:
+                    </h3>
+                    <div className="flex space-x-6">
+                      <div
+                        className={`p-4 border border-blue-400 rounded bg-white flex-1 ${
+                          calculatedMacros.carbs > macronutrients.carbs
+                            ? "text-red-600"
+                            : "text-blue-600"
+                        } font-semibold`}
+                      >
+                        <p>HC:</p>
+                        {calculatedMacros.carbs}g
+                      </div>
+                      <div
+                        className={`p-4 border border-blue-400 rounded bg-white flex-1 ${
+                          calculatedMacros.protein > macronutrients.protein
+                            ? "text-red-600"
+                            : "text-blue-600"
+                        } font-semibold`}
+                      >
+                        <p>P:</p>
+                        {calculatedMacros.protein}g
+                      </div>
+                      <div
+                        className={`p-4 border border-blue-400 rounded bg-white flex-1 ${
+                          calculatedMacros.fats > macronutrients.fats
+                            ? "text-red-600"
+                            : "text-blue-600"
+                        } font-semibold`}
+                      >
+                        <p>G:</p>
+                        {calculatedMacros.fats}g
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
+
+                {/* Slider Section */}
+                <div className="mt-6">
+                  {" "}
+                  {/* Add margin-top for spacing */}
                   <label htmlFor="mealsPerDay">
                     Número de Refeições por Dia:
                   </label>
@@ -586,6 +693,8 @@ const DietPlan = () => {
                 </div>
               </div>
             </form>
+
+            {/* Refeições Section */}
             <div className="mt-6 w-full">
               <div className="grid grid-cols-1 gap-3">
                 {Array.from(
@@ -606,7 +715,7 @@ const DietPlan = () => {
                       <div
                         className={`overflow-hidden transition-all duration-300 ease-in-out ${
                           expandedMeal === index
-                            ? "max-h-screen opacity-100" // Adjust max height here
+                            ? "max-h-screen opacity-100"
                             : "max-h-0 opacity-0"
                         }`}
                       >
@@ -618,7 +727,8 @@ const DietPlan = () => {
                             >
                               <span>{recipe.name}</span>
                               <span className="text-sm text-gray-500">
-                                {recipe.calories} kcal | {recipe.protein}g P| {recipe.carbs}g C | {recipe.fats}g F
+                                {recipe.calories} kcal | {recipe.protein}g P |{" "}
+                                {recipe.carbs}g C | {recipe.fats}g F
                               </span>
                             </div>
                           ))}
@@ -652,6 +762,7 @@ const DietPlan = () => {
             </div>
           </div>
         );
+
       case 3: // Review and Finalize Plan
         return (
           <Typography variant="body1">
@@ -698,6 +809,7 @@ const DietPlan = () => {
                   onClick={handleBack}
                   disabled={activeStep === 0}
                   className="transition duration-600 transform hover:scale-105 border-red-600 text-red-600 hover:bg-red-600 hover:text-white rounded-full"
+                  style={{ textTransform: "none" }} // Remove caps lock
                   startIcon={<GrPrevious />}
                 >
                   Passo Anterior
@@ -708,6 +820,7 @@ const DietPlan = () => {
                   color="primary"
                   onClick={handleNext}
                   className="transition duration-600 transform hover:scale-105 bg-green-600 text-white hover:bg-green-700 rounded-full"
+                  style={{ textTransform: "none" }} // Remove caps lock
                   endIcon={<GrNext />}
                 >
                   {isLastStep ? "Terminar" : "Próximo Passo"}
