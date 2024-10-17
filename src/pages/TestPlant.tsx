@@ -595,32 +595,32 @@ const DietPlan = () => {
                 </div>
 
                 {/* Upload Photos */}
-                <div className="col-span-1 md:col-span-2 flex flex-col items-center justify-center">
-                  <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-                    Carregar Fotos
-                  </label>
-                  <div className="wrapper">
-                    {previewImgUrls.length > 0 && (
-                      <div className="image_wrapper flex flex-wrap gap-4 mb-4">
-                        {previewImgUrls.map((url, index) => (
-                          <img
-                            key={index}
-                            src={url}
-                            alt={`Preview ${index}`}
-                            className="w-32 h-32 object-cover rounded-md border border-gray-300"
-                          />
-                        ))}
-                      </div>
-                    )}
-                    <input
-                      type="file"
-                      onChange={handleFileChange}
-                      accept="image/*"
-                      multiple // Allow multiple file uploads
-                      className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
-                    />
-                  </div>
-                </div>
+        <div className="col-span-1 md:col-span-2 flex flex-col items-center">
+          <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+            Carregar Fotos
+          </label>
+          <div className="flex flex-col items-center">
+            {previewImgUrls.length > 0 && (
+              <div className="image_wrapper flex flex-wrap gap-4 mb-4 justify-center">
+                {previewImgUrls.map((url, index) => (
+                  <img
+                    key={index}
+                    src={url}
+                    alt={`Preview ${index}`}
+                    className="w-32 h-32 object-cover rounded-md border border-gray-300"
+                  />
+                ))}
+              </div>
+            )}
+            <input
+              type="file"
+              onChange={handleFileChange}
+              accept="image/*"
+              multiple // Allow multiple file uploads
+              className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
+            />
+          </div>
+        </div>
               </div>
             </form>
           </div>
