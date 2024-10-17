@@ -1040,7 +1040,7 @@ const NewDietPlan = () => {
 
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
-      <Breadcrumb pageName="Diet Plan" />
+      <Breadcrumb pageName="Criar novo Plano de Nutrição" />
       <div className="overflow-hidden p-6 mt-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="mx-auto">
           <Stepper activeStep={activeStep} alternativeLabel>

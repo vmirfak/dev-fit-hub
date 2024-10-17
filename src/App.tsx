@@ -22,7 +22,7 @@ import ShoppingList from "./pages/Diet/ShoppingList";
 import RecoverPassword from "./pages/Authentication/RecoverPassword";
 import NewDietPlan from "./pages/Diet/NewDietPlan";
 import ErrorPage from './pages/Error/ErrorPage'; 
-
+import NewExercisePlan from "./pages/Exercise/NewExercisePlan";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -69,8 +69,17 @@ function App() {
           path="/newdietplan"
           element={
             <>
-              <PageTitle title="Test Plan" />
+              <PageTitle title="New Diet Plan" />
               <NewDietPlan />
+            </>
+          }
+        />
+        <Route
+          path="/newexerciseplan"
+          element={
+            <>
+              <PageTitle title="New Exercise Plan" />
+              <NewExercisePlan />
             </>
           }
         />

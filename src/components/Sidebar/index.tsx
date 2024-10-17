@@ -361,6 +361,38 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       Planos de Nutrição
                     </NavLink>
                   </li>
+                  <li>
+                    {" "}
+                    <NavLink
+                      to="/perscribeexerciseplan"
+                      className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        pathname.includes("perscribeexerciseplan") &&
+                        "bg-graydark dark:bg-meta-4"
+                      }`}
+                    >
+                      <svg
+                        fill="#aeb7b1"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 31.887 31.887"
+                      >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g
+                          id="SVGRepo_tracerCarrier"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                          {" "}
+                          <g>
+                            {" "}
+                            <path d="M30.206,14.272h-0.11v-0.938c0-0.895-0.726-1.621-1.621-1.621h-0.467v-1.305c0-0.895-0.727-1.621-1.621-1.621h-2.713 c-0.895,0-1.619,0.726-1.619,1.621v3.864H9.937v-3.864c0-0.895-0.727-1.621-1.621-1.621H5.603c-0.894,0-1.62,0.726-1.62,1.621 v1.305h-0.47c-0.894,0-1.62,0.726-1.62,1.621v0.938H1.68c-0.926,0-1.68,0.744-1.68,1.672c0,0.927,0.754,1.671,1.68,1.671h0.213 v0.938c0,0.896,0.726,1.621,1.62,1.621h0.47v1.305c0,0.895,0.726,1.621,1.62,1.621h2.713c0.894,0,1.621-0.727,1.621-1.621v-3.863 h12.118v3.863c0,0.895,0.725,1.621,1.619,1.621h2.713c0.896,0,1.621-0.727,1.621-1.621v-1.305h0.467 c0.896,0,1.621-0.726,1.621-1.621v-0.938h0.109c0.928,0,1.682-0.744,1.682-1.671C31.887,15.016,31.135,14.272,30.206,14.272z"></path>{" "}
+                          </g>{" "}
+                        </g>
+                      </svg>
+                      Planos de Exercício
+                    </NavLink>
+                  </li>
                 </>
               )}
               {/* <!-- Menu Item Recipes --> */}
