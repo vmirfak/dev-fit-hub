@@ -595,32 +595,32 @@ const DietPlan = () => {
                 </div>
 
                 {/* Upload Photos */}
-        <div className="col-span-1 md:col-span-2 flex flex-col items-center">
-          <label className="mb-2 block text-sm font-medium text-black dark:text-white">
-            Carregar Fotos
-          </label>
-          <div className="flex flex-col items-center">
-            {previewImgUrls.length > 0 && (
-              <div className="image_wrapper flex flex-wrap gap-4 mb-4 justify-center">
-                {previewImgUrls.map((url, index) => (
-                  <img
-                    key={index}
-                    src={url}
-                    alt={`Preview ${index}`}
-                    className="w-32 h-32 object-cover rounded-md border border-gray-300"
-                  />
-                ))}
-              </div>
-            )}
-            <input
-              type="file"
-              onChange={handleFileChange}
-              accept="image/*"
-              multiple // Allow multiple file uploads
-              className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
-            />
-          </div>
-        </div>
+                <div className="col-span-1 md:col-span-2 flex flex-col items-center">
+                  <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+                    Carregar Fotos
+                  </label>
+                  <div className="flex flex-col items-center">
+                    {previewImgUrls.length > 0 && (
+                      <div className="image_wrapper flex flex-wrap gap-4 mb-4 justify-center">
+                        {previewImgUrls.map((url, index) => (
+                          <img
+                            key={index}
+                            src={url}
+                            alt={`Preview ${index}`}
+                            className="w-32 h-32 object-cover rounded-md border border-gray-300"
+                          />
+                        ))}
+                      </div>
+                    )}
+                    <input
+                      type="file"
+                      onChange={handleFileChange}
+                      accept="image/*"
+                      multiple // Allow multiple file uploads
+                      className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
+                    />
+                  </div>
+                </div>
               </div>
             </form>
           </div>
@@ -954,85 +954,86 @@ const DietPlan = () => {
           </div>
         );
       case 3: // Revisão e Finalização do Plano
-        return (
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-center">
-              <Typography
-                variant="body1"
-                className="flex flex-col items-center justify-center"
-              >
-                <strong>Perfil do Utilizador:</strong>
-                {/* Display Uploaded Images */}
-                {previewImgUrls.length > 0 && (
-                  <div className="mt-4">
-                    <div className="image_wrapper flex flex-wrap gap-4 mt-2">
-                      {previewImgUrls.map((url, index) => (
-                        <img
-                          key={index}
-                          src={url}
-                          alt={`Uploaded ${index}`}
-                          className="w-40 h-40 object-cover rounded-md border border-gray-300"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-                <br />
-                Idade: {userProfile.age} <br />
-                Género: {userProfile.gender} <br />
-                Peso: {userProfile.weight} kg
-                <br />
-                Altura: {userProfile.height} cm
-                <br />
-                Nível de Atividade: {userProfile.activityLevel} <br />
-                Calorias Diárias: {caloricNeeds} kcal
-                <br />
-                Objectivo: {userProfile.healthGoals}
-              </Typography>
-
-              <Typography variant="body1">
-                <strong>Alergias:</strong>
-                <br />
-                {userProfile.allergies.length > 0
-                  ? userProfile.allergies.join(", ")
-                  : "Nenhuma alergia"}
-              </Typography>
-
-              <Typography variant="body1">
-                <strong>Condições de Saúde:</strong>
-                <br />
-                {userProfile.healthConditions.length > 0
-                  ? userProfile.healthConditions.join(", ")
-                  : "Nenhuma condição de saúde"}
-              </Typography>
-
-              {addedRecipes.map((mealRecipes, mealIndex) => (
-                <div key={mealIndex} className="my-4">
-                  <Typography variant="h6">
-                    <strong>Refeição {mealIndex + 1}:</strong>
-                  </Typography>
-                  <ul className="list-disc list-inside">
-                    {mealRecipes.map((recipe, recipeIndex) => (
-                      <li key={recipeIndex}>
-                        {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
-                        carbs, {recipe.protein}g proteína, {recipe.fats}g
-                        gorduras)
-                      </li>
+      return (
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-center">
+            <Typography
+              variant="body1"
+              className="flex flex-col items-center justify-center"
+            >
+              <strong>Perfil do Utilizador:</strong>
+              {/* Display Uploaded Images */}
+              {previewImgUrls.length > 0 && (
+                <div className="mt-4 flex flex-col items-center">
+                  <div className="image_wrapper flex flex-wrap gap-4 mt-2 justify-center">
+                    {previewImgUrls.map((url, index) => (
+                      <img
+                        key={index}
+                        src={url}
+                        alt={`Uploaded ${index}`}
+                        className="w-40 h-40 object-cover rounded-md border border-gray-300"
+                      />
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              ))}
-
-              <Typography variant="body1">
-                <strong>Total Nutricional:</strong>
-                <br />
-                Carboidratos: {calculatedMacros.carbs}g<br />
-                Proteínas: {calculatedMacros.protein}g<br />
-                Gorduras: {calculatedMacros.fats}g
-              </Typography>
-            </div>
+              )}
+              <br />
+              Idade: {userProfile.age} <br />
+              Género: {userProfile.gender} <br />
+              Peso: {userProfile.weight} kg
+              <br />
+              Altura: {userProfile.height} cm
+              <br />
+              Nível de Atividade: {userProfile.activityLevel} <br />
+              Calorias Diárias: {caloricNeeds} kcal
+              <br />
+              Objectivo: {userProfile.healthGoals}
+            </Typography>
+      
+            <Typography variant="body1">
+              <strong>Alergias:</strong>
+              <br />
+              {userProfile.allergies.length > 0
+                ? userProfile.allergies.join(", ")
+                : "Nenhuma alergia"}
+            </Typography>
+      
+            <Typography variant="body1">
+              <strong>Condições de Saúde:</strong>
+              <br />
+              {userProfile.healthConditions.length > 0
+                ? userProfile.healthConditions.join(", ")
+                : "Nenhuma condição de saúde"}
+            </Typography>
+      
+            {addedRecipes.map((mealRecipes, mealIndex) => (
+              <div key={mealIndex} className="my-4">
+                <Typography variant="h6">
+                  <strong>Refeição {mealIndex + 1}:</strong>
+                </Typography>
+                <ul className="list-disc list-inside">
+                  {mealRecipes.map((recipe, recipeIndex) => (
+                    <li key={recipeIndex}>
+                      {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
+                      carbs, {recipe.protein}g proteína, {recipe.fats}g
+                      gorduras)
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+      
+            <Typography variant="body1">
+              <strong>Total Nutricional:</strong>
+              <br />
+              Carboidratos: {calculatedMacros.carbs}g<br />
+              Proteínas: {calculatedMacros.protein}g<br />
+              Gorduras: {calculatedMacros.fats}g
+            </Typography>
           </div>
-        );
+        </div>
+      );
+      
       default:
         return null;
     }
