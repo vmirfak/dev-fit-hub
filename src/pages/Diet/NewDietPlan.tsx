@@ -954,86 +954,85 @@ const NewDietPlan = () => {
           </div>
         );
       case 3: // Revisão e Finalização do Plano
-      return (
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-center">
-            <Typography
-              variant="body1"
-              className="flex flex-col items-center justify-center"
-            >
-              <strong>Perfil do Utilizador:</strong>
-              {/* Display Uploaded Images */}
-              {previewImgUrls.length > 0 && (
-                <div className="mt-4 flex flex-col items-center">
-                  <div className="image_wrapper flex flex-wrap gap-4 mt-2 justify-center">
-                    {previewImgUrls.map((url, index) => (
-                      <img
-                        key={index}
-                        src={url}
-                        alt={`Uploaded ${index}`}
-                        className="w-40 h-40 object-cover rounded-md border border-gray-300"
-                      />
-                    ))}
+        return (
+          <div className="flex flex-col items-center justify-center">
+            <div className="text-center">
+              <Typography
+                variant="body1"
+                className="flex flex-col items-center justify-center"
+              >
+                <strong>Perfil do Utilizador:</strong>
+                {/* Display Uploaded Images */}
+                {previewImgUrls.length > 0 && (
+                  <div className="mt-4 flex flex-col items-center">
+                    <div className="image_wrapper flex flex-wrap gap-4 mt-2 justify-center">
+                      {previewImgUrls.map((url, index) => (
+                        <img
+                          key={index}
+                          src={url}
+                          alt={`Uploaded ${index}`}
+                          className="w-40 h-40 object-cover rounded-md border border-gray-300"
+                        />
+                      ))}
+                    </div>
                   </div>
+                )}
+                <br />
+                Idade: {userProfile.age} <br />
+                Género: {userProfile.gender} <br />
+                Peso: {userProfile.weight} kg
+                <br />
+                Altura: {userProfile.height} cm
+                <br />
+                Nível de Atividade: {userProfile.activityLevel} <br />
+                Calorias Diárias: {caloricNeeds} kcal
+                <br />
+                Objectivo: {userProfile.healthGoals}
+              </Typography>
+
+              <Typography variant="body1">
+                <strong>Alergias:</strong>
+                <br />
+                {userProfile.allergies.length > 0
+                  ? userProfile.allergies.join(", ")
+                  : "Nenhuma alergia"}
+              </Typography>
+
+              <Typography variant="body1">
+                <strong>Condições de Saúde:</strong>
+                <br />
+                {userProfile.healthConditions.length > 0
+                  ? userProfile.healthConditions.join(", ")
+                  : "Nenhuma condição de saúde"}
+              </Typography>
+
+              {addedRecipes.map((mealRecipes, mealIndex) => (
+                <div key={mealIndex} className="my-4">
+                  <Typography variant="h6">
+                    <strong>Refeição {mealIndex + 1}:</strong>
+                  </Typography>
+                  <ul className="list-disc list-inside">
+                    {mealRecipes.map((recipe, recipeIndex) => (
+                      <li key={recipeIndex}>
+                        {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
+                        carbs, {recipe.protein}g proteína, {recipe.fats}g
+                        gorduras)
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              )}
-              <br />
-              Idade: {userProfile.age} <br />
-              Género: {userProfile.gender} <br />
-              Peso: {userProfile.weight} kg
-              <br />
-              Altura: {userProfile.height} cm
-              <br />
-              Nível de Atividade: {userProfile.activityLevel} <br />
-              Calorias Diárias: {caloricNeeds} kcal
-              <br />
-              Objectivo: {userProfile.healthGoals}
-            </Typography>
-      
-            <Typography variant="body1">
-              <strong>Alergias:</strong>
-              <br />
-              {userProfile.allergies.length > 0
-                ? userProfile.allergies.join(", ")
-                : "Nenhuma alergia"}
-            </Typography>
-      
-            <Typography variant="body1">
-              <strong>Condições de Saúde:</strong>
-              <br />
-              {userProfile.healthConditions.length > 0
-                ? userProfile.healthConditions.join(", ")
-                : "Nenhuma condição de saúde"}
-            </Typography>
-      
-            {addedRecipes.map((mealRecipes, mealIndex) => (
-              <div key={mealIndex} className="my-4">
-                <Typography variant="h6">
-                  <strong>Refeição {mealIndex + 1}:</strong>
-                </Typography>
-                <ul className="list-disc list-inside">
-                  {mealRecipes.map((recipe, recipeIndex) => (
-                    <li key={recipeIndex}>
-                      {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
-                      carbs, {recipe.protein}g proteína, {recipe.fats}g
-                      gorduras)
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-      
-            <Typography variant="body1">
-              <strong>Total Nutricional:</strong>
-              <br />
-              Carboidratos: {calculatedMacros.carbs}g<br />
-              Proteínas: {calculatedMacros.protein}g<br />
-              Gorduras: {calculatedMacros.fats}g
-            </Typography>
+              ))}
+
+              <Typography variant="body1">
+                <strong>Total Nutricional:</strong>
+                <br />
+                Carboidratos: {calculatedMacros.carbs}g<br />
+                Proteínas: {calculatedMacros.protein}g<br />
+                Gorduras: {calculatedMacros.fats}g
+              </Typography>
+            </div>
           </div>
-        </div>
-      );
-      
+        );
       default:
         return null;
     }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import CheckboxTwo from "../../components/Checkboxes/CheckboxTwo";
+import { FaPlus } from "react-icons/fa";
+import CreateRecipeModal from "../../components/Modal/CreateRecipeModal";
 
 interface Recipe {
   id: number;
@@ -489,8 +491,8 @@ const initialRecipes: Recipe[] = [
 ];
 
 const Recipes = () => {
-  const [isOpen] = useState(false);
   const [expandedRecipe, setExpandedRecipe] = useState<number | null>(null);
+  const [openModal, setIsModalOpen] = useState(false);
   const [filters, setFilters] = useState({
     glutenFree: false,
     vegan: false,
@@ -511,6 +513,10 @@ const Recipes = () => {
     }));
   };
 
+  const handleModal = () => {
+    setIsModalOpen(true);
+  };
+
   const filteredRecipes = initialRecipes.filter((recipe) => {
     const recipeFilters = recipe.filters;
     return (
@@ -524,7 +530,7 @@ const Recipes = () => {
   });
 
   return (
-    <DefaultLayout isModalOpen={isOpen}>
+    <DefaultLayout isModalOpen={openModal}>
       <Breadcrumb pageName="Recipes" />
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         <div className="mb-4">
@@ -561,8 +567,16 @@ const Recipes = () => {
               onChange={() => toggleFilter("quickPrep")}
             />
           </div>
+          <div className="flex justify-end items-center mb-4">
+            <button
+              className="flex items-center bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-200 hover:shadow-lg hover:scale-105"
+              onClick={handleModal}
+            >
+              <FaPlus className="mr-2 " />
+              Criar Receita
+            </button>
+          </div>
         </div>
-
         {filteredRecipes.map((recipe) => (
           <div key={recipe.id} className="mb-6">
             <div
@@ -603,6 +617,18 @@ const Recipes = () => {
           </div>
         ))}
       </div>
+      <CreateRecipeModal
+        isOpen={openModal}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={(newRecipe) => {
+          const currentDate = new Date();
+
+          console.log("Nova Receita Criada:", newRecipe);
+          console.log("Data de Criação:", currentDate.toLocaleString());
+
+          setIsModalOpen(false);
+        }}
+      />
     </DefaultLayout>
   );
 };
