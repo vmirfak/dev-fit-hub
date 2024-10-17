@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEventHandler } from "react";
 import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../layout/DefaultLoayout";
 import { Stepper, Step, StepLabel, Button, Typography } from "@mui/material";
@@ -8,6 +8,7 @@ import { FaPlus } from "react-icons/fa";
 import AddRecipeModal from "../components/Modal/RecipeModal";
 import { FiMinus } from "react-icons/fi";
 import { ActivityLevel, HealthGoals } from "../enum/enum";
+import { fileToDataString } from "../utils/utils";
 
 const steps = [
   "Perfil do Utilizador",
@@ -110,11 +111,26 @@ interface UserProfile {
   allergies: string[];
   mealsPerDay: string;
   healthConditions: string[];
+  images: string[];
   [key: string]: any;
 }
 
 const DietPlan = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [caloricNeeds, setCaloricNeeds] = useState(0);
+  const [goalAdjustment, setGoalAdjustment] = useState(0);
+  const [stepErrors, setStepErrors] = useState([false, false, false]);
+  const [, setSelectedImages] = useState<FileList | null>(null);
+  const [previewImgUrls, setPreviewImgUrls] = useState<string[]>([]);
+  const [expandedMeal, setExpandedMeal] = useState<number | null>(null);
+  const [currentMealIndex, setCurrentMealIndex] = useState<number | null>(null);
+  const [addedRecipes, setAddedRecipes] = useState<Recipe[][]>([]);
+  const [macronutrients, setMacronutrients] = useState({
+    carbs: 0,
+    protein: 0,
+    fats: 0,
+  });
   const [userProfile, setUserProfile] = useState<UserProfile>({
     age: "",
     gender: "",
@@ -130,18 +146,10 @@ const DietPlan = () => {
     dailyCaloricIntake: "",
     allergies: [],
     mealsPerDay: "",
+    images: [],
     healthConditions: [],
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [caloricNeeds, setCaloricNeeds] = useState(0);
-  const [macronutrients, setMacronutrients] = useState({
-    carbs: 0,
-    protein: 0,
-    fats: 0,
-  });
-  const [goalAdjustment, setGoalAdjustment] = useState(0);
   const isLastStep = activeStep === steps.length - 1;
-  const [stepErrors, setStepErrors] = useState([false, false, false]);
 
   const isStepValid = (step: number) => {
     if (step === 0) {
@@ -173,8 +181,6 @@ const DietPlan = () => {
       calculateNutritionalNeeds();
     }
   };
-
-  const [addedRecipes, setAddedRecipes] = useState<Recipe[][]>([]);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => Math.max(prevActiveStep - 1, 0));
@@ -305,13 +311,9 @@ const DietPlan = () => {
     }));
   };
 
-  const [expandedMeal, setExpandedMeal] = useState<number | null>(null);
-
   const toggleMealExpansion = (index: number) => {
     setExpandedMeal((prev) => (prev === index ? null : index));
   };
-
-  const [currentMealIndex, setCurrentMealIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const mealsCount = Number(userProfile.mealsPerDay) || 0;
@@ -370,6 +372,37 @@ const DietPlan = () => {
     });
   };
 
+  const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (
+    event
+  ) => {
+    const files = event.target.files;
+    if (!files) {
+      return;
+    }
+
+    const urls: string[] = [];
+
+    // Process each selected file
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      try {
+        const imgUrl = await fileToDataString(file);
+        urls.push(imgUrl);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    // Update state
+    setSelectedImages(files);
+    setPreviewImgUrls(urls);
+    setUserProfile((prevState) => ({
+      ...prevState,
+      images: urls,
+    }));
+    console.log(urls);
+  };
+
   const renderStepContent = (step: number) => {
     switch (step) {
       case 0: // User Profile Setup
@@ -392,13 +425,14 @@ const DietPlan = () => {
                     required
                   />
                 </div>
-                {/* Nome */}
+
+                {/* E-mail */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
                     E-mail
                   </label>
                   <input
-                    type="text"
+                    type="email" // Changed to email type for better validation
                     name="email"
                     value={userProfile.email}
                     onChange={handleInputChange}
@@ -407,6 +441,7 @@ const DietPlan = () => {
                     required
                   />
                 </div>
+
                 {/* Age */}
                 <div>
                   <label className="mb-2 block text-sm font-medium text-black dark:text-white">
@@ -435,7 +470,7 @@ const DietPlan = () => {
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
                     required
                   >
-                    <option value="">Seleciona Géreno</option>
+                    <option value="">Seleciona Género</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
                     <option value="Outro">Outro</option>
@@ -557,6 +592,34 @@ const DietPlan = () => {
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                     placeholder="Introduz as Preferências"
                   />
+                </div>
+
+                {/* Upload Photos */}
+                <div className="col-span-1 md:col-span-2 flex flex-col items-center justify-center">
+                  <label className="mb-2 block text-sm font-medium text-black dark:text-white">
+                    Carregar Fotos
+                  </label>
+                  <div className="wrapper">
+                    {previewImgUrls.length > 0 && (
+                      <div className="image_wrapper flex flex-wrap gap-4 mb-4">
+                        {previewImgUrls.map((url, index) => (
+                          <img
+                            key={index}
+                            src={url}
+                            alt={`Preview ${index}`}
+                            className="w-32 h-32 object-cover rounded-md border border-gray-300"
+                          />
+                        ))}
+                      </div>
+                    )}
+                    <input
+                      type="file"
+                      onChange={handleFileChange}
+                      accept="image/*"
+                      multiple // Allow multiple file uploads
+                      className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
+                    />
+                  </div>
                 </div>
               </div>
             </form>
@@ -892,62 +955,82 @@ const DietPlan = () => {
         );
       case 3: // Revisão e Finalização do Plano
         return (
-          <div>
-            <Typography variant="body1">
-              <strong>Perfil do Utilizador:</strong>
-              <br />
-              Idade: {userProfile.age} <br />
-              Género: {userProfile.gender} <br />
-              Peso: {userProfile.weight} kg
-              <br />
-              Altura: {userProfile.height} cm
-              <br />
-              Nível de Atividade: {userProfile.activityLevel} <br />
-              Calorias Diárias: {caloricNeeds} kcal
-              <br />
-              Objectivo: {userProfile.healthGoals}
-            </Typography>
+          <div className="flex flex-col items-center justify-center">
+            <div className="text-center">
+              <Typography
+                variant="body1"
+                className="flex flex-col items-center justify-center"
+              >
+                <strong>Perfil do Utilizador:</strong>
+                {/* Display Uploaded Images */}
+                {previewImgUrls.length > 0 && (
+                  <div className="mt-4">
+                    <div className="image_wrapper flex flex-wrap gap-4 mt-2">
+                      {previewImgUrls.map((url, index) => (
+                        <img
+                          key={index}
+                          src={url}
+                          alt={`Uploaded ${index}`}
+                          className="w-40 h-40 object-cover rounded-md border border-gray-300"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <br />
+                Idade: {userProfile.age} <br />
+                Género: {userProfile.gender} <br />
+                Peso: {userProfile.weight} kg
+                <br />
+                Altura: {userProfile.height} cm
+                <br />
+                Nível de Atividade: {userProfile.activityLevel} <br />
+                Calorias Diárias: {caloricNeeds} kcal
+                <br />
+                Objectivo: {userProfile.healthGoals}
+              </Typography>
 
-            <Typography variant="body1">
-              <strong>Alergias:</strong>
-              <br />
-              {userProfile.allergies.length > 0
-                ? userProfile.allergies.join(", ")
-                : "Nenhuma alergia"}
-            </Typography>
+              <Typography variant="body1">
+                <strong>Alergias:</strong>
+                <br />
+                {userProfile.allergies.length > 0
+                  ? userProfile.allergies.join(", ")
+                  : "Nenhuma alergia"}
+              </Typography>
 
-            <Typography variant="body1">
-              <strong>Condições de Saúde:</strong>
-              <br />
-              {userProfile.healthConditions.length > 0
-                ? userProfile.healthConditions.join(", ")
-                : "Nenhuma condição de saúde"}
-            </Typography>
+              <Typography variant="body1">
+                <strong>Condições de Saúde:</strong>
+                <br />
+                {userProfile.healthConditions.length > 0
+                  ? userProfile.healthConditions.join(", ")
+                  : "Nenhuma condição de saúde"}
+              </Typography>
 
-            {addedRecipes.map((mealRecipes, mealIndex) => (
-              <div key={mealIndex} className="my-4">
-                <Typography variant="h6">
-                  <strong>Refeição {mealIndex + 1}:</strong>
-                </Typography>
-                <ul>
-                  {mealRecipes.map((recipe, recipeIndex) => (
-                    <li key={recipeIndex}>
-                      {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
-                      carbs, {recipe.protein}g proteína, {recipe.fats}g
-                      gorduras)
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              {addedRecipes.map((mealRecipes, mealIndex) => (
+                <div key={mealIndex} className="my-4">
+                  <Typography variant="h6">
+                    <strong>Refeição {mealIndex + 1}:</strong>
+                  </Typography>
+                  <ul className="list-disc list-inside">
+                    {mealRecipes.map((recipe, recipeIndex) => (
+                      <li key={recipeIndex}>
+                        {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
+                        carbs, {recipe.protein}g proteína, {recipe.fats}g
+                        gorduras)
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
 
-            <Typography variant="body1">
-              <strong>Total Nutricional:</strong>
-              <br />
-              Carboidratos: {calculatedMacros.carbs}g<br />
-              Proteínas: {calculatedMacros.protein}g<br />
-              Gorduras: {calculatedMacros.fats}g
-            </Typography>
+              <Typography variant="body1">
+                <strong>Total Nutricional:</strong>
+                <br />
+                Carboidratos: {calculatedMacros.carbs}g<br />
+                Proteínas: {calculatedMacros.protein}g<br />
+                Gorduras: {calculatedMacros.fats}g
+              </Typography>
+            </div>
           </div>
         );
       default:
