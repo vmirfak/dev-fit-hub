@@ -37,7 +37,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
         phone: "+351999999999",
         address: "Rua de Flg 123, 4610-99 FLG",
         birthday: "27 Set 1992",
-        role: "admin" as "administrator",
+        role: "admin" as "admin",
       },
       {
         id: 2,
@@ -56,7 +56,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
       (u) => u.username === username && password === username
     );
     if (user) {
-      setUser(user); // Set the logged-in user in context
+      setUser(user); 
       navigate("/dashboard");
     } else {
       setLoginError("Palavra-pass ou Nome de Utilizador Inválido!");

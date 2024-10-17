@@ -8,20 +8,26 @@ interface User {
   phone: string;
   address: string;
   birthday: string;
-  role: 'administrator' | 'user';
+  role: 'admin' | 'user';
 }
 
 const UserContext = createContext<{
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
-}>({ user: null, setUser: () => {} });
+  logout: () => void; 
+}>({ user: null, setUser: () => {}, logout: () => {} });
 
 export const useUser = () => useContext(UserContext);
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+
+  const logout = () => {
+    setUser(null); 
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, logout }}>
       {children}
     </UserContext.Provider>
   );

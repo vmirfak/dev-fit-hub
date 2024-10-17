@@ -21,6 +21,8 @@ import Recipes from "./pages/Diet/Recipes";
 import ShoppingList from "./pages/Diet/ShoppingList";
 import RecoverPassword from "./pages/Authentication/RecoverPassword";
 import NewDietPlan from "./pages/Diet/NewDietPlan";
+import ErrorPage from './pages/Error/ErrorPage'; 
+
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -189,7 +191,6 @@ function App() {
             </>
           }
         />
-
         <Route
           path="/faq"
           element={
@@ -199,6 +200,7 @@ function App() {
             </>
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );
