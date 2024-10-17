@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "@mui/material";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaUtensils } from "react-icons/fa";
 
 interface Recipe {
   name: string;
@@ -14,7 +14,7 @@ interface AddRecipeModalProps {
   isOpen: boolean;
   onClose: () => void;
   recipesData: Recipe[];
-  onAddRecipe: (recipe: Recipe) => void; 
+  onAddRecipe: (recipe: Recipe) => void;
 }
 const AddRecipeModal: React.FC<AddRecipeModalProps> = ({
   isOpen,
@@ -64,19 +64,24 @@ const AddRecipeModal: React.FC<AddRecipeModalProps> = ({
               value={selectedRecipe ? selectedRecipe.name : ""}
               onChange={(e) =>
                 setSelectedRecipe(
-                  recipesData.find((recipe) => recipe.name === e.target.value) || null
+                  recipesData.find(
+                    (recipe) => recipe.name === e.target.value
+                  ) || null
                 )
               }
-              className="border border-gray-300 rounded-md p-2 w-full"
+              className="border border-gray-300 rounded-md p-2 w-full cursor-pointer"
             >
               <option value="" disabled>
                 Selecione uma Receita
               </option>
-              {recipesData.map((recipe) => (
-                <option key={recipe.name} value={recipe.name}>
-                  {recipe.name}
-                </option>
-              ))}
+              {recipesData
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((recipe) => (
+                  <option key={recipe.name} value={recipe.name}>
+                    {recipe.name} [{recipe.calories}kCal, HC: {recipe.carbs}g,
+                    P: {recipe.protein}g, G: {recipe.fats}g]
+                  </option>
+                ))}
             </select>
           </div>
 
@@ -86,9 +91,10 @@ const AddRecipeModal: React.FC<AddRecipeModalProps> = ({
             disabled={!selectedRecipe}
             className={`${
               selectedRecipe ? "bg-green-500" : "bg-gray-400"
-            } text-white rounded-md px-4 py-2 flex items-center hover:bg-green-600 transition duration-300`}
+            } text-white rounded-md px-4 py-2 flex items-center hover:bg-green-600 transition duration-300 cursor-pointer`}
           >
-            Adicionar Receita
+            <FaUtensils className="mr-2"/>
+            Adicionar
           </button>
         </div>
       </div>

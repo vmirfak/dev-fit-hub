@@ -141,18 +141,45 @@ const DietPlan = () => {
   });
   const [goalAdjustment, setGoalAdjustment] = useState(0);
   const isLastStep = activeStep === steps.length - 1;
+  const [stepErrors, setStepErrors] = useState([false, false, false]);
+
+  const isStepValid = (step: number) => {
+    if (step === 0) {
+      const { age, gender, weight, name, height, email } = userProfile;
+      return (
+        age.trim() !== "" &&
+        gender.trim() !== "" &&
+        weight.trim() !== "" &&
+        name.trim() !== "" &&
+        height.trim() !== "" &&
+        email.trim() !== ""
+      );
+    }
+    if (step === 1) {
+      const { dailyCaloricIntake } = userProfile;
+      return dailyCaloricIntake.trim() !== "";
+    }
+    return true;
+  };
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) =>
-      Math.min(prevActiveStep + 1, steps.length - 1)
-    );
+    const newErrors = [...stepErrors];
+    newErrors[activeStep] = !isStepValid(activeStep);
 
-    calculateNutritionalNeeds();
+    setStepErrors(newErrors);
+
+    if (!newErrors[activeStep]) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      calculateNutritionalNeeds();
+    }
   };
+
   const [addedRecipes, setAddedRecipes] = useState<Recipe[][]>([]);
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => Math.max(prevActiveStep - 1, 0));
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked, type } = e.target;
     setUserProfile((prevState) => {
@@ -171,6 +198,7 @@ const DietPlan = () => {
       };
     });
   };
+
   const handleGoalAdjustmentChange = (e: { target: { value: any } }) => {
     const newAdjustment = Number(e.target.value);
     setGoalAdjustment(newAdjustment);
@@ -289,7 +317,6 @@ const DietPlan = () => {
     const mealsCount = Number(userProfile.mealsPerDay) || 0;
     setAddedRecipes((prevRecipes) => {
       const updatedRecipes = Array.from({ length: mealsCount }, (_, index) => {
-        // Retain existing recipes if they exist
         return prevRecipes[index] || [];
       });
       return updatedRecipes;
@@ -311,10 +338,6 @@ const DietPlan = () => {
     setIsModalOpen(true);
   };
 
-  useEffect(() => {
-    console.log(addedRecipes);
-  }, [addedRecipes]);
-
   const calculateMacros = () => {
     let totalCarbs = 0;
     let totalProtein = 0;
@@ -335,7 +358,6 @@ const DietPlan = () => {
     };
   };
 
-  // Call this function whenever you add or remove a recipe
   const calculatedMacros = calculateMacros();
 
   const handleRemoveRecipe = (mealIndex: number, recipeIndex: number) => {
@@ -414,9 +436,9 @@ const DietPlan = () => {
                     required
                   >
                     <option value="">Seleciona Géreno</option>
-                    <option value="male">Masculino</option>
-                    <option value="female">Feminino</option>
-                    <option value="other">Outro</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outro">Outro</option>
                   </select>
                 </div>
 
@@ -485,12 +507,12 @@ const DietPlan = () => {
                     Objetivos
                   </label>
                   <select
-                    name="healthGoals" 
+                    name="healthGoals"
                     value={userProfile.healthGoals}
                     onChange={(e) =>
                       setUserProfile({
                         ...userProfile,
-                        healthGoals: Number(e.target.value) as HealthGoals, 
+                        healthGoals: Number(e.target.value) as HealthGoals,
                       })
                     }
                     className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
@@ -584,59 +606,58 @@ const DietPlan = () => {
                 </div>
 
                 {/* Preferred Macronutrient Ratios */}
-<div className="md:col-span-2">
-  <label className="mb-6 block text-sm font-medium text-black dark:text-white ">
-    Quantidades de Macro-nutrientes
-  </label>
-  <div className="grid grid-cols-3 gap-0">
-    <div>
-      <label className="block text-sm font-medium text-black dark:text-white">
-        HC [g]
-      </label>
-      <input
-        type="number"
-        name="carbsRatio"
-        value={macronutrients.carbs}
-        onChange={handleGoalAdjustmentChange}
-        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
-        min={0}
-        max={100}
-        required
-      />
-    </div>
-    <div>
-      <label className="block text-sm font-medium text-black dark:text-white">
-        P [g]
-      </label>
-      <input
-        type="number"
-        name="proteinRatio"
-        value={macronutrients.protein}
-        onChange={handleGoalAdjustmentChange}
-        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
-        min={0}
-        max={100}
-        required
-      />
-    </div>
-    <div>
-      <label className="block text-sm font-medium text-black dark:text-white">
-        G [g]
-      </label>
-      <input
-        type="number"
-        name="fatRatio"
-        value={macronutrients.fats}
-        onChange={handleGoalAdjustmentChange}
-        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
-        min={0}
-        max={100}
-        required
-      />
-    </div>
-  </div>
-</div>
-
+                <div className="md:col-span-2">
+                  <label className="mb-6 block text-sm font-medium text-black dark:text-white ">
+                    Quantidades de Macro-nutrientes
+                  </label>
+                  <div className="grid grid-cols-3 gap-0">
+                    <div>
+                      <label className="block text-sm font-medium text-black dark:text-white">
+                        HC [g]
+                      </label>
+                      <input
+                        type="number"
+                        name="carbsRatio"
+                        value={macronutrients.carbs}
+                        onChange={handleGoalAdjustmentChange}
+                        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
+                        min={0}
+                        max={100}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black dark:text-white">
+                        P [g]
+                      </label>
+                      <input
+                        type="number"
+                        name="proteinRatio"
+                        value={macronutrients.protein}
+                        onChange={handleGoalAdjustmentChange}
+                        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
+                        min={0}
+                        max={100}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black dark:text-white">
+                        G [g]
+                      </label>
+                      <input
+                        type="number"
+                        name="fatRatio"
+                        value={macronutrients.fats}
+                        onChange={handleGoalAdjustmentChange}
+                        className="border border-stroke bg-gray-50 py-3 px-5 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white w-25" // Ajuste a largura aqui
+                        min={0}
+                        max={100}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 {/* Allergies */}
                 <div className="md:col-span-2">
@@ -940,9 +961,18 @@ const DietPlan = () => {
       <div className="overflow-hidden p-6 mt-4 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="mx-auto">
           <Stepper activeStep={activeStep} alternativeLabel>
-            {steps.map((label) => (
+            {steps.map((label, index) => (
               <Step key={label}>
-                <StepLabel>
+                <StepLabel
+                  error={stepErrors[index]}
+                  optional={
+                    stepErrors[index] ? (
+                      <Typography variant="caption" color="error">
+                        Informação em falta
+                      </Typography>
+                    ) : null
+                  }
+                >
                   <span className="font-semibold text-gray-700 dark:text-white">
                     {label}
                   </span>
