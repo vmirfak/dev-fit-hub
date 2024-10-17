@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { FaPencilAlt, FaTrashAlt, FaPlus } from "react-icons/fa";
-import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../layout/DefaultLoayout";
-import NewDietPlanModal from "../components/Modal/NewDietPlanModal";
+import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../layout/DefaultLoayout";
+import NewDietPlanModal from "../../components/Modal/NewDietPlanModal";
 import { NavLink } from "react-router-dom";
 
 interface DietPlan {
@@ -223,7 +223,7 @@ const DietPlansTable = () => {
       <Breadcrumb pageName="As minhas Perscrições" />
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="flex justify-end items-center mb-4">
-          <NavLink to="/testplan">
+          <NavLink to="/newdietplan">
             <button
               onClick={handleCreateNew}
               className="flex items-center bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-lg shadow-md transition duration-200 hover:shadow-lg hover:scale-105"

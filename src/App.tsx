@@ -10,17 +10,17 @@ import Login from "./pages/Authentication/Login";
 import Registration from "./pages/Authentication/Registration";
 import FeedBack from "./pages/Feedback";
 import FAQ from "./pages/Faqs";
-import FoodPlans from "./pages/FoodPlans";
-import ExercisePlans from "./pages/ExercisePlans";
-import FoodPlanCreation from "./pages/FoodPlanCreation";
-import ExercisepPlanCreation from "./pages/ExercisePlanCreation";
-import EvaluationHistory from "./pages/EvaluationHistory";
-import NewEvaluation from "./pages/NewEvaluation";
+import FoodPlans from "./pages/Diet/FoodPlans";
+import ExercisePlans from "./pages/Exercise/ExercisePlans";
+import FoodPlanCreation from "./pages/Diet/FoodPlanCreation";
+import ExercisepPlanCreation from "./pages/Exercise/ExercisePlanCreation";
+import EvaluationHistory from "./pages/Evaluations/EvaluationHistory";
+import NewEvaluation from "./pages/Evaluations/NewEvaluation";
 import Chat from "./pages/Chat";
-import Recipes from "./pages/Recipes";
-import ShoppingList from "./pages/ShoppingList";
-import TestPlan from "./pages/TestPlant"
+import Recipes from "./pages/Diet/Recipes";
+import ShoppingList from "./pages/Diet/ShoppingList";
 import RecoverPassword from "./pages/Authentication/RecoverPassword";
+import NewDietPlan from "./pages/Diet/NewDietPlan";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -64,11 +64,11 @@ function App() {
           }
         />
         <Route
-          path="/testplan"
+          path="/newdietplan"
           element={
             <>
               <PageTitle title="Test Plan" />
-              <TestPlan />
+              <NewDietPlan />
             </>
           }
         />

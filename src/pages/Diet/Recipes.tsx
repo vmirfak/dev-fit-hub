@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../layout/DefaultLoayout";
-import CheckboxTwo from "../components/Checkboxes/CheckboxTwo";
+import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../layout/DefaultLoayout";
+import CheckboxTwo from "../../components/Checkboxes/CheckboxTwo";
 
 interface Recipe {
   id: number;

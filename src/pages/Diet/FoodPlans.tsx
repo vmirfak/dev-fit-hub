@@ -1,5 +1,5 @@
-import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
-import DefaultLayout from '../layout/DefaultLoayout';
+import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
+import DefaultLayout from '../../layout/DefaultLoayout';
 import { useState } from 'react';
 
 const FoodPlans = () => {
