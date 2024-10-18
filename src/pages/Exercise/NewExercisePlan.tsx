@@ -52,11 +52,11 @@ interface UserProfile {
   healthGoals: HealthGoals;
   healthConditions: string[];
   images: string[];
-  measurements: Measurement[]; // Array para medições
+  measurements: Measurement[];
+  exercises: ExerciseGroup[];
   pressaoArterial: string;
   habitosAlimentares: string;
-
-  [key: string]: any; // Permitir outras propriedades
+  [key: string]: any;
 }
 
 const NewExercisePlan = () => {
@@ -66,7 +66,7 @@ const NewExercisePlan = () => {
   const isLastStep = activeStep === steps.length - 1;
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
-
+  const [, setSelectedImages] = useState<FileList | null>(null);
   const [exerciseGroups, setExerciseGroups] = useState<ExerciseGroup[]>(
     Array.from({ length: 3 }, (_, i) => ({
       day: i + 1,
@@ -102,6 +102,7 @@ const NewExercisePlan = () => {
       { name: "massaMagra", value: "" },
       { name: "massaGorda", value: "" },
     ],
+    exercises: [],
     pressaoArterial: "", // Campo adicionado
     habitosAlimentares: "", // Campo adicionado
   });
@@ -124,10 +125,14 @@ const NewExercisePlan = () => {
         exercises: exerciseGroups[i]?.exercises || [],
       })
     );
-    setExerciseGroups(updatedGroups);
-  };
 
-  const [, setSelectedImages] = useState<FileList | null>(null);
+    setExerciseGroups(updatedGroups);
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
+      trainingDays: numDays,
+      exercises: updatedGroups,
+    }));
+  };
 
   const handleAddExercise = (groupIndex: number) => {
     const newExerciseGroups = [...exerciseGroups];
@@ -137,7 +142,12 @@ const NewExercisePlan = () => {
       amountOfSets: 0,
       repetitions: 0,
     });
+
     setExerciseGroups(newExerciseGroups);
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
+      exercises: newExerciseGroups,
+    }));
   };
 
   const handleNext = () => {
@@ -162,6 +172,24 @@ const NewExercisePlan = () => {
     }
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleExerciseChange = (
+    groupIndex: number,
+    exerciseIndex: number,
+    updatedExercise: Partial<Exercise>
+  ) => {
+    const newExerciseGroups = [...exerciseGroups];
+    newExerciseGroups[groupIndex].exercises[exerciseIndex] = {
+      ...newExerciseGroups[groupIndex].exercises[exerciseIndex],
+      ...updatedExercise,
+    };
+
+    setExerciseGroups(newExerciseGroups);
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
+      exercises: newExerciseGroups,
+    }));
   };
 
   const handleCloseSnackbar = () => {
@@ -471,7 +499,7 @@ const NewExercisePlan = () => {
             <Typography variant="subtitle1">
               Dobras Subcutâneas (em mm):
             </Typography>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
               <div>
                 <label htmlFor="subescapular" className="block mb-1">
                   Subescapular
@@ -569,7 +597,7 @@ const NewExercisePlan = () => {
             <Typography variant="subtitle1" className="mt-4">
               Perímetros (em cm):
             </Typography>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div>
                 <label htmlFor="bracoRelaxado" className="block mb-1">
                   Braço Relaxado
@@ -707,153 +735,159 @@ const NewExercisePlan = () => {
       case 2:
         return (
           <div>
-            {/* Seleção de dias de treino */}
             <Typography variant="subtitle1">
               Número de dias de exercício por semana:
             </Typography>
-            <Slider
-              value={daysPerWeek}
-              onChange={handleDaysPerWeekChange}
-              aria-labelledby="slider-label"
-              step={1}
-              marks
-              min={1}
-              max={7}
-              valueLabelDisplay="auto"
-            />
+            <div className="w-full max-w-sm mx-auto">
+              <Slider
+                value={daysPerWeek}
+                onChange={handleDaysPerWeekChange}
+                aria-labelledby="slider-label"
+                step={1}
+                marks
+                min={1}
+                max={7}
+                valueLabelDisplay="auto"
+              />
+            </div>
+
             {exerciseGroups.map((group, groupIndex) => (
               <div
                 key={groupIndex}
-                className="mb-4 border rounded-lg shadow-md flex flex-col"
+                className="mb-4 border rounded-lg shadow-md flex flex-col w-full"
               >
                 <button
                   className="w-full p-4 text-left text-lg font-medium text-gray-800 bg-gray-200"
                   type="button"
                   onClick={() => {
-                    const element = document.getElementById(`day-${groupIndex}`);
+                    const element = document.getElementById(
+                      `day-${groupIndex}`
+                    );
                     element?.classList.toggle("hidden");
                   }}
                 >
                   Dia {group.day}
                 </button>
-                <div id={`day-${groupIndex}`} className="hidden p-4 ">
-                  {group.exercises.map((exercise, exerciseIndex) => (
-                    <div
-                      key={exerciseIndex}
-                      className="mb-3 p-3 bg-gray-100 rounded-md flex flex-col items-center"
-                    >
-                      <label className="block mb-1 text-sm">
-                        Nome do exercício:
-                      </label>
-                      <select
-                        className="block w-full px-2 py-1 mb-2 border rounded-md cursor-pointer"
-                        value={exercise.name}
-                        onChange={(e) => {
-                          const newExerciseGroups = [...exerciseGroups];
-                          newExerciseGroups[groupIndex].exercises[exerciseIndex].name = e.target.value;
-                          setExerciseGroups(newExerciseGroups);
-                        }}
+                <div id={`day-${groupIndex}`} className="hidden p-4">
+                  <div className="flex flex-wrap justify-center items-center gap-4 w-full">
+                    {group.exercises.map((exercise, exerciseIndex) => (
+                      <div
+                        key={exerciseIndex}
+                        className="w-64 mb-3 p-3 bg-gray-100 rounded-md flex flex-col items-center"
                       >
-                        <option value="" disabled>
-                          Selecione um exercício
-                        </option>
-                        {availableExercises.map((availableExercise) => (
-                          <option key={availableExercise} value={availableExercise}>
-                            {availableExercise}
+                        <label className="block mb-1 text-sm">
+                          Nome do exercício:
+                        </label>
+                        <select
+                          className="block w-full px-2 py-1 mb-2 border rounded-md cursor-pointer"
+                          value={exercise.name}
+                          onChange={(e) =>
+                            handleExerciseChange(groupIndex, exerciseIndex, {
+                              name: e.target.value,
+                            })
+                          }
+                        >
+                          <option value="" disabled>
+                            Selecione um exercício
                           </option>
-                        ))}
-                      </select>
-                      <label className="block mb-1 text-sm">
-                        Número de sets:
-                      </label>
-                      <div className="flex items-center mb-2">
+                          {availableExercises.map((availableExercise) => (
+                            <option
+                              key={availableExercise}
+                              value={availableExercise}
+                            >
+                              {availableExercise}
+                            </option>
+                          ))}
+                        </select>
+
+                        {/* Number of Sets */}
+                        <label className="block mb-1 text-sm">
+                          Número de sets:
+                        </label>
+                        <div className="flex items-center mb-2">
+                          <button
+                            className="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                            onClick={() => {
+                              const updatedSets = Math.max(1, exercise.amountOfSets - 1);
+                              handleExerciseChange(groupIndex, exerciseIndex, { amountOfSets: updatedSets });
+                            }}
+                          >
+                            <FiMinus size={14} />
+                          </button>
+                          <input
+                            className="w-16 text-center mx-2"
+                            type="number"
+                            value={exercise.amountOfSets}
+                            readOnly
+                          />
+                          <button
+                            className="w-6 h-6 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
+                            onClick={() => {
+                              const newExerciseGroups = [...exerciseGroups];
+                              newExerciseGroups[groupIndex].exercises[
+                                exerciseIndex
+                              ].amountOfSets += 1;
+                              setExerciseGroups(newExerciseGroups);
+                            }}
+                          >
+                            <FiPlus size={14} />
+                          </button>
+                        </div>
+
+                        {/* Number of Repetitions */}
+                        <label className="block mb-1 text-sm">
+                          Número de repetições:
+                        </label>
+                        <div className="flex items-center mb-2">
                         <button
-                          className="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
-                          onClick={() => {
-                            const newExerciseGroups = [...exerciseGroups];
-                            if (exercise.amountOfSets > 1) {
-                              newExerciseGroups[groupIndex].exercises[exerciseIndex].amountOfSets -= 1;
-                            }
-                            setExerciseGroups(newExerciseGroups);
-                          }}
-                        >
-                          <FiMinus size={14} />
-                        </button>
-                        <input
-                          className="w-16 text-center mx-2"
-                          type="number"
-                          value={exercise.amountOfSets}
-                          readOnly
-                        />
-                        <button
-                          className="w-6 h-6 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
-                          onClick={() => {
-                            const newExerciseGroups = [...exerciseGroups];
-                            newExerciseGroups[groupIndex].exercises[exerciseIndex].amountOfSets += 1;
-                            setExerciseGroups(newExerciseGroups);
-                          }}
-                        >
-                          <FiPlus size={14} />
-                        </button>
-                      </div>
-                      <label className="block mb-1 text-sm">
-                        Número de repetições:
-                      </label>
-                      <div className="flex items-center mb-2">
-                        <button
-                          className="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
-                          onClick={() => {
-                            const newExerciseGroups = [...exerciseGroups];
-                            if (exercise.repetitions > 1) {
-                              newExerciseGroups[groupIndex].exercises[exerciseIndex].repetitions -= 1;
-                            }
-                            setExerciseGroups(newExerciseGroups);
-                          }}
-                        >
-                          <FiMinus size={14} />
-                        </button>
-                        <input
-                          className="w-16 text-center mx-2"
-                          type="number"
-                          value={exercise.repetitions || 0}
-                          readOnly
-                        />
-                        <button
-                          className="w-6 h-6 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
-                          onClick={() => {
-                            const newExerciseGroups = [...exerciseGroups];
-                            newExerciseGroups[groupIndex].exercises[exerciseIndex].repetitions += 1;
-                            setExerciseGroups(newExerciseGroups);
-                          }}
-                        >
-                          <FiPlus size={14} />
-                        </button>
-                      </div>
-                      {/* Botão para remover o exercício */}
-                      <button
-                        className="mt-2 flex items-center justify-center px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors"
-                        onClick={() => {
-                          const newExerciseGroups = [...exerciseGroups];
-                          newExerciseGroups[groupIndex].exercises.splice(exerciseIndex, 1); // Remove o exercício
-                          setExerciseGroups(newExerciseGroups);
-                        }}
-                      >
-                        <FiTrash className="mr-2" color="white" />
-                        Remover
-                      </button>
-                    </div>
-                  ))}
-                  <div className="flex items-center justify-center ">
-                  <button
-                    className="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700"
-                    onClick={() => handleAddExercise(groupIndex)}
+                    className="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                    onClick={() => {
+                      const updatedReps = Math.max(1, exercise.repetitions - 1);
+                      handleExerciseChange(groupIndex, exerciseIndex, { repetitions: updatedReps });
+                    }}
                   >
-                    <FaPlus className="mr-2" /> Adicionar Exercício
-                  </button>
+                            <FiMinus size={14} />
+                          </button>
+                          <input
+                            className="w-16 text-center mx-2"
+                            type="number"
+                            value={exercise.repetitions || 0}
+                            readOnly
+                          />
+                          <button
+                    className="w-6 h-6 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
+                    onClick={() => {
+                      const updatedReps = exercise.repetitions + 1;
+                      handleExerciseChange(groupIndex, exerciseIndex, { repetitions: updatedReps });
+                    }}
+                  >
+                            <FiPlus size={14} />
+                          </button>
+                        </div>
+
+                        {/* Remove Exercise Button */}
+                        <button
+                  className="mt-2 flex items-center justify-center px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors"
+                  onClick={() => {
+                    const newExerciseGroups = [...exerciseGroups];
+                    newExerciseGroups[groupIndex].exercises.splice(exerciseIndex, 1);
+                    setExerciseGroups(newExerciseGroups);
+                  }}
+                >
+                          <FiTrash className="mr-2" color="white" />
+                          Remover
+                        </button>
+                      </div>
+                    ))}
+                    {/* Ghost "Add Exercise" Button */}
+                    <button
+                      className="w-28 mb-3 p-3 bg-gray-100 text-center text-gray-600 rounded-md border-dashed border-2 border-gray-300 flex flex-col items-center justify-center hover:bg-gray-200 transition-all"
+                      onClick={() => handleAddExercise(groupIndex)}
+                    >
+                      <FaPlus className="mb-1" />
+                    </button>
                   </div>
-                  
                 </div>
-                
               </div>
             ))}
           </div>
