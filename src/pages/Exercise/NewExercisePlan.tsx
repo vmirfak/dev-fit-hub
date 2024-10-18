@@ -55,7 +55,6 @@ interface UserProfile {
   measurements: Measurement[];
   exercises: ExerciseGroup[];
   pressaoArterial: string;
-  habitosAlimentares: string;
   [key: string]: any;
 }
 
@@ -103,8 +102,7 @@ const NewExercisePlan = () => {
       { name: "massaGorda", value: "" },
     ],
     exercises: [],
-    pressaoArterial: "", // Campo adicionado
-    habitosAlimentares: "", // Campo adicionado
+    pressaoArterial: "",
   });
   const availableExercises = [
     "Flexões",
@@ -278,14 +276,6 @@ const NewExercisePlan = () => {
     habitosAlimentares: "",
   });
 
-  const handleChange = (e: { target: { name: string; value: string } }) => {
-    const { name, value } = e.target;
-    setMedicoes((prevMedicoes) => ({
-      ...prevMedicoes,
-      [name]: value,
-    }));
-  };
-
   useEffect(() => {
     setUserProfile((prevUserProfile) => ({
       ...prevUserProfile,
@@ -295,6 +285,16 @@ const NewExercisePlan = () => {
       })),
     }));
   }, [medicoes]);
+
+  const handleChange = (e: { target: { name: string; value: string } }) => {
+    const { name, value } = e.target;
+
+    // Update each individual measurement in medicoes state
+    setMedicoes((prevMedicoes) => ({
+      ...prevMedicoes,
+      [name]: value,
+    }));
+  };
 
   useEffect(() => {
     console.log(userProfile);
@@ -808,8 +808,13 @@ const NewExercisePlan = () => {
                           <button
                             className="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
                             onClick={() => {
-                              const updatedSets = Math.max(1, exercise.amountOfSets - 1);
-                              handleExerciseChange(groupIndex, exerciseIndex, { amountOfSets: updatedSets });
+                              const updatedSets = Math.max(
+                                1,
+                                exercise.amountOfSets - 1
+                              );
+                              handleExerciseChange(groupIndex, exerciseIndex, {
+                                amountOfSets: updatedSets,
+                              });
                             }}
                           >
                             <FiMinus size={14} />
@@ -839,13 +844,18 @@ const NewExercisePlan = () => {
                           Número de repetições:
                         </label>
                         <div className="flex items-center mb-2">
-                        <button
-                    className="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
-                    onClick={() => {
-                      const updatedReps = Math.max(1, exercise.repetitions - 1);
-                      handleExerciseChange(groupIndex, exerciseIndex, { repetitions: updatedReps });
-                    }}
-                  >
+                          <button
+                            className="w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                            onClick={() => {
+                              const updatedReps = Math.max(
+                                1,
+                                exercise.repetitions - 1
+                              );
+                              handleExerciseChange(groupIndex, exerciseIndex, {
+                                repetitions: updatedReps,
+                              });
+                            }}
+                          >
                             <FiMinus size={14} />
                           </button>
                           <input
@@ -855,25 +865,30 @@ const NewExercisePlan = () => {
                             readOnly
                           />
                           <button
-                    className="w-6 h-6 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
-                    onClick={() => {
-                      const updatedReps = exercise.repetitions + 1;
-                      handleExerciseChange(groupIndex, exerciseIndex, { repetitions: updatedReps });
-                    }}
-                  >
+                            className="w-6 h-6 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
+                            onClick={() => {
+                              const updatedReps = exercise.repetitions + 1;
+                              handleExerciseChange(groupIndex, exerciseIndex, {
+                                repetitions: updatedReps,
+                              });
+                            }}
+                          >
                             <FiPlus size={14} />
                           </button>
                         </div>
 
                         {/* Remove Exercise Button */}
                         <button
-                  className="mt-2 flex items-center justify-center px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors"
-                  onClick={() => {
-                    const newExerciseGroups = [...exerciseGroups];
-                    newExerciseGroups[groupIndex].exercises.splice(exerciseIndex, 1);
-                    setExerciseGroups(newExerciseGroups);
-                  }}
-                >
+                          className="mt-2 flex items-center justify-center px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors"
+                          onClick={() => {
+                            const newExerciseGroups = [...exerciseGroups];
+                            newExerciseGroups[groupIndex].exercises.splice(
+                              exerciseIndex,
+                              1
+                            );
+                            setExerciseGroups(newExerciseGroups);
+                          }}
+                        >
                           <FiTrash className="mr-2" color="white" />
                           Remover
                         </button>
@@ -894,11 +909,78 @@ const NewExercisePlan = () => {
         );
       case 3:
         return (
-          <div>
-            <Typography variant="h6">Revisão e Finalização do Plano</Typography>
-            {/* Mostrar o resumo do plano para revisão */}
+    <div className="p-4">
+      <Typography variant="h5" className="font-bold mb-4">
+        Revisão e Finalização do Plano
+      </Typography>
+
+      {/* Dados do Perfil do Utilizador */}
+      <section className="mb-4">
+        <Typography variant="h6" className="font-semibold mb-2">
+          Perfil do Utilizador
+        </Typography>
+        <ul>
+          <li><strong>Nome:</strong> {userProfile.name}</li>
+          <li><strong>E-mail:</strong> {userProfile.email}</li>
+          <li><strong>Género:</strong> {userProfile.gender}</li>
+          <li><strong>Idade:</strong> {userProfile.age}</li>
+          <li><strong>Peso:</strong> {userProfile.weight} kg</li>
+          <li><strong>Altura:</strong> {userProfile.height} cm</li>
+          <li><strong>Nível de Atividade:</strong> {ActivityLevel[userProfile.activityLevel]}</li>
+          <li><strong>Objetivos de Saúde:</strong> {HealthGoals[userProfile.healthGoals]}</li>
+        </ul>
+      </section>
+
+      {/* Medições Físicas */}
+      <section className="mb-4">
+        <Typography variant="h6" className="font-semibold mb-2">
+          Medições Físicas
+        </Typography>
+        <ul>
+          {userProfile.measurements.map((measurement, index) => (
+            <li key={index}>
+              <strong>{measurement.name}:</strong> {measurement.value}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Imagens Carregadas */}
+      <section className="mb-4">
+        <Typography variant="h6" className="font-semibold mb-2">
+          Imagens Carregadas
+        </Typography>
+        <div className="grid grid-cols-3 gap-4">
+          {previewImgUrls.map((url, index) => (
+            <img key={index} src={url} alt={`Preview ${index}`} className="w-full h-auto rounded-lg" />
+          ))}
+        </div>
+      </section>
+
+      {/* Plano de Exercícios */}
+      <section className="mb-4">
+        <Typography variant="h6" className="font-semibold mb-2">
+          Plano de Exercícios
+        </Typography>
+        {userProfile.exercises.map((group, groupIndex) => (
+          <div key={groupIndex} className="mb-4">
+            <Typography variant="body1" className="font-medium">
+              Dia {group.day}
+            </Typography>
+            <ul>
+              {group.exercises.map((exercise, exerciseIndex) => (
+                <li key={exerciseIndex}>
+                  {exercise.name} - 
+                  <strong> Séries:</strong> {exercise.sets} -  
+                  <strong> Repetições:</strong> {exercise.repetitions}
+                </li>
+              ))}
+            </ul>
           </div>
-        );
+        ))}
+      </section>
+    </div>
+  );
       default:
         return null;
     }
