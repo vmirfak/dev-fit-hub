@@ -426,42 +426,42 @@ const ShoppingList = () => {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4 lg:grid-cols-4">
           {mealsData.map((meal) => (
             <div
-            key={meal.id}
-            className={`h-16 p-4 border rounded-md cursor-pointer flex justify-between items-center ${
-              selectedMeals.includes(meal)
-                ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
-                : ""
-            }`}
-            onClick={() => handleMealSelect(meal)}
-          >
-            <h3 className="text-sm font-medium">{meal.name}</h3>
-          
-            {selectedMeals.includes(meal) && (
-              <div className="flex items-center">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent deselection
-                    decrementQuantity(meal.id);
-                  }}
-                  className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
-                >
-                  <FiMinus size={14} />
-                </button>
-                <span className="mx-1 px-2 py-1 bg-gray-100 text-gray-800">
-                  {mealQuantities[meal.id]}
-                </span>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent deselection
-                    incrementQuantity(meal.id);
-                  }}
-                  className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
-                >
-                  <FiPlus size={14} />
-                </button>
-              </div>
-            )}
-          </div>
+              key={meal.id}
+              className={`h-16 p-4 border rounded-md cursor-pointer flex justify-between items-center ${
+                selectedMeals.includes(meal)
+                  ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
+                  : ""
+              }`}
+              onClick={() => handleMealSelect(meal)}
+            >
+              <h3 className="text-sm font-medium">{meal.name}</h3>
+
+              {selectedMeals.includes(meal) && (
+                <div className="flex items-center">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent deselection
+                      decrementQuantity(meal.id);
+                    }}
+                    className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                  >
+                    <FiMinus size={14} />
+                  </button>
+                  <span className="mx-1 px-2 py-1 bg-gray-100 text-gray-800">
+                    {mealQuantities[meal.id]}
+                  </span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent deselection
+                      incrementQuantity(meal.id);
+                    }}
+                    className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
+                  >
+                    <FiPlus size={14} />
+                  </button>
+                </div>
+              )}
+            </div>
           ))}
         </div>
         <div className="mt-4 flex space-x-4">
