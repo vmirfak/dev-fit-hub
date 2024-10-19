@@ -990,7 +990,7 @@ const NewDietPlan = () => {
                 Objectivo: {userProfile.healthGoals}
               </Typography>
 
-              <Typography variant="body1">
+              <Typography variant="body1" >
                 <strong>Alergias:</strong>
                 <br />
                 {userProfile.allergies.length > 0

@@ -20,7 +20,6 @@ import { FiMinus, FiPlus, FiTrash } from "react-icons/fi";
 interface Exercise {
   name: string;
   sets: number;
-  amountOfSets: number;
   repetitions: number;
 }
 
@@ -86,17 +85,12 @@ const NewExercisePlan = () => {
     healthConditions: [],
     measurements: [
       { name: "cintura", value: "" },
-      { name: "quadril", value: "" },
-      { name: "braco", value: "" },
-      { name: "coxa", value: "" },
       { name: "panturrilha", value: "" },
-      { name: "abdomen", value: "" },
       { name: "triceps", value: "" },
-      { name: "biceps", value: "" },
+      { name: "peitoral", value: "" },
       { name: "subescapular", value: "" },
       { name: "suprailiaco", value: "" },
       { name: "abdominal", value: "" },
-      { name: "peito", value: "" },
       { name: "percentualGordura", value: "" },
       { name: "massaMagra", value: "" },
       { name: "massaGorda", value: "" },
@@ -137,7 +131,6 @@ const NewExercisePlan = () => {
     newExerciseGroups[groupIndex].exercises.push({
       name: "",
       sets: 0,
-      amountOfSets: 0,
       repetitions: 0,
     });
 
@@ -209,13 +202,34 @@ const NewExercisePlan = () => {
             : (prevState[name] as string[]).filter((item) => item !== value),
         };
       }
-
+  
+      // Atualizar o array measurements quando for a pressaoArterial
+      if (name === "pressaoArterial") {
+        const updatedMeasurements = prevState.measurements.map((measurement) =>
+          measurement.name === "Pressão Arterial"
+            ? { ...measurement, value } // Atualizar valor existente
+            : measurement
+        );
+  
+        // Adicionar a medição de pressão arterial se ainda não estiver no array
+        if (!updatedMeasurements.some((m) => m.name === "Pressão Arterial")) {
+          updatedMeasurements.push({ name: "Pressão Arterial", value });
+        }
+  
+        return {
+          ...prevState,
+          measurements: updatedMeasurements,
+          [name]: value, // Também atualizar o valor direto no userProfile
+        };
+      }
+  
       return {
         ...prevState,
         [name]: value,
       };
     });
   };
+  
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -256,24 +270,16 @@ const NewExercisePlan = () => {
     console.log(urls);
   };
 
-  const [medicoes, setMedicoes] = useState({
+  const [medicoes] = useState({
     cintura: "",
-    quadril: "",
-    braco: "",
-    coxa: "",
-    panturrilha: "",
-    abdomen: "",
-    triceps: "",
-    biceps: "",
+    tricipial: "",
+    iliaca: "",
+    crural: "",
+    geminal: "",
+    peitoral: "",
     subescapular: "",
-    suprailiaco: "",
     abdominal: "",
-    peito: "",
-    percentualGordura: "",
-    massaMagra: "",
-    massaGorda: "",
     pressaoArterial: "",
-    habitosAlimentares: "",
   });
 
   useEffect(() => {
@@ -289,11 +295,16 @@ const NewExercisePlan = () => {
   const handleChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
 
-    // Update each individual measurement in medicoes state
-    setMedicoes((prevMedicoes) => ({
-      ...prevMedicoes,
-      [name]: value,
-    }));
+    setUserProfile((prevProfile) => {
+      const updatedMeasurements = prevProfile.measurements.map((measurement) =>
+        measurement.name === name ? { ...measurement, value } : measurement
+      );
+
+      return {
+        ...prevProfile,
+        measurements: updatedMeasurements,
+      };
+    });
   };
 
   useEffect(() => {
@@ -508,6 +519,11 @@ const NewExercisePlan = () => {
                   type="number"
                   name="subescapular"
                   id="subescapular"
+                  value={
+                    userProfile.measurements.find(
+                      (measurement) => measurement.name === "subescapular"
+                    )?.value || ""
+                  }
                   className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                   onChange={handleChange}
                   placeholder="mm"
@@ -521,6 +537,11 @@ const NewExercisePlan = () => {
                   type="number"
                   name="peitoral"
                   id="peitoral"
+                  value={
+                    userProfile.measurements.find(
+                      (measurement) => measurement.name === "peitoral"
+                    )?.value || ""
+                  }
                   className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                   onChange={handleChange}
                   placeholder="mm"
@@ -534,6 +555,11 @@ const NewExercisePlan = () => {
                   type="number"
                   name="tricipial"
                   id="tricipial"
+                  value={
+                    userProfile.measurements.find(
+                      (measurement) => measurement.name === "tricipial"
+                    )?.value || ""
+                  }
                   className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                   onChange={handleChange}
                   placeholder="mm"
@@ -547,6 +573,11 @@ const NewExercisePlan = () => {
                   type="number"
                   name="abdominal"
                   id="abdominal"
+                  value={
+                    userProfile.measurements.find(
+                      (measurement) => measurement.name === "abdominal"
+                    )?.value || ""
+                  }
                   className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                   onChange={handleChange}
                   placeholder="mm"
@@ -559,6 +590,11 @@ const NewExercisePlan = () => {
                 <input
                   type="number"
                   name="iliaca"
+                  value={
+                    userProfile.measurements.find(
+                      (measurement) => measurement.name === "iliaca"
+                    )?.value || ""
+                  }
                   id="iliaca"
                   className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                   onChange={handleChange}
@@ -572,6 +608,11 @@ const NewExercisePlan = () => {
                 <input
                   type="number"
                   name="crural"
+                  value={
+                    userProfile.measurements.find(
+                      (measurement) => measurement.name === "crural"
+                    )?.value || ""
+                  }
                   id="crural"
                   className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                   onChange={handleChange}
@@ -585,6 +626,11 @@ const NewExercisePlan = () => {
                 <input
                   type="number"
                   name="geminal"
+                  value={
+                    userProfile.measurements.find(
+                      (measurement) => measurement.name === "geminal"
+                    )?.value || ""
+                  }
                   id="geminal"
                   className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white"
                   onChange={handleChange}
@@ -810,10 +856,10 @@ const NewExercisePlan = () => {
                             onClick={() => {
                               const updatedSets = Math.max(
                                 1,
-                                exercise.amountOfSets - 1
+                                exercise.sets - 1
                               );
                               handleExerciseChange(groupIndex, exerciseIndex, {
-                                amountOfSets: updatedSets,
+                                sets: updatedSets,
                               });
                             }}
                           >
@@ -822,7 +868,7 @@ const NewExercisePlan = () => {
                           <input
                             className="w-16 text-center mx-2"
                             type="number"
-                            value={exercise.amountOfSets}
+                            value={exercise.sets}
                             readOnly
                           />
                           <button
@@ -831,7 +877,7 @@ const NewExercisePlan = () => {
                               const newExerciseGroups = [...exerciseGroups];
                               newExerciseGroups[groupIndex].exercises[
                                 exerciseIndex
-                              ].amountOfSets += 1;
+                              ].sets += 1;
                               setExerciseGroups(newExerciseGroups);
                             }}
                           >
@@ -907,80 +953,107 @@ const NewExercisePlan = () => {
             ))}
           </div>
         );
+
+
       case 3:
         return (
-    <div className="p-4">
-      <Typography variant="h5" className="font-bold mb-4">
-        Revisão e Finalização do Plano
-      </Typography>
-
-      {/* Dados do Perfil do Utilizador */}
-      <section className="mb-4">
-        <Typography variant="h6" className="font-semibold mb-2">
-          Perfil do Utilizador
-        </Typography>
-        <ul>
-          <li><strong>Nome:</strong> {userProfile.name}</li>
-          <li><strong>E-mail:</strong> {userProfile.email}</li>
-          <li><strong>Género:</strong> {userProfile.gender}</li>
-          <li><strong>Idade:</strong> {userProfile.age}</li>
-          <li><strong>Peso:</strong> {userProfile.weight} kg</li>
-          <li><strong>Altura:</strong> {userProfile.height} cm</li>
-          <li><strong>Nível de Atividade:</strong> {ActivityLevel[userProfile.activityLevel]}</li>
-          <li><strong>Objetivos de Saúde:</strong> {HealthGoals[userProfile.healthGoals]}</li>
-        </ul>
-      </section>
-
-      {/* Medições Físicas */}
-      <section className="mb-4">
-        <Typography variant="h6" className="font-semibold mb-2">
-          Medições Físicas
-        </Typography>
-        <ul>
-          {userProfile.measurements.map((measurement, index) => (
-            <li key={index}>
-              <strong>{measurement.name}:</strong> {measurement.value}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Imagens Carregadas */}
-      <section className="mb-4">
-        <Typography variant="h6" className="font-semibold mb-2">
-          Imagens Carregadas
-        </Typography>
-        <div className="grid grid-cols-3 gap-4">
-          {previewImgUrls.map((url, index) => (
-            <img key={index} src={url} alt={`Preview ${index}`} className="w-full h-auto rounded-lg" />
-          ))}
-        </div>
-      </section>
-
-      {/* Plano de Exercícios */}
-      <section className="mb-4">
-        <Typography variant="h6" className="font-semibold mb-2">
-          Plano de Exercícios
-        </Typography>
-        {userProfile.exercises.map((group, groupIndex) => (
-          <div key={groupIndex} className="mb-4">
-            <Typography variant="body1" className="font-medium">
-              Dia {group.day}
-            </Typography>
-            <ul>
-              {group.exercises.map((exercise, exerciseIndex) => (
-                <li key={exerciseIndex}>
-                  {exercise.name} - 
-                  <strong> Séries:</strong> {exercise.sets} -  
-                  <strong> Repetições:</strong> {exercise.repetitions}
+          <div className="p-4">
+            {/* Dados do Perfil do Utilizador */}
+            <section className="mb-12">
+              <Typography variant="h6" className="mb-12 text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-500 to-purple-600 tracking-wider"
+            >
+                Perfil do Utilizador
+              </Typography>
+              <ul>
+                <li>
+                  <strong>Nome:</strong> {userProfile.name}
                 </li>
+                <li>
+                  <strong>E-mail:</strong> {userProfile.email}
+                </li>
+                <li>
+                  <strong>Género:</strong> {userProfile.gender}
+                </li>
+                <li>
+                  <strong>Idade:</strong> {userProfile.age}
+                </li>
+                <li>
+                  <strong>Peso:</strong> {userProfile.weight} kg
+                </li>
+                <li>
+                  <strong>Altura:</strong> {userProfile.height} cm
+                </li>
+                <li>
+                  <strong>Nível de Atividade:</strong>{" "}
+                  {ActivityLevel[userProfile.activityLevel]}
+                </li>
+                <li>
+                  <strong>Objetivos de Saúde:</strong>{" "}
+                  {HealthGoals[userProfile.healthGoals]}
+                </li>
+              </ul>
+            </section>
+            {/* Imagens Carregadas */}
+            <section className="mb-12">
+              <Typography variant="h6" className="mb-12 text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-500 to-purple-600 tracking-wider"
+            >
+                Imagens Carregadas
+              </Typography>
+              {previewImgUrls.length > 0 && (
+                <div className="mt-4 flex flex-col items-center">
+                  <div className="image_wrapper flex flex-wrap gap-4 mt-2 justify-center">
+                    {previewImgUrls.map((url, index) => (
+                      <img
+                        key={index}
+                        src={url}
+                        alt={`Uploaded ${index}`}
+                        className="w-30 h-30 object-cover rounded-md border border-gray-300"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+            {/* Medições Físicas */}
+            <section className="mb-12">
+              <Typography variant="h6" className="mb-12 text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-500 to-purple-600 tracking-wider"
+            >
+                Medições Físicas
+              </Typography>
+              <ul>
+                {userProfile.measurements.map((measurement, index) => (
+                  <li key={index}>
+                    <strong>{measurement.name}:</strong> {measurement.value}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Plano de Exercícios */}
+            <section className="mb-12">
+              <Typography variant="h6" className="mb-12 text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-indigo-500 to-purple-600 tracking-wider"
+            >
+                Plano de Exercícios
+              </Typography>
+              {userProfile.exercises.map((group, groupIndex) => (
+                <div key={groupIndex} className="mb-4">
+                  <Typography variant="body1" className="font-medium">
+                    Dia {group.day}
+                  </Typography>
+                  <ul>
+                    {group.exercises.map((exercise, exerciseIndex) => (
+                      <li key={exerciseIndex}>
+                        {exercise.name} -<strong> Séries:</strong>{" "}
+                        {exercise.sets} -<strong> Repetições:</strong>{" "}
+                        {exercise.repetitions}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </section>
           </div>
-        ))}
-      </section>
-    </div>
-  );
+        );
       default:
         return null;
     }
