@@ -23,6 +23,7 @@ import RecoverPassword from "./pages/Authentication/RecoverPassword";
 import NewDietPlan from "./pages/Diet/NewDietPlan";
 import ErrorPage from './pages/Error/ErrorPage'; 
 import NewExercisePlan from "./pages/Exercise/NewExercisePlan";
+import AdminDashboard from "./pages/Dashboard/AdminDashboard";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,6 +45,15 @@ function App() {
             <>
               <PageTitle title="Dashboard" />
               <MyDashboard />
+            </>
+          }
+        />
+        <Route
+          path="/adminDashboard"
+          element={
+            <>
+              <PageTitle title="Admin Dashboard" />
+              <AdminDashboard />
             </>
           }
         />

@@ -422,12 +422,12 @@ const ShoppingList = () => {
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Lista de Compras" />
-      <div className="p-4 overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="p-4 overflow-hidden rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4 lg:grid-cols-4">
           {mealsData.map((meal) => (
             <div
               key={meal.id}
-              className={`h-16 p-4 border rounded-md cursor-pointer flex justify-between items-center ${
+              className={`h-16 p-4 border rounded-xl cursor-pointer flex justify-between items-center ${
                 selectedMeals.includes(meal)
                   ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
                   : ""

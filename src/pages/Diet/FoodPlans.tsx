@@ -353,11 +353,11 @@ const FoodPlans = () => {
   return (
     <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="Meu Plano de Nutrição" />
-      <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
+      <div className="overflow-hidden rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         {meals.map((meal, mealIndex) => (
           <div key={mealIndex} className="mb-6">
             <div
-              className="flex justify-between items-center p-4 bg-blue-100 dark:bg-gray-800 cursor-pointer rounded-lg"
+              className="flex justify-between items-center p-4 bg-blue-100 dark:bg-gray-800 cursor-pointer rounded-xl"
               onClick={() => toggleMealExpansion(mealIndex)}
             >
               <h3 className="text-xl font-bold text-gray-900 dark:text-neutral-600">

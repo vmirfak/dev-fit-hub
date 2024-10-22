@@ -285,13 +285,13 @@ const ExercisePlans: React.FC = () => {
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="O meu Plano de Treino" />
 
-      <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
+      <div className="overflow-hidden rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         {/* Exercise Plans List */}
         {exercisePlansData.map((plan, planIndex) => (
           <div key={planIndex} className="mb-6">
             {/* Plan Header */}
             <div
-              className="flex justify-between items-center p-4 bg-blue-100 dark:bg-gray-800 cursor-pointer rounded-lg"
+              className="flex justify-between items-center p-4 bg-blue-100 dark:bg-gray-800 cursor-pointer rounded-xl"
               onClick={() => togglePlanExpansion(planIndex)}
             >
               <div>
@@ -319,7 +319,7 @@ const ExercisePlans: React.FC = () => {
                   <div key={dayIndex} className="mb-4">
                     {/* Day Header */}
                     <div
-                      className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded"
+                      className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded-xl"
                       onClick={() => toggleDayExpansion(dayIndex)}
                     >
                       <div>
@@ -332,7 +332,7 @@ const ExercisePlans: React.FC = () => {
 
                     {/* Expandable Day Details */}
                     {expandedDay === dayIndex && (
-                      <div className="p-3 border border-gray-300 dark:border-gray-600 rounded mt-2 bg-gray-50 dark:bg-gray-800">
+                      <div className="p-3 border border-gray-300 dark:border-gray-600 rounded-xl mt-2 bg-gray-50 dark:bg-gray-800">
                         <h5 className="text-md font-medium mb-2">Exercícios</h5>
 
                         {/* Exercise List */}
@@ -340,7 +340,7 @@ const ExercisePlans: React.FC = () => {
                           <div key={exerciseIndex} className="mb-4">
                             {/* Exercise Header */}
                             <div
-                              className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded"
+                              className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded-xl"
                               onClick={() =>
                                 toggleExerciseExpansion(exerciseIndex)
                               }
@@ -362,7 +362,7 @@ const ExercisePlans: React.FC = () => {
 
                             {/* Expandable Exercise Details */}
                             {expandedExercise === exerciseIndex && (
-                              <div className="p-3 border border-gray-300 dark:border-gray-600 rounded mt-2 bg-gray-50 dark:bg-gray-800">
+                              <div className="p-3 border border-gray-300 dark:border-gray-600 rounded-xl mt-2 bg-gray-50 dark:bg-gray-800">
                                 <p className="text-sm text-gray-800 dark:text-gray-200">
                                   <strong>Instruções:</strong>{" "}
                                   {exercise.instructions}
