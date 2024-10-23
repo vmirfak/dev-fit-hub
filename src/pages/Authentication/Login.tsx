@@ -56,10 +56,16 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
       (u) => u.username === username && password === username
     );
     if (user) {
-      setUser(user); 
-      navigate("/dashboard");
+      setUser(user);
+
+      // Redirecionar consoante o role do utilizador
+      if (user.role === "admin") {
+        navigate("/admindashboard");
+      } else {
+        navigate("/dashboard");
+      }
     } else {
-      setLoginError("Palavra-pass ou Nome de Utilizador Inválido!");
+      setLoginError("Palavra-passe ou Nome de Utilizador Inválido!");
     }
 
     setLoading(false);

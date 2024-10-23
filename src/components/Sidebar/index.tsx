@@ -107,34 +107,126 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
-              {/* <!-- Menu Item Perscribe Exercise Plans --> */}
-              <li>
-                <NavLink
-                  to="/dashboard"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("dashboard") &&
-                    "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#aeb7b1"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                  </svg>
-                  Página Inicial
-                </NavLink>
-              </li>
+              {/* <!-- Menu Item User Dashboard --> */}
+              {user?.role === "user" && (
+                <>
+                  <li>
+                    {" "}
+                    <NavLink
+                      to="/dashboard"
+                      className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        pathname.includes("dashboard") &&
+                        "bg-graydark dark:bg-meta-4"
+                      }`}
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g
+                          id="SVGRepo_tracerCarrier"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke="##aeb7b1"
+                          stroke-width="0.048"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                          {" "}
+                          <path
+                            d="M13 12C13 11.4477 13.4477 11 14 11H19C19.5523 11 20 11.4477 20 12V19C20 19.5523 19.5523 20 19 20H14C13.4477 20 13 19.5523 13 19V12Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                          <path
+                            d="M4 5C4 4.44772 4.44772 4 5 4H9C9.55228 4 10 4.44772 10 5V12C10 12.5523 9.55228 13 9 13H5C4.44772 13 4 12.5523 4 12V5Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                          <path
+                            d="M4 17C4 16.4477 4.44772 16 5 16H9C9.55228 16 10 16.4477 10 17V19C10 19.5523 9.55228 20 9 20H5C4.44772 20 4 19.5523 4 19V17Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                          <path
+                            d="M13 5C13 4.44772 13.4477 4 14 4H19C19.5523 4 20 4.44772 20 5V7C20 7.55228 19.5523 8 19 8H14C13.4477 8 13 7.55228 13 7V5Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                        </g>
+                      </svg>
+                      Página Inicial
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {/* <!-- Menu Item User Dashboard --> */}
+              {user?.role === "admin" && (
+                <>
+                  <li>
+                    {" "}
+                    <NavLink
+                      to="/admindashboard"
+                      className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        pathname.includes("admindashboard") &&
+                        "bg-graydark dark:bg-meta-4"
+                      }`}
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g
+                          id="SVGRepo_tracerCarrier"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke="##aeb7b1"
+                          stroke-width="0.048"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                          {" "}
+                          <path
+                            d="M13 12C13 11.4477 13.4477 11 14 11H19C19.5523 11 20 11.4477 20 12V19C20 19.5523 19.5523 20 19 20H14C13.4477 20 13 19.5523 13 19V12Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                          <path
+                            d="M4 5C4 4.44772 4.44772 4 5 4H9C9.55228 4 10 4.44772 10 5V12C10 12.5523 9.55228 13 9 13H5C4.44772 13 4 12.5523 4 12V5Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                          <path
+                            d="M4 17C4 16.4477 4.44772 16 5 16H9C9.55228 16 10 16.4477 10 17V19C10 19.5523 9.55228 20 9 20H5C4.44772 20 4 19.5523 4 19V17Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                          <path
+                            d="M13 5C13 4.44772 13.4477 4 14 4H19C19.5523 4 20 4.44772 20 5V7C20 7.55228 19.5523 8 19 8H14C13.4477 8 13 7.55228 13 7V5Z"
+                            stroke="#aeb7b1"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                          ></path>{" "}
+                        </g>
+                      </svg>
+                      Painel Admin
+                    </NavLink>
+                  </li>
+                </>
+              )}
               {/* <!-- Menu Item Evaluations --> */}
               <SidebarLinkGroup
                 activeCondition={

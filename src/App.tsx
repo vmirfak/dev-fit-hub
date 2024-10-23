@@ -49,7 +49,7 @@ function App() {
           }
         />
         <Route
-          path="/adminDashboard"
+          path="/admindashboard"
           element={
             <>
               <PageTitle title="Admin Dashboard" />

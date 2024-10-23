@@ -104,7 +104,7 @@ const NewEvaluation: React.FC = () => {
       <Breadcrumb pageName="New Physical Evaluation" />
       <div className="w-full grid grid-cols-1 gap-9 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
-          <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <div className="rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <form onSubmit={handleSubmit}>
               <div className="p-6.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Date and Evaluator */}

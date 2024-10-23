@@ -72,7 +72,7 @@ const Feedback = () => {
       <div className="mx-auto max-w-270">
         <div className="grid grid-cols-4 gap-8">
           <div className="col-span-5 xl:col-span-3">
-            <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <div className="rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="p-7">
                 <form onSubmit={handleSubmit}>
                   {/* Error Message */}

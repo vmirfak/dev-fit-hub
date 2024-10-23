@@ -18,7 +18,7 @@ const Settings = () => {
         <Breadcrumb pageName="Profile" />
         <div className="grid grid-cols-5 gap-8">
           <div className="col-span-5 xl:col-span-3">
-            <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <div className="rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="p-7">
                 <form action="#">
                   <div className="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
@@ -300,7 +300,7 @@ const Settings = () => {
             </div>
           </div>
           <div className="col-span-5 xl:col-span-2">
-            <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <div className="rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="p-7">
                 <form action="#">
                   <div className="mb-4 flex items-center gap-3">

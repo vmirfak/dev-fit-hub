@@ -532,7 +532,7 @@ const Recipes = () => {
   return (
     <DefaultLayout isModalOpen={openModal}>
       <Breadcrumb pageName="Recipes" />
-      <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
+      <div className="overflow-hidden rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
         <div className="mb-4">
           <h2 className="text-2xl font-bold mb-2">Filtros</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

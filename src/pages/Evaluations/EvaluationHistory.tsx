@@ -37,7 +37,7 @@ const EvaluationHistory: React.FC = () => {
   return (
     <DefaultLayout isModalOpen={isOpen}>
       <Breadcrumb pageName="Histórico de Avaliações" />
-      <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="overflow-hidden rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="p-6">
           <table className="w-full border-collapse bg-white shadow-sm dark:bg-boxdark">
             <thead>
