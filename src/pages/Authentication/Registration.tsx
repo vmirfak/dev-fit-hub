@@ -163,7 +163,7 @@ const Registration: React.FC = () => {
             to="/"
             className="text-indigo-600 hover:underline font-medium"
           >
-            Registar
+            Anterior
           </NavLink>
         </p>
       </div>
