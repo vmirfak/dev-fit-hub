@@ -28,6 +28,7 @@ import ClientsOverview from "./pages/Clients/ClientsOverview";
 import FoodPlanOverview from "./pages/Diet/FoodPlanOverview";
 import ExercisePlanOverview	 from "./pages/Exercise/ExercisePlanOverview";
 import IndividualClientOverview from "./pages/Clients/IndividualClientOverview";
+import FoodPlanDetails from "./pages/Diet/FoodPlanDetails";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -229,6 +230,15 @@ function App() {
             <>
               <PageTitle title="Clients Overview" />
               <ClientsOverview />
+            </>
+          }
+        />
+        <Route
+          path="/dietplandetails"
+          element={
+            <>
+              <PageTitle title="Plano de Nutrição - Drtalhes" />
+              <FoodPlanDetails />
             </>
           }
         />
