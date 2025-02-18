@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import { FaHome, FaUser, FaChartBar, FaCog } from "react-icons/fa";
 
 const AdminDashboard: React.FC = () => {
   const [isOpen] = useState(false);
