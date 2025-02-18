@@ -8,7 +8,7 @@ interface User {
   phone: string;
   address: string;
   birthday: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'user' | 'exercisePro' | 'foodPro';
 }
 
 const UserContext = createContext<{

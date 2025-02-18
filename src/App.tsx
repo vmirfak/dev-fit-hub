@@ -24,6 +24,10 @@ import NewDietPlan from "./pages/Diet/NewDietPlan";
 import ErrorPage from './pages/Error/ErrorPage'; 
 import NewExercisePlan from "./pages/Exercise/NewExercisePlan";
 import AdminDashboard from "./pages/Dashboard/AdminDashboard";
+import ClientsOverview from "./pages/Clients/ClientsOverview";
+import FoodPlanOverview from "./pages/Diet/FoodPlanOverview";
+import ExercisePlanOverview	 from "./pages/Exercise/ExercisePlanOverview";
+import IndividualClientOverview from "./pages/Clients/IndividualClientOverview";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -216,6 +220,42 @@ function App() {
             <>
               <PageTitle title="FAQs" />
               <FAQ />
+            </>
+          }
+        />
+        <Route
+          path="/clients"
+          element={
+            <>
+              <PageTitle title="Clients Overview" />
+              <ClientsOverview />
+            </>
+          }
+        />
+        <Route
+          path="/foodplanoverview/:id"
+          element={
+            <>
+              <PageTitle title="Plano de Nutrição" />
+              <FoodPlanOverview />
+            </>
+          }
+        />
+        <Route
+          path="/exerciseplanoverview/:id"
+          element={
+            <>
+              <PageTitle title="Plano de Exercício" />
+              <ExercisePlanOverview />
+            </>
+          }
+        />
+        <Route
+          path="/clientoverview/:id"
+          element={
+            <>
+              <PageTitle title="Overview Client" />
+              <IndividualClientOverview />
             </>
           }
         />
