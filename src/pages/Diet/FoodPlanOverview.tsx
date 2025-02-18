@@ -290,14 +290,14 @@ const FoodPlanOverview = () => {
       {/* Botões de Ação */}
       <div className="mt-6 grid grid-cols-2 md:grid-cols-4 sm:grid-cols-4 gap-4">
         <Link
-          to={`/edit-food-plan/${id}`}
+          to={`/dietplandetails/${id}`}
           className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
         >
           <AiOutlineFileDone size={18} />
           <span>Concluir Plano</span>
         </Link>
         <Link
-          to={`/edit-food-plan/${id}`}
+          to={`/dietplandetails/${id}`}
           className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
         >
           <FaEdit size={18} />

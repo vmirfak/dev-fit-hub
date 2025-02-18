@@ -2,8 +2,9 @@ import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import { IoFitness } from "react-icons/io5";
-import { FaEdit } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaEdit, FaPlus } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
+import { AiOutlineFileDone } from "react-icons/ai";
 
 interface Exercise {
   day: string;
@@ -84,8 +85,11 @@ const mockExercisePlans: Record<string, ExercisePlan> = {
 };
 
 const ExercisePlanOverview = () => {
-  const [isModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlan] = useState<string>("1");
+  const handleCreateNew = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
@@ -147,14 +151,30 @@ const ExercisePlanOverview = () => {
         </table>
       </div>
 
-      <div className="mt-6 flex space-x-4">
+      <div className="mt-6 grid grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-4">
+        <Link
+          to="/dietplandetails"
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+        >
+          <AiOutlineFileDone size={18} />
+          <span>Concluir Plano</span>
+        </Link>
         <Link
           to={`/edit-exercise-plan/${selectedPlan}`}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
         >
           <FaEdit size={18} />
           <span>Editar Plano</span>
         </Link>
+        <NavLink to="/newexerciseplan">
+          <button
+            onClick={handleCreateNew}
+            className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+          >
+            <FaPlus size={18} className="mr-2 " />
+            Criar Novo
+          </button>
+        </NavLink>
       </div>
     </DefaultLayout>
   );

@@ -21,12 +21,12 @@ import Recipes from "./pages/Diet/Recipes";
 import ShoppingList from "./pages/Diet/ShoppingList";
 import RecoverPassword from "./pages/Authentication/RecoverPassword";
 import NewDietPlan from "./pages/Diet/NewDietPlan";
-import ErrorPage from './pages/Error/ErrorPage'; 
+import ErrorPage from "./pages/Error/ErrorPage";
 import NewExercisePlan from "./pages/Exercise/NewExercisePlan";
 import AdminDashboard from "./pages/Dashboard/AdminDashboard";
 import ClientsOverview from "./pages/Clients/ClientsOverview";
 import FoodPlanOverview from "./pages/Diet/FoodPlanOverview";
-import ExercisePlanOverview	 from "./pages/Exercise/ExercisePlanOverview";
+import ExercisePlanOverview from "./pages/Exercise/ExercisePlanOverview";
 import IndividualClientOverview from "./pages/Clients/IndividualClientOverview";
 import FoodPlanDetails from "./pages/Diet/FoodPlanDetails";
 
@@ -234,7 +234,7 @@ function App() {
           }
         />
         <Route
-          path="/dietplandetails"
+          path="/dietplandetails/:id"
           element={
             <>
               <PageTitle title="Plano de Nutrição - Drtalhes" />

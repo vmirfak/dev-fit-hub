@@ -319,7 +319,6 @@ const ExercisepPlanCreation = () => {
           previousClassName={"bg-gray-200 px-3 py-1 rounded-md"}
           nextClassName={"bg-gray-200 px-3 py-1 rounded-md"}
         />
-        {/* Include the Modal */}
         <NewDietPlanModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}

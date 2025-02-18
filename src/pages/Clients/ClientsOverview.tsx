@@ -367,7 +367,7 @@ const ClientsOverview = () => {
                           {client.hasExercisePlan && (
                             <Link to={`/exerciseplanoverview/${client.id}`}>
                               <BiDumbbell
-                                className="text-blue-500 cursor-pointer"
+                                className="text-blue-500 hover:text-blue-700 cursor-pointer"
                                 size={20}
                               />
                             </Link>
@@ -380,10 +380,10 @@ const ClientsOverview = () => {
                           {client.hasNutritionPlan && (
                             <Link
                               to={`/foodplanoverview/${client.id}`}
-                              className="w-6 flex justify-center"
+                              className="w-6 flex justify-center "
                             >
                               <IoFastFoodSharp
-                                className="text-green-500"
+                                className="text-green-500 hover:text-green-700"
                                 size={20}
                               />
                             </Link>
@@ -393,7 +393,7 @@ const ClientsOverview = () => {
                           className="w-6 flex justify-center"
                           title="Abrir Conversa"
                         >
-                          <FaComments className="text-yellow-400" size={20} />
+                          <FaComments className="text-yellow-400 hover:text-yellow-700 cursor-pointer" size={20} />
                         </span>
                       </div>
                     </td>

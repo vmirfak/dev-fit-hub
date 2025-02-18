@@ -8,20 +8,20 @@ const ErrorPage: React.FC = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <img
         src={exerciseFailImage}
-        alt="Cartoon of a person failing to lift weights"
-        className="w-1/2 md:w-1/3 mb-4" // Adjust the width based on screen size
+        alt="Desenho animado de uma pessoa a falhar ao levantar pesos"
+        className="w-1/2 md:w-1/3 mb-4" // Ajusta a largura conforme o tamanho do ecrã
       />
       <h1 className="text-4xl md:text-5xl font-bold text-red-600 text-center">
-        Oops! Something went wrong.
+        Oops! Algo correu mal.
       </h1>
       <p className="mt-4 text-lg md:text-xl text-center">
-        The page you're looking for doesn't exist or an error occurred.
+        A página que procuras não existe ou ocorreu um erro.
       </p>
       <Link
         to="/"
         className="mt-6 text-blue-500 hover:underline text-lg md:text-xl"
       >
-        Go back to Home
+        Voltar à página inicial
       </Link>
     </div>
   );
