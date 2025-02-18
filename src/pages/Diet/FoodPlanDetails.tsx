@@ -204,10 +204,15 @@ const FoodPlanDetails = () => {
                   value={allergy}
                   checked={userProfile.allergies.includes(allergy)}
                   onChange={() => {
-                    const updatedAllergies = userProfile.allergies.includes(allergy)
+                    const updatedAllergies = userProfile.allergies.includes(
+                      allergy
+                    )
                       ? userProfile.allergies.filter((a) => a !== allergy)
                       : [...userProfile.allergies, allergy];
-                    setUserProfile({ ...userProfile, allergies: updatedAllergies });
+                    setUserProfile({
+                      ...userProfile,
+                      allergies: updatedAllergies,
+                    });
                   }}
                   className="mr-2"
                 />
@@ -222,8 +227,7 @@ const FoodPlanDetails = () => {
           className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
         >
           <FaSave />
-<span>Guardar Alterações</span>
-          
+          <span>Guardar Alterações</span>
         </button>
       </div>
     </DefaultLayout>

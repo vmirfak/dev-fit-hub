@@ -160,13 +160,13 @@ const ExercisePlanOverview = () => {
           <span>Concluir Plano</span>
         </Link>
         <Link
-          to={`/edit-exercise-plan/${selectedPlan}`}
+          to="/exerciseplandetails/1"
           className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
         >
           <FaEdit size={18} />
           <span>Editar Plano</span>
         </Link>
-        <NavLink to="/newexerciseplan">
+        <Link to="/newexerciseplan">
           <button
             onClick={handleCreateNew}
             className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
@@ -174,7 +174,7 @@ const ExercisePlanOverview = () => {
             <FaPlus size={18} className="mr-2 " />
             Criar Novo
           </button>
-        </NavLink>
+        </Link>
       </div>
     </DefaultLayout>
   );

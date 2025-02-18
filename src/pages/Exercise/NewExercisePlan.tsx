@@ -825,7 +825,7 @@ const NewExercisePlan = () => {
                           Nome do exercício:
                         </label>
                         <select
-                          className="block w-full px-2 py-1 mb-2 border rounded-md cursor-pointer"
+                          className="block w-full px-2 py-1 mb-2 border rounded-md cursor-pointer dark:text-stone-800"
                           value={exercise.name}
                           onChange={(e) =>
                             handleExerciseChange(groupIndex, exerciseIndex, {
@@ -953,8 +953,6 @@ const NewExercisePlan = () => {
             ))}
           </div>
         );
-
-
       case 3:
         return (
           <div className="p-4">

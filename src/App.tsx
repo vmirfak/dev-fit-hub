@@ -29,6 +29,7 @@ import FoodPlanOverview from "./pages/Diet/FoodPlanOverview";
 import ExercisePlanOverview from "./pages/Exercise/ExercisePlanOverview";
 import IndividualClientOverview from "./pages/Clients/IndividualClientOverview";
 import FoodPlanDetails from "./pages/Diet/FoodPlanDetails";
+import ExercisePlanDetails from "./pages/Exercise/ExercisePlanDetails";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -237,8 +238,17 @@ function App() {
           path="/dietplandetails/:id"
           element={
             <>
-              <PageTitle title="Plano de Nutrição - Drtalhes" />
+              <PageTitle title="Plano de Nutrição - Detalhes" />
               <FoodPlanDetails />
+            </>
+          }
+        />
+        <Route
+          path="/exerciseplandetails/:id"
+          element={
+            <>
+              <PageTitle title="Plano de Treino - Detalhes" />
+              <ExercisePlanDetails />
             </>
           }
         />
