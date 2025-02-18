@@ -3,8 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import { IoFastFoodSharp } from "react-icons/io5";
-import { FaEdit, FaShoppingCart } from "react-icons/fa";
+import { FaEdit, FaShoppingCart, FaPlus } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { AiOutlineFileDone } from "react-icons/ai";
+
 interface Meal {
   day: string;
   meal: string;
@@ -32,11 +34,19 @@ const mockFoodPlans: Record<string, FoodPlan> = {
     fats: 55,
     meals: [
       { day: "Segunda-Feira", meal: "Aveia e Fruta", time: "08:00 AM" },
-      { day: "Segunda-Feira", meal: "Frango Grelhado e Arroz", time: "12:30 PM" },
+      {
+        day: "Segunda-Feira",
+        meal: "Frango Grelhado e Arroz",
+        time: "12:30 PM",
+      },
       { day: "Segunda-Feira", meal: "Salmão e Vegetais", time: "07:00 PM" },
       { day: "Terça-Feira", meal: "Panquecas de Aveia", time: "08:00 AM" },
       { day: "Terça-Feira", meal: "Salada de Atum", time: "12:30 PM" },
-      { day: "Terça-Feira", meal: "Peito de Frango e Batata Doce", time: "07:00 PM" },
+      {
+        day: "Terça-Feira",
+        meal: "Peito de Frango e Batata Doce",
+        time: "07:00 PM",
+      },
     ],
     status: "prescribed",
     startDate: "01/01/2025",
@@ -49,10 +59,26 @@ const mockFoodPlans: Record<string, FoodPlan> = {
     carbs: 200,
     fats: 45,
     meals: [
-      { day: "Segunda-Feira", meal: "Smoothie de Banana e Nozes", time: "08:00 AM" },
-      { day: "Segunda-Feira", meal: "Quinoa com Frango e Vegetais", time: "01:00 PM" },
-      { day: "Segunda-Feira", meal: "Salmão Grelhado com Salada", time: "07:00 PM" },
-      { day: "Terça-Feira", meal: "Tapioca com Queijo Branco", time: "08:00 AM" },
+      {
+        day: "Segunda-Feira",
+        meal: "Smoothie de Banana e Nozes",
+        time: "08:00 AM",
+      },
+      {
+        day: "Segunda-Feira",
+        meal: "Quinoa com Frango e Vegetais",
+        time: "01:00 PM",
+      },
+      {
+        day: "Segunda-Feira",
+        meal: "Salmão Grelhado com Salada",
+        time: "07:00 PM",
+      },
+      {
+        day: "Terça-Feira",
+        meal: "Tapioca com Queijo Branco",
+        time: "08:00 AM",
+      },
       { day: "Terça-Feira", meal: "Risoto de Cogumelos", time: "01:00 PM" },
     ],
     status: "finished",
@@ -66,12 +92,24 @@ const mockFoodPlans: Record<string, FoodPlan> = {
     carbs: 300,
     fats: 70,
     meals: [
-      { day: "Quarta-Feira", meal: "Ovos mexidos e pão integral", time: "08:00 AM" },
-      { day: "Quarta-Feira", meal: "Carne Moída com Arroz Integral", time: "12:30 PM" },
+      {
+        day: "Quarta-Feira",
+        meal: "Ovos mexidos e pão integral",
+        time: "08:00 AM",
+      },
+      {
+        day: "Quarta-Feira",
+        meal: "Carne Moída com Arroz Integral",
+        time: "12:30 PM",
+      },
       { day: "Quarta-Feira", meal: "Sopa de Legumes", time: "07:00 PM" },
       { day: "Quinta-Feira", meal: "Iogurte com Granola", time: "08:00 AM" },
       { day: "Quinta-Feira", meal: "Macarrão com Frango", time: "12:30 PM" },
-      { day: "Quinta-Feira", meal: "Hambúrguer Caseiro com Batata Assada", time: "07:00 PM" },
+      {
+        day: "Quinta-Feira",
+        meal: "Hambúrguer Caseiro com Batata Assada",
+        time: "07:00 PM",
+      },
     ],
     status: "active",
     startDate: "05/03/2025",
@@ -84,11 +122,23 @@ const mockFoodPlans: Record<string, FoodPlan> = {
     carbs: 180,
     fats: 50,
     meals: [
-      { day: "Segunda-Feira", meal: "Tapioca com queijo cottage", time: "07:30 AM" },
-      { day: "Segunda-Feira", meal: "Filé de Peixe com Legumes", time: "12:00 PM" },
+      {
+        day: "Segunda-Feira",
+        meal: "Tapioca com queijo cottage",
+        time: "07:30 AM",
+      },
+      {
+        day: "Segunda-Feira",
+        meal: "Filé de Peixe com Legumes",
+        time: "12:00 PM",
+      },
       { day: "Segunda-Feira", meal: "Sopa de Ervilha", time: "07:30 PM" },
       { day: "Terça-Feira", meal: "Cuscuz com Ovos", time: "08:00 AM" },
-      { day: "Terça-Feira", meal: "Frango ao Curry com Arroz", time: "12:30 PM" },
+      {
+        day: "Terça-Feira",
+        meal: "Frango ao Curry com Arroz",
+        time: "12:30 PM",
+      },
       { day: "Terça-Feira", meal: "Crepioca com Atum", time: "07:00 PM" },
     ],
     status: "finished",
@@ -102,12 +152,24 @@ const mockFoodPlans: Record<string, FoodPlan> = {
     carbs: 320,
     fats: 80,
     meals: [
-      { day: "Quarta-Feira", meal: "Pão com pasta de amendoim", time: "07:00 AM" },
+      {
+        day: "Quarta-Feira",
+        meal: "Pão com pasta de amendoim",
+        time: "07:00 AM",
+      },
       { day: "Quarta-Feira", meal: "Strogonoff de Frango", time: "01:00 PM" },
       { day: "Quarta-Feira", meal: "Pizza Fit de Frango", time: "08:00 PM" },
       { day: "Quinta-Feira", meal: "Batata Doce com Ovo", time: "07:30 AM" },
-      { day: "Quinta-Feira", meal: "Filé Mignon com Batata Rústica", time: "12:30 PM" },
-      { day: "Quinta-Feira", meal: "Salada de Atum com Quinoa", time: "07:00 PM" },
+      {
+        day: "Quinta-Feira",
+        meal: "Filé Mignon com Batata Rústica",
+        time: "12:30 PM",
+      },
+      {
+        day: "Quinta-Feira",
+        meal: "Salada de Atum com Quinoa",
+        time: "07:00 PM",
+      },
     ],
     status: "finished",
     startDate: "10/06/2025",
@@ -120,9 +182,21 @@ const mockFoodPlans: Record<string, FoodPlan> = {
     carbs: 250,
     fats: 40,
     meals: [
-      { day: "Sexta-Feira", meal: "Iogurte com Chia e Frutas", time: "07:30 AM" },
-      { day: "Sexta-Feira", meal: "Feijão Tropeiro com Arroz", time: "12:30 PM" },
-      { day: "Sexta-Feira", meal: "Wrap de Frango com Ricota", time: "07:00 PM" },
+      {
+        day: "Sexta-Feira",
+        meal: "Iogurte com Chia e Frutas",
+        time: "07:30 AM",
+      },
+      {
+        day: "Sexta-Feira",
+        meal: "Feijão Tropeiro com Arroz",
+        time: "12:30 PM",
+      },
+      {
+        day: "Sexta-Feira",
+        meal: "Wrap de Frango com Ricota",
+        time: "07:00 PM",
+      },
       { day: "Sábado", meal: "Pão de Queijo e Café", time: "08:00 AM" },
       { day: "Sábado", meal: "Lasanha de Berinjela", time: "12:30 PM" },
       { day: "Sábado", meal: "Panqueca Proteica", time: "07:00 PM" },
@@ -132,7 +206,6 @@ const mockFoodPlans: Record<string, FoodPlan> = {
     endDate: "20/08/2025",
   },
 };
-
 
 const FoodPlanOverview = () => {
   const [isModalOpen] = useState(false);
@@ -215,22 +288,37 @@ const FoodPlanOverview = () => {
       </div>
 
       {/* Botões de Ação */}
-      <div className="mt-6 flex space-x-4">
+      <div className="mt-6 grid grid-cols-2 md:grid-cols-4 sm:grid-cols-4 gap-4">
         <Link
           to={`/edit-food-plan/${id}`}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+        >
+          <AiOutlineFileDone size={18} />
+          <span>Concluir Plano</span>
+        </Link>
+        <Link
+          to={`/edit-food-plan/${id}`}
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
         >
           <FaEdit size={18} />
           <span>Editar Plano</span>
         </Link>
         <Link
-          to={`/shopping-list/${id}`}
-          className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+          to="/shoppinglist"
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition"
         >
           <FaShoppingCart size={18} />
-          <span>Gerar Lista de Compras</span>
+          <span>Lista de Compras</span>
+        </Link>
+        <Link
+          to="/newdietplan"
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+        >
+          <FaPlus size={18} />
+          <span>Criar Novo</span>
         </Link>
       </div>
+
       <div className="mt-8">
         <h3 className="text-xl font-semibold text-black dark:text-white">
           Planos Passados
@@ -260,10 +348,10 @@ const FoodPlanOverview = () => {
                 to={`/foodplandetails/${plan.name}`}
                 className="flex items-center text-white mt-4 inline-block hover:text-yellow-300 transition"
               >
-                <FaMagnifyingGlass  
-                title="Detalhes do Plano" 
-                className="mr-2 h-5 w-5"
-                 />
+                <FaMagnifyingGlass
+                  title="Detalhes do Plano"
+                  className="mr-2 h-5 w-5"
+                />
                 Ver detalhes
               </Link>
             </div>
