@@ -46,7 +46,6 @@ const ExercisePlanDetails = () => {
       exercises: generateInitialExercises(i),
     }))
   );
-
   const handleAddExercise = (groupIndex: number) => {
     const newExerciseGroups = [...exerciseGroups];
     newExerciseGroups[groupIndex].exercises.push({
@@ -61,11 +60,9 @@ const ExercisePlanDetails = () => {
       exercises: newExerciseGroups,
     }));
   };
-
   const [userProfile, setUserProfile] = useState<UserProfile>({
     exercises: [],
   });
-
   const handleExerciseChange = (
     groupIndex: number,
     exerciseIndex: number,
@@ -106,6 +103,7 @@ const ExercisePlanDetails = () => {
   const handleSave = () => {
     console.log("Saving training plan:", userProfile);
   };
+  
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Plano de Treino" />

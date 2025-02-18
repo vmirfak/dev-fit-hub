@@ -3,7 +3,7 @@ import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import { IoFitness } from "react-icons/io5";
 import { FaEdit, FaPlus } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiOutlineFileDone } from "react-icons/ai";
 
 interface Exercise {
