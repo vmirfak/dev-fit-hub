@@ -4,7 +4,7 @@ import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import { BiDumbbell } from "react-icons/bi";
 import { IoFastFoodSharp } from "react-icons/io5";
-import { FaComments, FaEye } from "react-icons/fa";
+import { FaComments, FaEye, FaFileSignature  } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ClientsOverview = () => {
@@ -18,6 +18,7 @@ const ClientsOverview = () => {
       email: "joao.silva@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ const ClientsOverview = () => {
       email: "maria.oliveira@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ const ClientsOverview = () => {
       email: "carlos.santos@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ const ClientsOverview = () => {
       email: "ana.souza@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 5,
@@ -46,6 +50,7 @@ const ClientsOverview = () => {
       email: "pedro.ferreira@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 6,
@@ -53,6 +58,7 @@ const ClientsOverview = () => {
       email: "beatriz.lima@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 7,
@@ -60,6 +66,7 @@ const ClientsOverview = () => {
       email: "gabriel.rocha@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 8,
@@ -67,6 +74,7 @@ const ClientsOverview = () => {
       email: "camila.almeida@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 9,
@@ -74,6 +82,7 @@ const ClientsOverview = () => {
       email: "rafael.mendes@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 10,
@@ -81,6 +90,7 @@ const ClientsOverview = () => {
       email: "larissa.barbosa@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 11,
@@ -88,6 +98,7 @@ const ClientsOverview = () => {
       email: "lucas.azevedo@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 12,
@@ -95,6 +106,7 @@ const ClientsOverview = () => {
       email: "fernanda.costa@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 13,
@@ -102,6 +114,7 @@ const ClientsOverview = () => {
       email: "mateus.nunes@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 14,
@@ -109,6 +122,7 @@ const ClientsOverview = () => {
       email: "juliana.teixeira@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 15,
@@ -116,6 +130,7 @@ const ClientsOverview = () => {
       email: "ricardo.moreira@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 16,
@@ -123,6 +138,7 @@ const ClientsOverview = () => {
       email: "mariana.ribeiro@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 17,
@@ -130,6 +146,7 @@ const ClientsOverview = () => {
       email: "diego.martins@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 18,
@@ -144,6 +161,7 @@ const ClientsOverview = () => {
       email: "vinicius.carvalho@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 20,
@@ -151,6 +169,7 @@ const ClientsOverview = () => {
       email: "aline.batista@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 21,
@@ -158,6 +177,7 @@ const ClientsOverview = () => {
       email: "andre.xavier@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 22,
@@ -165,6 +185,7 @@ const ClientsOverview = () => {
       email: "carolina.duarte@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 23,
@@ -172,6 +193,7 @@ const ClientsOverview = () => {
       email: "eduardo.figueiredo@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 24,
@@ -179,6 +201,7 @@ const ClientsOverview = () => {
       email: "sabrina.correia@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 25,
@@ -186,6 +209,7 @@ const ClientsOverview = () => {
       email: "rodrigo.campos@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 26,
@@ -193,6 +217,7 @@ const ClientsOverview = () => {
       email: "isabela.freitas@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 27,
@@ -200,6 +225,7 @@ const ClientsOverview = () => {
       email: "felipe.lopes@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 28,
@@ -207,6 +233,7 @@ const ClientsOverview = () => {
       email: "vanessa.guimaraes@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 29,
@@ -214,6 +241,7 @@ const ClientsOverview = () => {
       email: "gustavo.braga@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 30,
@@ -221,6 +249,7 @@ const ClientsOverview = () => {
       email: "natalia.pires@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 31,
@@ -228,6 +257,7 @@ const ClientsOverview = () => {
       email: "henrique.macedo@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 32,
@@ -235,6 +265,7 @@ const ClientsOverview = () => {
       email: "roberta.cardoso@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 33,
@@ -242,6 +273,7 @@ const ClientsOverview = () => {
       email: "fernando.rezende@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 34,
@@ -249,6 +281,7 @@ const ClientsOverview = () => {
       email: "leticia.santana@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 35,
@@ -256,6 +289,7 @@ const ClientsOverview = () => {
       email: "daniel.fernandes@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 36,
@@ -263,6 +297,7 @@ const ClientsOverview = () => {
       email: "priscila.araujo@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: true,
+      hasEvaluation: true
     },
     {
       id: 37,
@@ -270,6 +305,7 @@ const ClientsOverview = () => {
       email: "thiago.barbosa@example.com",
       hasExercisePlan: false,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 38,
@@ -277,6 +313,7 @@ const ClientsOverview = () => {
       email: "amanda.vieira@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 39,
@@ -284,6 +321,7 @@ const ClientsOverview = () => {
       email: "leonardo.meireles@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
     {
       id: 40,
@@ -291,6 +329,7 @@ const ClientsOverview = () => {
       email: "patricia.tavares@example.com",
       hasExercisePlan: true,
       hasNutritionPlan: false,
+      hasEvaluation: true
     },
   ];
   const filteredClients = clients.filter((client) =>
@@ -383,7 +422,23 @@ const ClientsOverview = () => {
                               className="w-6 flex justify-center "
                             >
                               <IoFastFoodSharp
-                                className="text-green-500 hover:text-green-700"
+                                className="text-green-400 hover:text-green-500"
+                                size={20}
+                              />
+                            </Link>
+                          )}
+                        </span>
+                        <span
+                          className="w-6 flex justify-center"
+                          title="Página de Avaliações do Utilizador"
+                        >
+                          {client.hasEvaluation && (
+                            <Link
+                              to="/evaluationhistory"
+                              className="w-6 flex justify-center "
+                            >
+                              <FaFileSignature
+                                className="text-red-400 hover:text-red-500 cursor-pointer"
                                 size={20}
                               />
                             </Link>
@@ -393,7 +448,7 @@ const ClientsOverview = () => {
                           className="w-6 flex justify-center"
                           title="Abrir Conversa"
                         >
-                          <FaComments className="text-yellow-400 hover:text-yellow-700 cursor-pointer" size={20} />
+                          <FaComments className="text-yellow-300 hover:text-yellow-500 cursor-pointer" size={20} />
                         </span>
                       </div>
                     </td>
