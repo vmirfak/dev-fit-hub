@@ -2,6 +2,7 @@ import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import { Link } from "react-router-dom";
+import { FaEye } from "react-icons/fa";
 
 const IndividualClientOverview = () => {
   const [isModalOpen] = useState(false);
@@ -37,7 +38,7 @@ const IndividualClientOverview = () => {
         {/* Grid para Dados Pessoais e Avaliações */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {/* Informações Pessoais */}
-          <div className="bg-red-100 dark:bg-red-800 shadow-sm rounded-lg p-6 text-gray-900 dark:text-white">
+          <div className="bg-red-200 dark:bg-red-600 shadow-xl rounded-lg p-6 text-gray-900 dark:text-white">
             <h2 className="text-xl font-semibold mb-4">Dados Pessoais</h2>
             <p>
               <strong>Nome:</strong> {clientData.name}
@@ -57,7 +58,7 @@ const IndividualClientOverview = () => {
           </div>
 
           {/* Secção de Avaliações */}
-          <div className="bg-yellow-100 dark:bg-yellow-600 shadow-sm rounded-lg p-6 text-gray-800 dark:text-white">
+          <div className="bg-yellow-200 dark:bg-yellow-600 shadow-xl rounded-lg p-6 text-gray-800 dark:text-white">
             <h2 className="text-xl font-semibold mb-4">Avaliações</h2>
             {clientEvaluations.length > 0 ? (
               <ul>
@@ -80,26 +81,28 @@ const IndividualClientOverview = () => {
         </div>
 
         {/* Grid para Plano Nutricional e Plano de Treino */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {/* Plano Nutricional */}
-          <div className="bg-blue-100 dark:bg-blue-700 shadow-sm rounded-lg p-6 text-center text-gray-800 dark:text-white">
+          <div className="bg-blue-200 dark:bg-blue-600 shadow-xl rounded-lg p-6 text-center text-gray-800 dark:text-white flex flex-col items-center ">
             <h3 className="text-xl font-semibold mb-4">Plano Nutricional</h3>
             <Link
               to={`/foodplanoverview/${clientData.id}`}
-              className="text-blue-500 dark:text-blue-300 hover:text-blue-700 dark:hover:text-blue-400"
+              className="text-blue-500 dark:text-blue-300 hover:text-blue-700 flex items-center dark:hover:text-blue-200"
             >
-              Ver Plano Nutricional
+              Ver Detalhes
+              <FaEye title="Detalhes do Cliente" className="h-5 w-5 ml-2" />
             </Link>
           </div>
 
           {/* Plano de Treino */}
-          <div className="bg-green-100 dark:bg-green-700 shadow-sm rounded-lg p-6 text-center text-gray-800 dark:text-white">
+          <div className="bg-green-200 dark:bg-green-600 shadow-xl rounded-lg p-6 text-center text-gray-800 dark:text-white flex flex-col items-center ">
             <h3 className="text-xl font-semibold mb-4">Plano de Treino</h3>
             <Link
               to={`/exerciseplanoverview/${clientData.id}`}
-              className="text-green-500 dark:text-green-300 hover:text-green-700 dark:hover:text-green-400"
+              className="text-green-500 dark:text-green-200 hover:text-green-700 flex items-center dark:hover:text-green-200"
             >
-              Ver Plano de Treino
+              Ver Detalhes
+              <FaEye title="Detalhes do Cliente" className="h-5 w-5 ml-2" />
             </Link>
           </div>
         </div>

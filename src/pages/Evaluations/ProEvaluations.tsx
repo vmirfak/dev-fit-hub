@@ -39,7 +39,7 @@ const ProEvaluations = () => {
       <div className="p-4 bg-white shadow-md rounded-lg dark:bg-boxdark">
         <h2 className="text-xl font-bold mb-4">Lista de Avaliações</h2>
         <div className="max-w-full overflow-x-auto">
-          <table className="w-full table-auto">
+          <table className="w-full table-auto ">
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
                 <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
