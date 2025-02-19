@@ -262,21 +262,20 @@ const ExercisePlans: React.FC = () => {
   const [expandedExercise, setExpandedExercise] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [selectedExerciseName, setselectedExerciseName] = useState(""); // Ensure this line exists
+  const [selectedExerciseName, setselectedExerciseName] = useState("");
 
   const togglePlanExpansion = (index: number) => {
     setExpandedPlan(expandedPlan === index ? null : index);
-    setExpandedDay(null); // Reset day and exercise when changing plan
+    setExpandedDay(null); 
     setExpandedExercise(null);
   };
 
   const toggleDayExpansion = (index: number) => {
     setExpandedDay(expandedDay === index ? null : index);
-    setExpandedExercise(null); // Close any expanded exercises when switching days
+    setExpandedExercise(null); 
   };
 
   const toggleExerciseExpansion = (index: number) => {
-    // Toggle the exercise expansion state without affecting the modal
     setExpandedExercise(expandedExercise === index ? null : index);
   };
 

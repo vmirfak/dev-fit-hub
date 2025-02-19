@@ -21,9 +21,15 @@ import Recipes from "./pages/Diet/Recipes";
 import ShoppingList from "./pages/Diet/ShoppingList";
 import RecoverPassword from "./pages/Authentication/RecoverPassword";
 import NewDietPlan from "./pages/Diet/NewDietPlan";
-import ErrorPage from './pages/Error/ErrorPage'; 
+import ErrorPage from "./pages/Error/ErrorPage";
 import NewExercisePlan from "./pages/Exercise/NewExercisePlan";
 import AdminDashboard from "./pages/Dashboard/AdminDashboard";
+import ClientsOverview from "./pages/Clients/ClientsOverview";
+import FoodPlanOverview from "./pages/Diet/FoodPlanOverview";
+import ExercisePlanOverview from "./pages/Exercise/ExercisePlanOverview";
+import IndividualClientOverview from "./pages/Clients/IndividualClientOverview";
+import FoodPlanDetails from "./pages/Diet/FoodPlanDetails";
+import ExercisePlanDetails from "./pages/Exercise/ExercisePlanDetails";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -216,6 +222,60 @@ function App() {
             <>
               <PageTitle title="FAQs" />
               <FAQ />
+            </>
+          }
+        />
+        <Route
+          path="/clients"
+          element={
+            <>
+              <PageTitle title="Clients Overview" />
+              <ClientsOverview />
+            </>
+          }
+        />
+        <Route
+          path="/dietplandetails/:id"
+          element={
+            <>
+              <PageTitle title="Plano de Nutrição - Detalhes" />
+              <FoodPlanDetails />
+            </>
+          }
+        />
+        <Route
+          path="/exerciseplandetails/:id"
+          element={
+            <>
+              <PageTitle title="Plano de Treino - Detalhes" />
+              <ExercisePlanDetails />
+            </>
+          }
+        />
+        <Route
+          path="/foodplanoverview/:id"
+          element={
+            <>
+              <PageTitle title="Plano de Nutrição" />
+              <FoodPlanOverview />
+            </>
+          }
+        />
+        <Route
+          path="/exerciseplanoverview/:id"
+          element={
+            <>
+              <PageTitle title="Plano de Exercício" />
+              <ExercisePlanOverview />
+            </>
+          }
+        />
+        <Route
+          path="/clientoverview/:id"
+          element={
+            <>
+              <PageTitle title="Overview Client" />
+              <IndividualClientOverview />
             </>
           }
         />
