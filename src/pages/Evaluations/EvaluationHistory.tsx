@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { FaPlus, FaMinus, FaChartBar } from "react-icons/fa";
 import { FaClockRotateLeft, FaCodeCompare } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 type Evaluation = {
   date: string;
@@ -213,11 +214,9 @@ const EvaluationHistory: React.FC = () => {
       bodyFatPercentage: 19.5,
       bmi: 26.1,
       bmiCategory: "Excesso de peso",
-      notes:
-        "Ótimos resultados! Manter o equilíbrio entre treino e descanso.",
-    }
+      notes: "Ótimos resultados! Manter o equilíbrio entre treino e descanso.",
+    },
   ];
-
 
   const [selectedEvaluations, setSelectedEvaluations] = useState<number[]>([]);
   const toggleRow = (index: number) => {
@@ -455,11 +454,20 @@ const EvaluationHistory: React.FC = () => {
     <DefaultLayout isModalOpen={false}>
       <Breadcrumb pageName="Histórico de Avaliações" />
       <div className="mb-6 bg-white dark:bg-boxdark p-6 rounded-xl shadow-lg">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-4">
-          <div className="flex items-center">
-            <FaChartBar className="mr-2" /> Evolução do Peso
-          </div>
-        </h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+            <div className="flex items-center">
+              <FaChartBar className="mr-2" /> Evolução do Peso
+            </div>
+          </h2>
+          <Link
+          to = "/newevaluation">
+          <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+            <FaPlus></FaPlus>Nova avaliação
+          </button>
+          </Link>
+          
+        </div>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart
             data={weightEvolutionData}
@@ -545,6 +553,7 @@ const EvaluationHistory: React.FC = () => {
                         <button
                           className="flex items-center text-sm text-primary hover:text-primary-focus px-4 py-2 border rounded-md transition duration-200"
                           onClick={() => toggleRow(index)}
+                          title="Mostrar detalhes da Avaliação"
                         >
                           {expandedRows.includes(index) ? (
                             <>
@@ -563,6 +572,7 @@ const EvaluationHistory: React.FC = () => {
                               ? "bg-primary border text-white"
                               : "bg-gray-200"
                           }`}
+                          title="Comparar Avaliação"
                           onClick={() => handleSelectEvaluation(index)}
                         >
                           <FaCodeCompare />

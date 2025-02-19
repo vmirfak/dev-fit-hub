@@ -30,6 +30,7 @@ import ExercisePlanOverview from "./pages/Exercise/ExercisePlanOverview";
 import IndividualClientOverview from "./pages/Clients/IndividualClientOverview";
 import FoodPlanDetails from "./pages/Diet/FoodPlanDetails";
 import ExercisePlanDetails from "./pages/Exercise/ExercisePlanDetails";
+import ProEvaluations from "./pages/Evaluations/ProEvaluations";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -276,6 +277,15 @@ function App() {
             <>
               <PageTitle title="Overview Client" />
               <IndividualClientOverview />
+            </>
+          }
+        />
+        <Route
+          path="/evaluations"
+          element={
+            <>
+              <PageTitle title="Avaliações Pendentes" />
+              <ProEvaluations />
             </>
           }
         />

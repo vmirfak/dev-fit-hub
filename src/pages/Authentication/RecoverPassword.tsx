@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../../images/logo/b-blue-stroke.png"
+import Logo from "../../images/logo/b-blue-stroke.png";
 
 const RecoverPassword: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -43,20 +43,23 @@ const RecoverPassword: React.FC = () => {
 
       if (response.ok) {
         // Email recovery successful
-        setSuccessMessage("Instruções de recuperação foram enviadas para o teu e-mail.");
+        setSuccessMessage(
+          "Instruções de recuperação foram enviadas para o teu e-mail."
+        );
       } else {
         // Handle server errors
         setError(result.message || "A recuperação falhou. Tenta novamente.");
       }
     } catch (error) {
-      setError("Ocorreu um erro ao tentar recuperar o e-mail. Tenta novamente mais tarde.");
+      setError(
+        "Ocorreu um erro ao tentar recuperar o e-mail. Tenta novamente mais tarde."
+      );
       console.error("Recovery error:", error);
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-purple-400 to-blue-500 p-6">
-
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
         <div className="flex justify-center mb-6">
           <img
