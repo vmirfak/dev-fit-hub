@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
 import DefaultLayout from "../../layout/DefaultLoayout";
 import Modal from "../../components/Modal";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
+import { BiPlayCircle, BiPencil } from "react-icons/bi";
 
-// Updated data structure to organize exercises by day
 const exercisePlansData = [
   {
     planName: "Programa de Treino de Força",
-    description: "Um programa de 4 semanas focado em aumentar a força e a resistência.",
+    description:
+      "Um programa de 4 semanas focado em aumentar a força e a resistência.",
     weeklyPlan: [
       {
         day: "Dia 1",
@@ -26,8 +34,7 @@ const exercisePlansData = [
             repetitions: 8,
             duration: "N/A",
             instructions: "Baixe a barra até o peito.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Levantamento Terra",
@@ -35,8 +42,7 @@ const exercisePlansData = [
             repetitions: 10,
             duration: "N/A",
             instructions: "Mantenha as costas retas.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Prancha",
@@ -81,8 +87,7 @@ const exercisePlansData = [
             repetitions: 15,
             duration: "N/A",
             instructions: "Toque o cotovelo no joelho oposto.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
@@ -95,8 +100,7 @@ const exercisePlansData = [
             repetitions: 10,
             duration: "N/A",
             instructions: "Mantenha as costas retas.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Pressão de Ombros",
@@ -104,8 +108,7 @@ const exercisePlansData = [
             repetitions: 10,
             duration: "N/A",
             instructions: "Pressione acima da cabeça.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Leg Press",
@@ -113,8 +116,7 @@ const exercisePlansData = [
             repetitions: 12,
             duration: "N/A",
             instructions: "Empurre com os pés.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Jumping Jacks",
@@ -122,8 +124,7 @@ const exercisePlansData = [
             repetitions: 20,
             duration: "N/A",
             instructions: "Salte enquanto espalha os braços e as pernas.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
@@ -144,8 +145,7 @@ const exercisePlansData = [
             repetitions: "N/A",
             duration: "30 segundos de cada lado",
             instructions: "Mantenha o corpo reto.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Burpees",
@@ -161,8 +161,7 @@ const exercisePlansData = [
             repetitions: 15,
             duration: "N/A",
             instructions: "Gire o tronco.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
@@ -197,8 +196,7 @@ const exercisePlansData = [
             repetitions: "1 minuto",
             duration: "N/A",
             instructions: "Pule a corda em um ritmo constante.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Elevações de Joelho",
@@ -206,8 +204,7 @@ const exercisePlansData = [
             repetitions: 30,
             duration: "N/A",
             instructions: "Leve os joelhos até o peito.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
@@ -228,8 +225,7 @@ const exercisePlansData = [
             repetitions: 10,
             duration: "N/A",
             instructions: "Agache, salte para trás e salte para cima.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Jumping Jacks",
@@ -237,8 +233,7 @@ const exercisePlansData = [
             repetitions: 20,
             duration: "N/A",
             instructions: "Salte enquanto espalha os braços e as pernas.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
           {
             name: "Escaladores",
@@ -246,8 +241,7 @@ const exercisePlansData = [
             repetitions: 15,
             duration: "N/A",
             instructions: "Leve os joelhos em direção ao peito.",
-            videoLink:
-              "https://www.youtube.com/watch?v=U3HlEF_E9fo",
+            videoLink: "https://www.youtube.com/watch?v=U3HlEF_E9fo",
           },
         ],
       },
@@ -255,40 +249,50 @@ const exercisePlansData = [
   },
 ];
 
-
 const ExercisePlans: React.FC = () => {
   const [expandedPlan, setExpandedPlan] = useState<number | null>(null);
   const [expandedDay, setExpandedDay] = useState<number | null>(null);
   const [expandedExercise, setExpandedExercise] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [selectedExerciseName, setselectedExerciseName] = useState("");
+  const [selectedExerciseName, setSelectedExerciseName] = useState("");
+  const [isWeightModalOpen, setIsWeightModalOpen] = useState(false);
+  const [weightInput, setWeightInput] = useState("");
+  const [weights, setWeights] = useState<{ [key: string]: string }>({});
+  const [currentExerciseKey, setCurrentExerciseKey] = useState("");
 
   const togglePlanExpansion = (index: number) => {
     setExpandedPlan(expandedPlan === index ? null : index);
-    setExpandedDay(null); 
+    setExpandedDay(null);
     setExpandedExercise(null);
   };
 
   const toggleDayExpansion = (index: number) => {
     setExpandedDay(expandedDay === index ? null : index);
-    setExpandedExercise(null); 
+    setExpandedExercise(null);
   };
 
   const toggleExerciseExpansion = (index: number) => {
     setExpandedExercise(expandedExercise === index ? null : index);
   };
 
-  
+  const openWeightModal = (exerciseKey: string) => {
+    setCurrentExerciseKey(exerciseKey);
+    setIsWeightModalOpen(true);
+  };
+
+  const handleSaveWeight = () => {
+    setWeights((prev) => ({ ...prev, [currentExerciseKey]: weightInput }));
+    setWeightInput("");
+    setIsWeightModalOpen(false);
+  };
+
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="O meu Plano de Treino" />
-
       <div className="overflow-hidden rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-6">
-        {/* Exercise Plans List */}
         {exercisePlansData.map((plan, planIndex) => (
           <div key={planIndex} className="mb-6">
-            {/* Plan Header */}
             <div
               className="flex justify-between items-center p-4 bg-blue-100 dark:bg-gray-800 cursor-pointer rounded-xl"
               onClick={() => togglePlanExpansion(planIndex)}
@@ -306,80 +310,91 @@ const ExercisePlans: React.FC = () => {
               </span>
             </div>
 
-            {/* Expandable Plan Details */}
             {expandedPlan === planIndex && (
               <div className="p-4 border-gray-200 dark:border-gray-600">
-                <h4 className="text-lg font-medium mb-2">
-                  Treino Semanal
-                </h4>
+                <h4 className="text-lg font-medium mb-2">Treino Semanal</h4>
 
-                {/* Day List */}
                 {plan.weeklyPlan.map((dayPlan, dayIndex) => (
                   <div key={dayIndex} className="mb-4">
-                    {/* Day Header */}
                     <div
                       className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded-xl"
                       onClick={() => toggleDayExpansion(dayIndex)}
                     >
-                      <div>
-                        <h5 className="text-md font-semibold">{dayPlan.day}</h5>
-                      </div>
+                      <h5 className="text-md font-semibold">{dayPlan.day}</h5>
                       <span className="text-xl ">
                         {expandedDay === dayIndex ? "-" : "+"}
                       </span>
                     </div>
 
-                    {/* Expandable Day Details */}
                     {expandedDay === dayIndex && (
                       <div className="p-3 border border-gray-300 dark:border-gray-600 rounded-xl mt-2 bg-gray-50 dark:bg-gray-800">
                         <h5 className="text-md font-medium mb-2">Exercícios</h5>
 
-                        {/* Exercise List */}
-                        {dayPlan.exercises.map((exercise, exerciseIndex) => (
-                          <div key={exerciseIndex} className="mb-4">
-                            {/* Exercise Header */}
-                            <div
-                              className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded-xl"
-                              onClick={() =>
-                                toggleExerciseExpansion(exerciseIndex)
-                              }
-                            >
-                              <div>
-                                <h6 className="text-sm font-semibold">
-                                  {exercise.name}
-                                </h6>
-                                <p className="text-xs text-gray-600 dark:text-gray-400">
-                                  Sets: {exercise.sets} | Repetições:{" "}
-                                  {exercise.repetitions} | Duração:{" "}
-                                  {exercise.duration}
-                                </p>
+                        {dayPlan.exercises.map((exercise, exerciseIndex) => {
+                          const exerciseKey = `${planIndex}-${dayIndex}-${exerciseIndex}`;
+                          return (
+                            <div key={exerciseIndex} className="mb-4">
+                              <div
+                                className="flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 cursor-pointer rounded-xl"
+                                onClick={() =>
+                                  toggleExerciseExpansion(exerciseIndex)
+                                }
+                              >
+                                <div>
+                                  <h6 className="text-sm font-semibold">
+                                    {exercise.name}
+                                  </h6>
+                                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                                    Sets: {exercise.sets} | Repetições:{" "}
+                                    {exercise.repetitions} | Duração:{" "}
+                                    {exercise.duration}
+                                  </p>
+                                  {weights[exerciseKey] && (
+                                    <p className="text-xs text-green-600">
+                                      weight: {weights[exerciseKey]} kg
+                                    </p>
+                                  )}
+                                </div>
+                                <span className="text-xl ">
+                                  {expandedExercise === exerciseIndex
+                                    ? "-"
+                                    : "+"}
+                                </span>
                               </div>
-                              <span className="text-xl ">
-                                {expandedExercise === exerciseIndex ? "-" : "+"}
-                              </span>
-                            </div>
 
-                            {/* Expandable Exercise Details */}
-                            {expandedExercise === exerciseIndex && (
-                              <div className="p-3 border border-gray-300 dark:border-gray-600 rounded-xl mt-2 bg-gray-50 dark:bg-gray-800">
-                                <p className="text-sm text-gray-800 dark:text-gray-200">
-                                  <strong>Instruções:</strong>{" "}
-                                  {exercise.instructions}
-                                </p>
-                                <button
-                                  className="mt-2 text-blue-600"
-                                  onClick={() => {
-                                    setIsModalOpen(true);
-                                    setVideoUrl(exercise.videoLink);
-                                    setselectedExerciseName(exercise.name);
-                                  }}
-                                >
-                                  Ver Vídeo
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        ))}
+                              {expandedExercise === exerciseIndex && (
+                                <div className="p-3 border border-gray-300 dark:border-gray-600 rounded-xl mt-2 bg-gray-50 dark:bg-gray-800">
+                                  <p className="text-sm text-gray-800 dark:text-gray-200">
+                                    <strong>Instruções:</strong>{" "}
+                                    {exercise.instructions}
+                                  </p>
+                                  <div className="flex space-x-4 mt-2">
+                                    <button
+                                      className="flex items-center rounded-lg bg-blue-600 text-white px-4 py-2 shadow-md hover:bg-blue-700 transition duration-300"
+                                      onClick={() => {
+                                        setIsModalOpen(true);
+                                        setVideoUrl(exercise.videoLink);
+                                        setSelectedExerciseName(exercise.name);
+                                      }}
+                                    >
+                                      <BiPlayCircle className="mr-2 text-xl" />
+                                      Ver Vídeo
+                                    </button>
+                                    <button
+                                      className="flex items-center rounded-lg bg-green-600 text-white px-4 py-2 shadow-md hover:bg-green-700 transition duration-300"
+                                      onClick={() =>
+                                        openWeightModal(exerciseKey)
+                                      }
+                                    >
+                                      <BiPencil className="mr-2 text-xl" />
+                                      Registar Peso
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -389,7 +404,33 @@ const ExercisePlans: React.FC = () => {
           </div>
         ))}
 
-        {/* Modal for Video */}
+        <Dialog
+          open={isWeightModalOpen}
+          onClose={() => setIsWeightModalOpen(false)}
+        >
+          <DialogTitle>Registar weight</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Peso (kg)"
+              type="number"
+              fullWidth
+              variant="outlined"
+              value={weightInput}
+              onChange={(e: {
+                target: { value: React.SetStateAction<string> };
+              }) => setWeightInput(e.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <button onClick={() => setIsWeightModalOpen(false)}>
+              Cancelar
+            </button>
+            <button onClick={handleSaveWeight}>Guardar</button>
+          </DialogActions>
+        </Dialog>
+
         <Modal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
