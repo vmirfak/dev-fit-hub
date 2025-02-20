@@ -13,6 +13,7 @@ interface Ingredient {
 interface Meal {
   id: number;
   name: string;
+  category: string;
   ingredients: Ingredient[];
 }
 
@@ -20,6 +21,7 @@ const mealsData: Meal[] = [
   {
     id: 1,
     name: "Salada de Frango Grelhado",
+    category: "Almoço",
     ingredients: [
       { name: "Peito de Frango", quantity: "300g" },
       { name: "Alface", quantity: "1 molho" },
@@ -30,6 +32,7 @@ const mealsData: Meal[] = [
   {
     id: 2,
     name: "Espaguete à Bolonhesa",
+    category: "Almoço",
     ingredients: [
       { name: "Espaguete", quantity: "200g" },
       { name: "Carne Moída", quantity: "250g" },
@@ -40,6 +43,7 @@ const mealsData: Meal[] = [
   {
     id: 3,
     name: "Frango Salteado",
+    category: "Jantar",
     ingredients: [
       { name: "Peito de Frango", quantity: "300g" },
       { name: "Pimentos", quantity: "2 unidades" },
@@ -50,6 +54,7 @@ const mealsData: Meal[] = [
   {
     id: 4,
     name: "Caril de Legumes",
+    category: "Jantar",
     ingredients: [
       { name: "Batatas", quantity: "3 unidades" },
       { name: "Cenouras", quantity: "2 unidades" },
@@ -60,6 +65,7 @@ const mealsData: Meal[] = [
   {
     id: 5,
     name: "Tacos de Carne",
+    category: "Jantar",
     ingredients: [
       { name: "Carne Moída", quantity: "200g" },
       { name: "Tortilhas de Taco", quantity: "8 unidades" },
@@ -70,6 +76,7 @@ const mealsData: Meal[] = [
   {
     id: 6,
     name: "Panquecas com Frutos Vermelhos",
+    category: "Pequeno Almoço",
     ingredients: [
       { name: "Farinha de Trigo", quantity: "1 chávena" },
       { name: "Leite", quantity: "1 chávena" },
@@ -80,6 +87,7 @@ const mealsData: Meal[] = [
   {
     id: 7,
     name: "Salada de Quinoa",
+    category: "Almoço",
     ingredients: [
       { name: "Quinoa", quantity: "1 chávena" },
       { name: "Pepino", quantity: "1 unidade" },
@@ -90,6 +98,7 @@ const mealsData: Meal[] = [
   {
     id: 8,
     name: "Massa Alfredo com Camarão",
+    category: "Jantar",
     ingredients: [
       { name: "Camarão", quantity: "250g" },
       { name: "Massa", quantity: "200g" },
@@ -100,6 +109,7 @@ const mealsData: Meal[] = [
   {
     id: 9,
     name: "Frango e Brócolos Salteados",
+    category: "Almoço",
     ingredients: [
       { name: "Tiras de Carne", quantity: "300g" },
       { name: "Brócolos", quantity: "1 cabeça" },
@@ -110,6 +120,7 @@ const mealsData: Meal[] = [
   {
     id: 10,
     name: "Tosta de Abacate",
+    category: "Lanche da Manhã",
     ingredients: [
       { name: "Pão", quantity: "2 fatias" },
       { name: "Abacate", quantity: "1 unidade" },
@@ -120,6 +131,7 @@ const mealsData: Meal[] = [
   {
     id: 11,
     name: "Salada Caprese",
+    category: "Lanche da Tarde",
     ingredients: [
       { name: "Mozzarella Fresca", quantity: "250g" },
       { name: "Tomates", quantity: "3 unidades" },
@@ -130,6 +142,7 @@ const mealsData: Meal[] = [
   {
     id: 12,
     name: "Pimentos Recheados",
+    category: "Jantar",
     ingredients: [
       { name: "Pimentos", quantity: "4 unidades" },
       { name: "Quinoa", quantity: "1 chávena" },
@@ -140,6 +153,7 @@ const mealsData: Meal[] = [
   {
     id: 13,
     name: "Frango Tikka Masala",
+    category: "Jantar",
     ingredients: [
       { name: "Peito de Frango", quantity: "500g" },
       { name: "Iogurte", quantity: "1 chávena" },
@@ -150,6 +164,7 @@ const mealsData: Meal[] = [
   {
     id: 14,
     name: "Legumes Salteados",
+    category: "Lanche da Tarde",
     ingredients: [
       { name: "Legumes Mistos", quantity: "300g" },
       { name: "Molho de Soja", quantity: "2 colheres de sopa" },
@@ -160,6 +175,7 @@ const mealsData: Meal[] = [
   {
     id: 15,
     name: "Omelete",
+    category: "Ceia",
     ingredients: [
       { name: "Ovos", quantity: "3 unidades" },
       { name: "Espinafre", quantity: "1 chávena" },
@@ -169,128 +185,282 @@ const mealsData: Meal[] = [
   },
   {
     id: 16,
-    name: "Sopa de Lentilhas",
+    name: "Sopa de Abóbora",
+    category: "Almoço",
     ingredients: [
-      { name: "Lentilhas", quantity: "1 chávena" },
-      { name: "Cenouras", quantity: "2 unidades" },
+      { name: "Abóbora", quantity: "500g" },
       { name: "Cebola", quantity: "1 unidade" },
-      { name: "Caldo de Legumes", quantity: "4 chávenas" },
+      { name: "Alho", quantity: "2 dentes" },
+      { name: "Caldo de Legumes", quantity: "1 litro" },
     ],
   },
   {
     id: 17,
-    name: "Tacos de Peixe",
+    name: "Wrap de Frango e Abacate",
+    category: "Lanche da Manhã",
     ingredients: [
-      { name: "Peixe Branco", quantity: "300g" },
-      { name: "Tortilhas de Milho", quantity: "8 unidades" },
-      { name: "Repolho", quantity: "1/2 cabeça" },
-      { name: "Natas", quantity: "1/2 chávena" },
+      { name: "Tortilha", quantity: "1 unidade" },
+      { name: "Peito de Frango", quantity: "150g" },
+      { name: "Abacate", quantity: "1/2 unidade" },
+      { name: "Iogurte Grego", quantity: "2 colheres de sopa" },
     ],
   },
   {
     id: 18,
-    name: "Biscoitos com Pepitas de Chocolate",
+    name: "Risoto de Cogumelos",
+    category: "Jantar",
     ingredients: [
-      { name: "Farinha de Trigo", quantity: "2 chávenas" },
-      { name: "Açúcar Mascavado", quantity: "1 chávena" },
-      { name: "Manteiga", quantity: "1 chávena" },
-      { name: "Pepitas de Chocolate", quantity: "1 chávena" },
+      { name: "Arroz Arbóreo", quantity: "200g" },
+      { name: "Cogumelos", quantity: "300g" },
+      { name: "Cebola", quantity: "1 unidade" },
+      { name: "Caldo de Legumes", quantity: "1 litro" },
     ],
   },
   {
     id: 19,
-    name: "Estrogonofe de Carne",
+    name: "Smoothie de Manga e Maracujá",
+    category: "Lanche da Tarde",
     ingredients: [
-      { name: "Tiras de Carne", quantity: "400g" },
-      { name: "Cogumelos", quantity: "200g" },
-      { name: "Natas", quantity: "1 chávena" },
-      { name: "Massa de Ovos", quantity: "250g" },
+      { name: "Manga", quantity: "1 unidade" },
+      { name: "Maracujá", quantity: "2 unidades" },
+      { name: "Iogurte Natural", quantity: "1 chávena" },
+      { name: "Mel", quantity: "1 colher de sopa" },
     ],
   },
   {
     id: 20,
-    name: "Berinjela à Parmegiana",
+    name: "Bife de Peru Grelhado",
+    category: "Jantar",
     ingredients: [
-      { name: "Berinjela", quantity: "2 unidades" },
-      { name: "Molho Marinara", quantity: "2 chávenas" },
-      { name: "Queijo Mozzarella", quantity: "200g" },
-      { name: "Queijo Parmesão", quantity: "100g" },
+      { name: "Bife de Peru", quantity: "250g" },
+      { name: "Batata Doce", quantity: "2 unidades" },
+      { name: "Espargos", quantity: "1 molho" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
+    ],
+  },
+  {
+    id: 21,
+    name: "Tarte de Queijo e Espinafre",
+    category: "Ceia",
+    ingredients: [
+      { name: "Massa Folhada", quantity: "1 folha" },
+      { name: "Espinafre", quantity: "200g" },
+      { name: "Queijo Ricotta", quantity: "150g" },
+      { name: "Ovo", quantity: "1 unidade" },
     ],
   },
   {
     id: 22,
-    name: "Quesadilla de Legumes",
+    name: "Cuscuz com Legumes",
+    category: "Almoço",
     ingredients: [
-      { name: "Tortilhas de Trigo", quantity: "4 pcs" },
-      { name: "Legumes Mistos", quantity: "2 chávenas" },
-      { name: "Queijo Cheddar", quantity: "150g" },
-      { name: "Natas", quantity: "1/2 chávena" },
+      { name: "Cuscuz", quantity: "1 chávena" },
+      { name: "Cenoura", quantity: "1 unidade" },
+      { name: "Ervilhas", quantity: "1 chávena" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
     ],
   },
   {
     id: 23,
-    name: "Massa Pesto",
+    name: "Salada de Atum",
+    category: "Lanche da Tarde",
     ingredients: [
-      { name: "Massa", quantity: "250g" },
-      { name: "Molho Pesto", quantity: "1/2 chávena" },
-      { name: "Tomates Cereja", quantity: "1 chávena" },
-      { name: "Queijo Parmesão", quantity: "50g" },
+      { name: "Atum em Conserva", quantity: "1 lata" },
+      { name: "Milho", quantity: "1 chávena" },
+      { name: "Feijão Vermelho", quantity: "1 chávena" },
+      { name: "Cebola Roxa", quantity: "1/2 unidade" },
     ],
   },
   {
     id: 24,
-    name: "Frango com Mel e Alho",
+    name: "Frango Assado com Batatas",
+    category: "Jantar",
     ingredients: [
-      { name: "Coxas de Frango", quantity: "500g" },
-      { name: "Mel", quantity: "1/4 chávena" },
-      { name: "Alho", quantity: "4 dentes" },
-      { name: "Molho de Soja", quantity: "1/4 chávena" },
+      { name: "Frango Inteiro", quantity: "1 unidade" },
+      { name: "Batatas", quantity: "4 unidades" },
+      { name: "Alecrim", quantity: "2 ramos" },
+      { name: "Azeite", quantity: "3 colheres de sopa" },
     ],
   },
   {
     id: 25,
-    name: "Batatas Doces Fritas",
+    name: "Pão de Banana",
+    category: "Pequeno Almoço",
     ingredients: [
-      { name: "Batatas Doces", quantity: "2 pcs" },
-      { name: "Azeite", quantity: "2 colheres de sopa" },
-      { name: "Páprica", quantity: "1 colher de chá" },
-      { name: "Sal", quantity: "1 colher de chá" },
+      { name: "Bananas Maduras", quantity: "3 unidades" },
+      { name: "Farinha de Trigo", quantity: "2 chávenas" },
+      { name: "Ovos", quantity: "2 unidades" },
+      { name: "Açúcar", quantity: "1/2 chávena" },
     ],
   },
   {
     id: 26,
-    name: "Smoothie de Manga",
+    name: "Salmão Grelhado com Brócolos",
+    category: "Jantar",
     ingredients: [
-      { name: "Manga", quantity: "1 pc" },
-      { name: "Iogurte", quantity: "1 chávena" },
+      { name: "Salmão", quantity: "2 postas" },
+      { name: "Brócolos", quantity: "1 cabeça" },
+      { name: "Limão", quantity: "1 unidade" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
+    ],
+  },
+  {
+    id: 27,
+    name: "Pizza Caseira",
+    category: "Jantar",
+    ingredients: [
+      { name: "Massa de Pizza", quantity: "1 unidade" },
+      { name: "Molho de Tomate", quantity: "1 chávena" },
+      { name: "Queijo Mozzarella", quantity: "200g" },
+      { name: "Fiambre", quantity: "100g" },
+    ],
+  },
+  {
+    id: 28,
+    name: "Bolo de Cenoura",
+    category: "Sobremesa",
+    ingredients: [
+      { name: "Cenoura", quantity: "3 unidades" },
+      { name: "Farinha de Trigo", quantity: "2 chávenas" },
+      { name: "Ovos", quantity: "3 unidades" },
+      { name: "Açúcar", quantity: "1 chávena" },
+    ],
+  },
+  {
+    id: 29,
+    name: "Feijoada Vegetariana",
+    category: "Almoço",
+    ingredients: [
+      { name: "Feijão Preto", quantity: "2 chávenas" },
+      { name: "Abóbora", quantity: "200g" },
+      { name: "Cenoura", quantity: "2 unidades" },
+      { name: "Tomate", quantity: "2 unidades" },
+    ],
+  },
+  {
+    id: 30,
+    name: "Sanduíche de Peru e Queijo",
+    category: "Lanche da Manhã",
+    ingredients: [
+      { name: "Pão Integral", quantity: "2 fatias" },
+      { name: "Peito de Peru", quantity: "100g" },
+      { name: "Queijo Suíço", quantity: "2 fatias" },
+      { name: "Mostarda", quantity: "1 colher de chá" },
+    ],
+  },
+  {
+    id: 31,
+    name: "Lasanha de Vegetais",
+    category: "Jantar",
+    ingredients: [
+      { name: "Massa de Lasanha", quantity: "200g" },
+      { name: "Beringela", quantity: "1 unidade" },
+      { name: "Abobrinha", quantity: "1 unidade" },
+      { name: "Molho de Tomate", quantity: "2 chávenas" },
+    ],
+  },
+  {
+    id: 32,
+    name: "Tarte de Maçã",
+    category: "Sobremesa",
+    ingredients: [
+      { name: "Maçãs", quantity: "4 unidades" },
+      { name: "Massa Folhada", quantity: "1 folha" },
+      { name: "Açúcar", quantity: "1/2 chávena" },
+      { name: "Canela", quantity: "1 colher de chá" },
+    ],
+  },
+  {
+    id: 33,
+    name: "Hambúrguer de Quinoa",
+    category: "Jantar",
+    ingredients: [
+      { name: "Quinoa", quantity: "1 chávena" },
+      { name: "Feijão Preto", quantity: "1 chávena" },
+      { name: "Cebola", quantity: "1/2 unidade" },
+      { name: "Pão de Hambúrguer", quantity: "2 unidades" },
+    ],
+  },
+  {
+    id: 34,
+    name: "Sopa de Lentilhas",
+    category: "Almoço",
+    ingredients: [
+      { name: "Lentilhas", quantity: "1 chávena" },
+      { name: "Cenoura", quantity: "2 unidades" },
+      { name: "Cebola", quantity: "1 unidade" },
+      { name: "Alho", quantity: "2 dentes" },
+    ],
+  },
+  {
+    id: 35,
+    name: "Bolo de Chocolate",
+    category: "Sobremesa",
+    ingredients: [
+      { name: "Farinha de Trigo", quantity: "2 chávenas" },
+      { name: "Cacau em Pó", quantity: "1/2 chávena" },
+      { name: "Ovos", quantity: "3 unidades" },
+      { name: "Açúcar", quantity: "1 chávena" },
+    ],
+  },
+  {
+    id: 36,
+    name: "Salada de Grão-de-Bico",
+    category: "Almoço",
+    ingredients: [
+      { name: "Grão-de-Bico", quantity: "1 chávena" },
+      { name: "Tomate", quantity: "2 unidades" },
+      { name: "Pepino", quantity: "1 unidade" },
+      { name: "Azeite", quantity: "2 colheres de sopa" },
+    ],
+  },
+  {
+    id: 37,
+    name: "Frango à Parmegiana",
+    category: "Jantar",
+    ingredients: [
+      { name: "Peito de Frango", quantity: "2 unidades" },
+      { name: "Molho de Tomate", quantity: "1 chávena" },
+      { name: "Queijo Mozzarella", quantity: "200g" },
+      { name: "Farinha de Rosca", quantity: "1 chávena" },
+    ],
+  },
+  {
+    id: 38,
+    name: "Smoothie de Banana e Aveia",
+    category: "Pequeno Almoço",
+    ingredients: [
+      { name: "Banana", quantity: "2 unidades" },
+      { name: "Aveia", quantity: "1/2 chávena" },
       { name: "Leite", quantity: "1 chávena" },
       { name: "Mel", quantity: "1 colher de sopa" },
     ],
   },
   {
-    id: 27,
-    name: "Parfait de Iogurte Grego",
+    id: 39,
+    name: "Ratatouille",
+    category: "Jantar",
     ingredients: [
-      { name: "Iogurte Grego", quantity: "1 chávena" },
-      { name: "Granola", quantity: "1/2 chávena" },
-      { name: "Frutos Vermelhos Mistos", quantity: "1 chávena" },
-      { name: "Mel", quantity: "1 colher de sopa" },
+      { name: "Beringela", quantity: "1 unidade" },
+      { name: "Abobrinha", quantity: "1 unidade" },
+      { name: "Tomate", quantity: "2 unidades" },
+      { name: "Pimentos", quantity: "2 unidades" },
     ],
   },
   {
-    id: 28,
-    name: "Frango Recheado com Espinafres e Feta",
+    id: 40,
+    name: "Pudim de Chia",
+    category: "Sobremesa",
     ingredients: [
-      { name: "Peito de Frango", quantity: "4 pcs" },
-      { name: "Espinafre", quantity: "2 chávenas" },
-      { name: "Queijo Feta", quantity: "100g" },
-      { name: "Azeite", quantity: "2 colheres de sopa" },
+      { name: "Sementes de Chia", quantity: "1/4 chávena" },
+      { name: "Leite de Coco", quantity: "1 chávena" },
+      { name: "Mel", quantity: "1 colher de sopa" },
+      { name: "Frutos Vermelhos", quantity: "1/2 chávena" },
     ],
   },
 ];
 
 const ShoppingList = () => {
-  // State management
   const [selectedMeals, setSelectedMeals] = useState<Meal[]>([]);
   const [mealQuantities, setMealQuantities] = useState<{
     [key: number]: number;
@@ -384,6 +554,14 @@ const ShoppingList = () => {
     setModalOpen(true);
   };
 
+  const categorizedMeals = mealsData.reduce((acc, meal) => {
+    if (!acc[meal.category]) {
+      acc[meal.category] = [];
+    }
+    acc[meal.category].push(meal);
+    return acc;
+  }, {} as Record<string, Meal[]>);
+
   const generatePDF = () => {
     const pdf = new jsPDF();
     const pageWidth = pdf.internal.pageSize.getWidth();
@@ -391,7 +569,7 @@ const ShoppingList = () => {
     const columnWidth = (pageWidth - 2 * margin) / 3;
 
     pdf.setFontSize(10);
-    pdf.text("Shopping List", margin, 20);
+    pdf.text("Lista de Compras: ", margin, 20);
 
     let xOffset = margin;
     let yOffset = 30;
@@ -423,47 +601,55 @@ const ShoppingList = () => {
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Lista de Compras" />
       <div className="p-4 overflow-hidden rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-4 lg:grid-cols-4">
-          {mealsData.map((meal) => (
-            <div
-              key={meal.id}
-              className={`h-16 p-4 border rounded-xl cursor-pointer flex justify-between items-center ${
-                selectedMeals.includes(meal)
-                  ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
-                  : ""
-              }`}
-              onClick={() => handleMealSelect(meal)}
-            >
-              <h3 className="text-sm font-medium">{meal.name}</h3>
+        {Object.entries(categorizedMeals).map(([category, meals]) => (
+          <div key={category} className="mb-4">
+            <h3 className="text-base font-bold mb-2 text-gray-800 dark:text-white">
+              {category}
+            </h3>
 
-              {selectedMeals.includes(meal) && (
-                <div className="flex items-center">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent deselection
-                      decrementQuantity(meal.id);
-                    }}
-                    className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
-                  >
-                    <FiMinus size={14} />
-                  </button>
-                  <span className="mx-1 px-2 py-1 bg-gray-100 text-gray-800">
-                    {mealQuantities[meal.id]}
-                  </span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent deselection
-                      incrementQuantity(meal.id);
-                    }}
-                    className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
-                  >
-                    <FiPlus size={14} />
-                  </button>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-4 lg:grid-cols-4">
+              {meals.map((meal) => (
+                <div
+                  key={meal.id}
+                  className={`h-16 p-4 border rounded-xl cursor-pointer flex justify-between items-center ${
+                    selectedMeals.includes(meal)
+                      ? "bg-blue-100 dark:bg-blue-100 dark:text-neutral-600"
+                      : ""
+                  }`}
+                  onClick={() => handleMealSelect(meal)}
+                >
+                  <h3 className="text-sm font-medium">{meal.name}</h3>
+
+                  {selectedMeals.includes(meal) && (
+                    <div className="flex items-center">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          decrementQuantity(meal.id);
+                        }}
+                        className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
+                      >
+                        <FiMinus size={14} />
+                      </button>
+                      <span className="mx-1 px-2 py-1 bg-gray-100 text-gray-800">
+                        {mealQuantities[meal.id]}
+                      </span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          incrementQuantity(meal.id);
+                        }}
+                        className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded-full hover:bg-green-600 transition-all"
+                      >
+                        <FiPlus size={14} />
+                      </button>
+                    </div>
+                  )}
                 </div>
-              )}
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
         <div className="mt-4 flex space-x-4">
           <button
             onClick={clearSelection}
@@ -474,13 +660,17 @@ const ShoppingList = () => {
           </button>
           <button
             onClick={generateShoppingList}
-            className="flex items-center px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+            disabled={selectedMeals.length === 0}
+            className={`flex items-center px-6 py-2 rounded-md transition-colors ${
+              selectedMeals.length > 0
+                ? "bg-blue-500 text-white hover:bg-blue-600 cursor-pointer"
+                : "bg-gray-400 text-gray-200 cursor-not-allowed"
+            }`}
           >
             <FiList className="mr-2" />
             Gerar Lista de Compras
           </button>
         </div>
-
         <GroceryModal
           isOpen={isModalOpen}
           onClose={() => setModalOpen(false)}
