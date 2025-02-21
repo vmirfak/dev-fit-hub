@@ -13,8 +13,8 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 
 // More realistic and varied weightlifting data
 const progressData = [

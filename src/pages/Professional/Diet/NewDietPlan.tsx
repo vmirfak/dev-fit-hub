@@ -1,14 +1,14 @@
 import { useState, useEffect, ChangeEventHandler } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { Stepper, Step, StepLabel, Button, Typography } from "@mui/material";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Slider from "@mui/material/Slider";
 import { FaPlus } from "react-icons/fa";
-import AddRecipeModal from "../../components/Modal/RecipeModal";
+import AddRecipeModal from "../../../components/Modal/RecipeModal";
 import { FiMinus } from "react-icons/fi";
-import { ActivityLevel, HealthGoals } from "../../enum/enum";
-import { fileToDataString } from "../../utils/utils";
+import { ActivityLevel, HealthGoals } from "../../../enum/enum";
+import { fileToDataString } from "../../../utils/utils";
 
 const steps = [
   "Perfil do Utilizador",

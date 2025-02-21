@@ -1,6 +1,6 @@
 import { useState } from "react";
-import DefaultLayout from "../../layout/DefaultLoayout";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { FaSave } from "react-icons/fa";
 
 interface UserProfile {

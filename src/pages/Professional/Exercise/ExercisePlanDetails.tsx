@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { Slider, Typography } from "@mui/material";
 import { FiMinus, FiPlus, FiTrash } from "react-icons/fi";
 import { FaPlus, FaSave } from "react-icons/fa";

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { IoFitness } from "react-icons/io5";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";

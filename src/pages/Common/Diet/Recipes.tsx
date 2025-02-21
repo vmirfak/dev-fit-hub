@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
-import CheckboxTwo from "../../components/Checkboxes/CheckboxTwo";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
+import CheckboxTwo from "../../../components/Checkboxes/CheckboxTwo";
 import { FaPlus } from "react-icons/fa";
-import CreateRecipeModal from "../../components/Modal/CreateRecipeModal";
+import CreateRecipeModal from "../../../components/Modal/CreateRecipeModal";
 
 interface Recipe {
   id: number;

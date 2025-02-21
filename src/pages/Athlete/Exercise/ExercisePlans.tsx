@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
-import Modal from "../../components/Modal";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
+import Modal from "../../../components/Modal";
 import {
   Dialog,
   DialogActions,

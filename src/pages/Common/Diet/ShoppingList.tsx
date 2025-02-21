@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { jsPDF } from "jspdf";
-import GroceryModal from "../../components/Modal/GroceryModal";
+import GroceryModal from "../../../components/Modal/GroceryModal";
 import { FiMinus, FiPlus, FiTrash2, FiList } from "react-icons/fi";
 
 interface Ingredient {

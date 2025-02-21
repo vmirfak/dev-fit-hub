@@ -1,6 +1,6 @@
 import { useState, ChangeEventHandler, useEffect } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { FaPlus } from "react-icons/fa"; // Import Icon
 import {
   Stepper,
@@ -10,8 +10,8 @@ import {
   Typography,
   Slider,
 } from "@mui/material";
-import { ActivityLevel, HealthGoals } from "../../enum/enum";
-import { fileToDataString } from "../../utils/utils";
+import { ActivityLevel, HealthGoals } from "../../../enum/enum";
+import { fileToDataString } from "../../../utils/utils";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";

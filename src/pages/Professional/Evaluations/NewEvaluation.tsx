@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 
 const NewEvaluation: React.FC = () => {
   // State variables for form inputs

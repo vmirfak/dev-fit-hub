@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { BiDumbbell } from "react-icons/bi";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { FaComments, FaEye, FaFileSignature  } from "react-icons/fa";
@@ -448,7 +448,12 @@ const ClientsOverview = () => {
                           className="w-6 flex justify-center"
                           title="Abrir Conversa"
                         >
-                          <FaComments className="text-yellow-300 hover:text-yellow-500 cursor-pointer" size={20} />
+                          <Link
+                              to="/chat"
+                              className="w-6 flex justify-center "
+                            >
+                              <FaComments className="text-yellow-300 hover:text-yellow-500 cursor-pointer" size={20} />
+                            </Link>
                         </span>
                       </div>
                     </td>
