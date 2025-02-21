@@ -103,7 +103,7 @@ const ExercisePlanDetails = () => {
   const handleSave = () => {
     console.log("Saving training plan:", userProfile);
   };
-  
+
   return (
     <DefaultLayout isModalOpen={isModalOpen}>
       <Breadcrumb pageName="Plano de Treino" />
@@ -273,12 +273,12 @@ const ExercisePlanDetails = () => {
           </div>
         ))}
         <button
-                  onClick={handleSave}
-                  className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-                >
-                  <FaSave />
-                  <span>Guardar Alterações</span>
-                </button>
+          onClick={handleSave}
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+        >
+          <FaSave />
+          <span>Guardar Alterações</span>
+        </button>
       </div>
     </DefaultLayout>
   );

@@ -10,6 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 import { BiPlayCircle, BiPencil } from "react-icons/bi";
+import { AiOutlineClose, AiOutlineSave } from "react-icons/ai";
 
 const exercisePlansData = [
   {
@@ -260,6 +261,7 @@ const ExercisePlans: React.FC = () => {
   const [weightInput, setWeightInput] = useState("");
   const [weights, setWeights] = useState<{ [key: string]: string }>({});
   const [currentExerciseKey, setCurrentExerciseKey] = useState("");
+  const [modalExerciseTitle, setmodalExerciseTitle] = useState("");
 
   const togglePlanExpansion = (index: number) => {
     setExpandedPlan(expandedPlan === index ? null : index);
@@ -331,7 +333,7 @@ const ExercisePlans: React.FC = () => {
                         <h5 className="text-md font-medium mb-2">Exercícios</h5>
 
                         {dayPlan.exercises.map((exercise, exerciseIndex) => {
-                          const exerciseKey = `${planIndex}-${dayIndex}-${exerciseIndex}`;
+                          const exerciseKey = `${planIndex}${dayIndex}${exerciseIndex}`;
                           return (
                             <div key={exerciseIndex} className="mb-4">
                               <div
@@ -382,9 +384,10 @@ const ExercisePlans: React.FC = () => {
                                     </button>
                                     <button
                                       className="flex items-center rounded-lg bg-green-600 text-white px-4 py-2 shadow-md hover:bg-green-700 transition duration-300"
-                                      onClick={() =>
-                                        openWeightModal(exerciseKey)
-                                      }
+                                      onClick={() => {
+                                        openWeightModal(exerciseKey);
+                                        setmodalExerciseTitle(exercise.name);
+                                      }}
                                     >
                                       <BiPencil className="mr-2 text-xl" />
                                       Registar Peso
@@ -403,12 +406,17 @@ const ExercisePlans: React.FC = () => {
             )}
           </div>
         ))}
-
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          videoUrl={videoUrl || ""}
+          exerciseName={selectedExerciseName}
+        />
         <Dialog
           open={isWeightModalOpen}
           onClose={() => setIsWeightModalOpen(false)}
         >
-          <DialogTitle>Registar weight</DialogTitle>
+          <DialogTitle>Registar Peso: {modalExerciseTitle}</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -424,19 +432,22 @@ const ExercisePlans: React.FC = () => {
             />
           </DialogContent>
           <DialogActions>
-            <button onClick={() => setIsWeightModalOpen(false)}>
+            <button
+              onClick={() => setIsWeightModalOpen(false)}
+              className="flex items-center px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md transition duration-300"
+            >
+              <AiOutlineClose className="mr-2" />
               Cancelar
             </button>
-            <button onClick={handleSaveWeight}>Guardar</button>
+            <button
+              onClick={handleSaveWeight}
+              className="flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition duration-300"
+            >
+              <AiOutlineSave className="mr-2" />
+              Guardar
+            </button>
           </DialogActions>
         </Dialog>
-
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          videoUrl={videoUrl || ""}
-          exerciseName={selectedExerciseName}
-        />
       </div>
     </DefaultLayout>
   );
