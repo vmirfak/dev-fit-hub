@@ -5,7 +5,7 @@ import { IoFitness } from "react-icons/io5";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AiOutlineFileDone } from "react-icons/ai";
-
+import { FiBarChart2 } from "react-icons/fi";
 interface Exercise {
   day: string;
   exercise: string;
@@ -152,6 +152,14 @@ const ExercisePlanOverview = () => {
       </div>
 
       <div className="mt-6 grid grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-4">
+        <Link
+          to="/athleteprogress"
+          className="flex items-center justify-center space-x-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition"
+        >
+          <FiBarChart2 size={18} />
+          <span>Ver Progresso</span>
+        </Link>
+
         <Link
           to="/dietplandetails"
           className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"

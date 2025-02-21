@@ -31,6 +31,7 @@ import IndividualClientOverview from "./pages/Clients/IndividualClientOverview";
 import FoodPlanDetails from "./pages/Diet/FoodPlanDetails";
 import ExercisePlanDetails from "./pages/Exercise/ExercisePlanDetails";
 import ProEvaluations from "./pages/Evaluations/ProEvaluations";
+import AthleteProgress from "./pages/Exercise/AthleteProgressOverview";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -286,6 +287,15 @@ function App() {
             <>
               <PageTitle title="Avaliações Pendentes" />
               <ProEvaluations />
+            </>
+          }
+        />
+        <Route
+          path="/athleteprogress"
+          element={
+            <>
+              <PageTitle title="Progresso do Atleta" />
+              <AthleteProgress />
             </>
           }
         />
