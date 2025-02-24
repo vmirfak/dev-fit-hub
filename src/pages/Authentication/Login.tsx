@@ -14,54 +14,78 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
   const [loginError, setLoginError] = useState<string | null>(null);
   const { setUser } = useUser();
   const navigate = useNavigate();
-
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Nome de Utilizador é obrigatório"),
     password: Yup.string().required("Palavra-passe é obrigatória"),
   });
 
+  const [useTestData] = useState(false);
   const handleLogin = async (values: {
     username: string;
     password: string;
+    role: string;
   }) => {
     setLoading(true);
-    const { username, password } = values;
+    const { username, password, role } = values;
 
-    // Mocked user data for demonstration
-    const users = [
-      {
-        id: 1,
-        username: "111",
-        name: "Rúben Silva [Admin]",
-        email: "rubenSilva@example.com",
-        phone: "+351999999999",
-        address: "Rua de Flg 123, 4610-99 FLG",
-        birthday: "27 Set 1992",
-        role: "admin" as "admin",
-      },
-      {
-        id: 2,
-        username: "222",
-        name: "Pedro Moreira [User]",
-        email: "pedromoreira@example.com",
-        phone: "+351111111111",
-        address: "Rua de Flg 999, 4610-555 FLG",
-        birthday: "26 Nov 1994",
-        role: "user" as "user",
-      },
-    ];
+    let user = null;
 
-    // Dummy authentication logic based on hardcoded credentials.
-    const user = users.find(
-      (u) => u.username === username && password === username
-    );
+    if (useTestData) {
+      const users = [
+        {
+          id: 1,
+          username: "111",
+          name: "Rúben Silva [Admin]",
+          email: "rubenSilva@example.com",
+          phone: "+351999999999",
+          address: "Rua de Flg 123, 4610-99 FLG",
+          birthday: "27 Set 1992",
+          role: "admin" as "admin",
+        },
+        {
+          id: 2,
+          username: "222",
+          name: "Pedro Moreira [User]",
+          email: "pedromoreira@example.com",
+          phone: "+351111111111",
+          address: "Rua de Flg 999, 4610-555 FLG",
+          birthday: "26 Nov 1994",
+          role: "user" as "user",
+        },
+      ];
+
+      user = users.find(
+        (u) => u.username === username && password === username
+      );
+    } else {
+      try {
+        const response = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password, role }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.user) {
+          const apiUser = result.user;
+          const transformedRole = apiUser.role === "1" ? "admin" : apiUser.role === "2" ? "user" : apiUser.role;
+          user = { ...apiUser, role: transformedRole };
+        }
+      } catch (error) {
+        console.error('Erro ao fazer login:', error);
+        setLoginError("Erro ao autenticar, tente novamente.");
+      }
+    }
+
     if (user) {
       setUser(user);
-
-      // Redirecionar consoante o role do utilizador
+      console.log(setUser);
       if (user.role === "admin") {
         navigate("/admindashboard");
-      } else {
+      } else if (user.role === "user") {
         navigate("/dashboard");
       }
     } else {
@@ -84,7 +108,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
           Bem-vindo!
         </h2>
         <Formik
-          initialValues={{ username: "", password: "" }}
+          initialValues={{ username: "", password: "", role: ""}}
           validationSchema={validationSchema}
           onSubmit={handleLogin}
         >

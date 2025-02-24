@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../../images/logo/b-blue-stroke.png"
+import Logo from "../../images/logo/b-blue-stroke.png";
+
 const Registration: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -23,12 +24,12 @@ const Registration: React.FC = () => {
     }
 
     if (!emailRegex.test(email)) {
-      setError("Introduz um e-mail válido!");
+      setError("Please enter a valid email address.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Palavras-pass não coincidem!");
+      setError("As palavras pass não coincidem!");
       return;
     }
 
@@ -51,22 +52,30 @@ const Registration: React.FC = () => {
       const result = await response.json();
 
       if (response.ok) {
-        // Registration successful
-        setSuccessMessage("Registration successful! You can now log in.");
+        // Registo bem-sucedido
+        setSuccessMessage(
+          "Registo realizado com sucesso! Agora pode iniciar sessão."
+        );
+        setUsername("");
+        setPassword("");
+        setEmail("");
+        setConfirmPassword("");
       } else {
-        // Handle server errors
-        setError(result.message || "Registration failed. Please try again.");
+        // Lidar com erros do servidor
+        setError(result.message || "Registo falhou. Tente novamente.");
       }
     } catch (error) {
-      setError("An error occurred while registering. Please try again later.");
-      console.error("Registration error:", error);
+      setError(
+        "Ocorreu um erro ao realizar o registo. Por favor, tente novamente mais tarde."
+      );
+      console.error("Erro no registo:", error);
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-500 to-green-600 p-6">
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
-      <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6">
           <img
             src={Logo}
             alt="Company Logo"

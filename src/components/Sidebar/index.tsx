@@ -396,7 +396,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </li>
                 </>
               )}
-              {user?.role === "user" && (
+              {user?.role === "user" && ( 
                 <>
                   {/* <!-- Menu Item Shopping List --> */}
                   <li>
