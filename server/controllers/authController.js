@@ -40,7 +40,7 @@ export const registerUser = async (req, res) => {
         username,
         email,
         password: hashedPassword,
-        roleId: defaultRole.id,
+        roleId: "2",
       },
     });
 
@@ -74,25 +74,25 @@ export const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userId: user.id, username: user.username }, 
+      { userId: user.id, username: user.username },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' } 
+      { expiresIn: '1h' }
     );
 
     res.status(200).json({
       message: 'Login bem-sucedido!',
       token,
-      user: { 
+      user: {
         id: user.id,
-        username: user.username, 
-        email: user.email, 
-        role: user.roleId, 
-        roleDesc: user.role.name, 
-        name: user.name },
+        username: user.username,
+        email: user.email,
+        role: user.roleId,
+        roleDesc: user.role.name,
+        name: user.name
+      },
     });
 
   } catch (error) {
-    console.error('Erro ao fazer login:', error);
     res.status(500).json({ message: 'Erro ao fazer login!', error: error.message });
   }
 };

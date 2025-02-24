@@ -70,26 +70,31 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
         const result = await response.json();
 
         if (response.ok && result.user) {
+          localStorage.setItem("userDataToken", result.token);
           const apiUser = result.user;
-          const transformedRole = apiUser.role === "1" ? "admin" : apiUser.role === "2" ? "user" : apiUser.role;
+          const transformedRole =
+            apiUser.role === "1"
+              ? "admin"
+              : apiUser.role === "2"
+              ? "user"
+              : apiUser.role;
           user = { ...apiUser, role: transformedRole };
         }
       } catch (error) {
-        console.error('Erro ao fazer login:', error);
+        console.error("Erro ao fazer login:", error);
         setLoginError("Erro ao autenticar, tente novamente.");
       }
     }
 
     if (user) {
       setUser(user);
-      console.log(setUser);
-      if (user.role === "admin") {
-        navigate("/admindashboard");
-      } else if (user.role === "user") {
-        navigate("/dashboard");
-      }
-    } else {
-      setLoginError("Palavra-passe ou Nome de Utilizador Inválido!");
+      setTimeout(() => {
+        if (user.role === "admin") {
+          navigate("/admindashboard");
+        } else if (user.role === "user") {
+          navigate("/dashboard");
+        }
+      }, 0);
     }
 
     setLoading(false);
@@ -108,7 +113,7 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
           Bem-vindo!
         </h2>
         <Formik
-          initialValues={{ username: "", password: "", role: ""}}
+          initialValues={{ username: "", password: "", role: "" }}
           validationSchema={validationSchema}
           onSubmit={handleLogin}
         >

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface User {
   id: number;
@@ -23,8 +23,17 @@ export const useUser = () => useContext(UserContext);
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
+  useEffect(() => {
+    const token = localStorage.getItem('userDataToken');
+    if (token) {
+      const decodedUser = JSON.parse(atob(token.split('.')[1])); 
+      setUser(decodedUser)
+    }
+  }, []);
+
   const logout = () => {
-    setUser(null); 
+    setUser(null);
+    localStorage.removeItem('userDataToken'); 
   };
 
   return (
@@ -33,3 +42,5 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     </UserContext.Provider>
   );
 };
+
+
