@@ -42,8 +42,6 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     try {
       const res = await registerAPI(email, username, password);
       if (res) {
-        localStorage.setItem("token", res?.data.token);
-        setToken(res?.data.token!);
         toast.success("Registo feito com sucesso!");
         navigate("/");
       } else {
