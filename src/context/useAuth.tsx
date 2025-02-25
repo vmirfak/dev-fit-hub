@@ -43,18 +43,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       const res = await registerAPI(email, username, password);
       if (res) {
         localStorage.setItem("token", res?.data.token);
-        const userObj = {
-          id: res?.data.user.id,
-          username: res?.data.user.username,
-          email: res?.data.user.email,
-          role: res?.data.user.role,
-          roleDesc: res?.data.user.roleDesc,
-          name: res?.data.user.name,
-        };
-
-        localStorage.setItem("user", JSON.stringify(userObj));
         setToken(res?.data.token!);
-        setUser(userObj!);
         toast.success("Registo feito com sucesso!");
         navigate("/");
       } else {
@@ -71,10 +60,8 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
         if (res) {
           localStorage.setItem("token", res.data.token);
           const userObj = {
-            id: res?.data.user.id,
             username: res?.data.user.username,
             email: res?.data.user.email,
-            role: res?.data.user.role,
             roleDesc: res?.data.user.roleDesc,
             name: res?.data.user.name,
           };

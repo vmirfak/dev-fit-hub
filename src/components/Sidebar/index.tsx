@@ -61,11 +61,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5">
-        <NavLink to="/">
+        <NavLink to="/dashboard">
           <img
             src={Logo}
             alt="Company Logo"
-            className="w-20 md:w-22 lg:w-30 xl:w-25" // Responsive sizing based on breakpoints
+            className="w-20 md:w-22 lg:w-30 xl:w-25" 
           />
         </NavLink>
 
