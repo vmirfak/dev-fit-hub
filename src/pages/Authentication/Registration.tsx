@@ -1,77 +1,37 @@
-import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../images/logo/b-blue-stroke.png";
+import { useAuth } from "../../context/useAuth";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
-const Registration: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+type Props = {};
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+type RegisterFormsInputs = {
+  email: string;
+  userName: string;
+  password: string;
+};
 
-  const handleRegister = async () => {
-    // Clear previous messages
-    setError("");
-    setSuccessMessage("");
+const validation = Yup.object().shape({
+  email: Yup.string().required("É necessário um endereço de e-mail"),
+  userName: Yup.string().required(
+    "É necessário introduzir o Nome de utilizador."
+  ),
+  password: Yup.string().required("É necessário introduzir uma palavra-passe."),
+});
 
-    // Input validations
-    if (!username || !email || !password || !confirmPassword) {
-      setError("All fields are required!");
-      return;
-    }
+const Registration = (_props: Props) => {
+  const { registerUser } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormsInputs>({ resolver: yupResolver(validation) });
 
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError("As palavras pass não coincidem!");
-      return;
-    }
-
-    // Prepare user data for registration
-    const userData = {
-      username,
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        // Registo bem-sucedido
-        setSuccessMessage(
-          "Registo realizado com sucesso! Agora pode iniciar sessão."
-        );
-        setUsername("");
-        setPassword("");
-        setEmail("");
-        setConfirmPassword("");
-      } else {
-        // Lidar com erros do servidor
-        setError(result.message || "Registo falhou. Tente novamente.");
-      }
-    } catch (error) {
-      setError(
-        "Ocorreu um erro ao realizar o registo. Por favor, tente novamente mais tarde."
-      );
-      console.error("Erro no registo:", error);
-    }
+  const handleRegistration = (form: RegisterFormsInputs) => {
+    registerUser(form.email, form.userName, form.password);
   };
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-teal-500 to-green-600 p-6">
       <div className="w-full max-w-md bg-white p-10 rounded-xl shadow-xl transition-transform transform hover:scale-105 duration-300">
@@ -85,40 +45,27 @@ const Registration: React.FC = () => {
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
           Criar uma Conta
         </h2>
-        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-          {error && (
+        <form className="space-y-6" onSubmit={handleSubmit(handleRegistration)}>
+          {errors.email || errors.userName || errors.password ? (
             <div
               className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative mb-4"
               role="alert"
             >
-              <span className="block sm:inline">{error}</span>
+              {errors.email?.message ||
+                errors.userName?.message ||
+                errors.password?.message}
             </div>
-          )}
-          {successMessage && (
-            <div
-              className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl relative mb-4"
-              role="alert"
-            >
-              <span className="block sm:inline">{successMessage}</span>
-              <br />
-              <a
-                href="/"
-                className="mt-2 inline-block text-teal-600 hover:underline font-medium"
-              >
-                Ir para Login
-              </a>
-            </div>
-          )}
+          ) : null}
           <div>
             <label className="block text-lg font-medium text-gray-700 mb-1">
               Nome de Utilizador
             </label>
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id="userName"
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
-              placeholder="Enter your username"
+              placeholder="Nome de utilizador desejado"
+              {...register("userName")}
             />
           </div>
           <div>
@@ -127,10 +74,10 @@ const Registration: React.FC = () => {
             </label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="email"
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
-              placeholder="Enter your email"
+              placeholder="Introduza o seu e-mail"
+              {...register("email")}
             />
           </div>
           <div>
@@ -139,10 +86,10 @@ const Registration: React.FC = () => {
             </label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              id="password"
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
-              placeholder="Enter your password"
+              placeholder="Palavra-pass desejada"
+              {...register("password")}
             />
           </div>
           <div>
@@ -151,15 +98,13 @@ const Registration: React.FC = () => {
             </label>
             <input
               type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              id="confirmPassword"
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition duration-200"
-              placeholder="Confirm your password"
+              placeholder="Confirme palavra-pass desejada"
             />
           </div>
           <button
-            type="button"
-            onClick={handleRegister}
+            type="submit"
             className="w-full bg-gradient-to-r from-teal-500 to-green-600 hover:from-teal-600 hover:to-green-700 text-white font-bold py-3 rounded-xl shadow-md transition duration-300 transform hover:scale-105"
           >
             Registar

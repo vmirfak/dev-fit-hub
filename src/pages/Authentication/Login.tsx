@@ -1,105 +1,31 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
 import Logo from "../../images/logo/b-green-stroke.png";
+import { useAuth } from "../../context/useAuth";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
-interface LoginProps {
-  setLoading: (loading: boolean) => void;
-}
+type LoginFormsInputs = {
+  userName: string;
+  password: string;
+};
 
-const Login: React.FC<LoginProps> = ({ setLoading }) => {
-  const [loginError, setLoginError] = useState<string | null>(null);
-  const { setUser } = useUser();
-  const navigate = useNavigate();
-  const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Nome de Utilizador é obrigatório"),
-    password: Yup.string().required("Palavra-passe é obrigatória"),
-  });
+const validation = Yup.object().shape({
+  userName: Yup.string().required("Username is required"),
+  password: Yup.string().required("Password is required"),
+});
 
-  const [useTestData] = useState(false);
-  const handleLogin = async (values: {
-    username: string;
-    password: string;
-    role: string;
-  }) => {
-    setLoading(true);
-    const { username, password, role } = values;
+const Login = () => {
+  const { loginUser } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormsInputs>({ resolver: yupResolver(validation) });
 
-    let user = null;
-
-    if (useTestData) {
-      const users = [
-        {
-          id: 1,
-          username: "111",
-          name: "Rúben Silva [Admin]",
-          email: "rubenSilva@example.com",
-          phone: "+351999999999",
-          address: "Rua de Flg 123, 4610-99 FLG",
-          birthday: "27 Set 1992",
-          role: "admin" as "admin",
-        },
-        {
-          id: 2,
-          username: "222",
-          name: "Pedro Moreira [User]",
-          email: "pedromoreira@example.com",
-          phone: "+351111111111",
-          address: "Rua de Flg 999, 4610-555 FLG",
-          birthday: "26 Nov 1994",
-          role: "user" as "user",
-        },
-      ];
-
-      user = users.find(
-        (u) => u.username === username && password === username
-      );
-    } else {
-      try {
-        const response = await fetch("http://localhost:3000/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password, role }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.user) {
-          localStorage.setItem("userDataToken", result.token);
-          const apiUser = result.user;
-          const transformedRole =
-            apiUser.role === "1"
-              ? "admin"
-              : apiUser.role === "2"
-              ? "user"
-              : apiUser.role;
-          user = { ...apiUser, role: transformedRole };
-        }
-      } catch (error) {
-        console.error("Erro ao fazer login:", error);
-        setLoginError("Erro ao autenticar, tente novamente.");
-      }
-    }
-
-    if (user) {
-      setUser(user);
-      setTimeout(() => {
-        if (user.role === "admin") {
-          navigate("/admindashboard");
-        } else if (user.role === "user") {
-          navigate("/dashboard");
-        }
-      }, 0);
-    }
-
-    setLoading(false);
+  const handleLogin = (form: LoginFormsInputs) => {
+    loginUser(form.userName, form.password);
   };
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-600 p-6">
       {/* Card Container */}
@@ -112,77 +38,56 @@ const Login: React.FC<LoginProps> = ({ setLoading }) => {
         <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
           Bem-vindo!
         </h2>
-        <Formik
-          initialValues={{ username: "", password: "", role: "" }}
-          validationSchema={validationSchema}
-          onSubmit={handleLogin}
-        >
-          {({ isSubmitting }) => (
-            <Form className="space-y-6">
-              <div>
-                <label className="block text-lg font-medium text-gray-700 mb-1">
-                  Nome de Utilizador
-                </label>
-                <Field
-                  type="text"
-                  name="username"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                  placeholder="Enter your username"
-                />
-                <ErrorMessage
-                  name="username"
-                  component="div"
-                  className="text-red-600 text-sm mt-1"
-                />
-              </div>
-              <div>
-                <label className="block text-lg font-medium text-gray-700 mb-1">
-                  Palavra-Passe
-                </label>
-                <Field
-                  type="password"
-                  name="password"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-                  placeholder="Enter your password"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="text-red-600 text-sm mt-1"
-                />
-              </div>
-              {loginError && (
-                <div className="text-red-600 text-sm">{loginError}</div>
-              )}
-              <div className="flex items-center justify-between mt-4">
-                <label className="flex items-center">
-                  <Field
-                    type="checkbox"
-                    className="form-checkbox text-indigo-600"
-                  />
-                  <span className="ml-2 text-sm text-gray-600">
-                    Lembrar as minhas credenciais
-                  </span>
-                </label>
-                <a href="#" className="text-sm text-indigo-600 hover:underline">
-                  <NavLink
-                    to="/recover"
-                    className="text-indigo-600 hover:underline font-medium"
-                  >
-                    Esqueceste-te da Palavra-Passe?
-                  </NavLink>
-                </a>
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-md transition duration-300 transform hover:scale-105"
-              >
-                Login
-              </button>
-            </Form>
+        <form className="space-y-6" onSubmit={handleSubmit(handleLogin)}>
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-1">
+              Nome de Utilizador
+            </label>
+            <input
+              type="text"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
+              placeholder="Enter your username"
+              {...register("userName")}
+            />
+            {errors.userName ? (
+              <p className="text-white">{errors.userName.message}</p>
+            ) : (
+              ""
+            )}
+          </div>
+          <div>
+            <label className="block text-lg font-medium text-gray-700 mb-1">
+              Palavra-Passe
+            </label>
+            <input
+              type="password"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
+              placeholder="Enter your password"
+              {...register("password")}
+            />
+          </div>
+          {errors.password ? (
+            <p className="text-white">{errors.password.message}</p>
+          ) : (
+            ""
           )}
-        </Formik>
+          <div className="flex items-center justify-between mt-4">
+            <a href="#" className="text-sm text-indigo-600 hover:underline">
+              <NavLink
+                to="/recover"
+                className="text-indigo-600 hover:underline font-medium"
+              >
+                Esqueceste-te da Palavra-Passe?
+              </NavLink>
+            </a>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-md transition duration-300 transform hover:scale-105"
+          >
+            Login
+          </button>
+        </form>
         <p className="text-center text-gray-600 mt-6">
           Não tens uma conta?{" "}
           <NavLink
