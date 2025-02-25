@@ -65,7 +65,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <img
             src={Logo}
             alt="Company Logo"
-            className="w-20 md:w-22 lg:w-30 xl:w-25" 
+            className="w-20 md:w-22 lg:w-30 xl:w-25"
           />
         </NavLink>
 
@@ -101,10 +101,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
               MENU
             </h3>
-
             <ul className="mb-6 flex flex-col gap-1.5">
               {/* <!-- Menu Item User Dashboard --> */}
-
               <li>
                 {" "}
                 <NavLink
@@ -445,6 +443,59 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                   </svg>
                   Chat
+                </NavLink>
+              </li>
+              {/* <!-- Menu Item Dev --> */}
+              <li>
+                <NavLink
+                  to="/devoverview"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("chat") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#aeb7b1"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      {" "}
+                      <path
+                        d="M7 8L3 12L7 16"
+                        stroke="#aeb7b1"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M17 8L21 12L17 16"
+                        stroke="#aeb7b1"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                      <path
+                        d="M14 4L9.8589 19.4548"
+                        stroke="#aeb7b1"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>{" "}
+                    </g>
+                  </svg>
+                  Dev
                 </NavLink>
               </li>
             </ul>

@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     if (user && token) {
       setUser(JSON.parse(user));
       setToken(token);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+      axios.defaults.headers.common["Authorization"] = "Pedro  " + token;
     }
     setIsReady(true);
   }, []);
@@ -56,17 +56,18 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     await loginAPI(username, password)
       .then((res) => {
         if (res) {
-          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("token", res?.data.user.token);
           const userObj = {
             username: res?.data.user.username,
             email: res?.data.user.email,
             roleDesc: res?.data.user.roleDesc,
             name: res?.data.user.name,
+            token: res?.data.user.token,
           };
 
           localStorage.setItem("user", JSON.stringify(userObj));
-          setToken(res.data.token);
-          setUser(userObj);
+          setToken(res.data.user.token!);
+          setUser(userObj!);
           toast.success("Login efetuado com sucesso!");
           navigate("/dashboard");
         }

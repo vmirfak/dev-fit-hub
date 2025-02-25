@@ -4,8 +4,8 @@ import PageTitle from "../components/PageTitle";
 import ProtectedRoute from "./ProtectedRoute";
 import MyDashboard from "../pages/Dashboard/Dashboard";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard";
-import Login from "../pages/Authentication/Login";
-import Registration from "../pages/Authentication/Registration";
+import Login from "../pages/Common/Authentication/Login";
+import Registration from "../pages/Common/Authentication/Registration";
 import FoodPlans from "../pages/Athlete/Diet/FoodPlans";
 import ExercisePlans from "../pages/Athlete/Exercise/ExercisePlans";
 import FoodPlanCreation from "../pages/Professional/Diet/FoodPlanCreation";
@@ -15,9 +15,9 @@ import NewEvaluation from "../pages/Professional/Evaluations/NewEvaluation";
 import Chat from "../pages/Common/Chat";
 import Recipes from "../pages/Common/Diet/Recipes";
 import ShoppingList from "../pages/Common/Diet/ShoppingList";
-import RecoverPassword from "../pages/Authentication/RecoverPassword";
+import RecoverPassword from "../pages/Common/Authentication/RecoverPassword";
 import NewDietPlan from "../pages/Professional/Diet/NewDietPlan";
-import ErrorPage from "../pages/Error/ErrorPage";
+import ErrorPage from "../pages/Common/Error/ErrorPage";
 import NewExercisePlan from "../pages/Professional/Exercise/NewExercisePlan";
 import ClientsOverview from "../pages/Professional/Clients/ClientsOverview";
 import FoodPlanOverview from "../pages/Professional/Diet/FoodPlanOverview";
@@ -27,6 +27,7 @@ import FoodPlanDetails from "../pages/Professional/Diet/FoodPlanDetails";
 import ExercisePlanDetails from "../pages/Professional/Exercise/ExercisePlanDetails";
 import ProEvaluations from "../pages/Professional/Evaluations/ProEvaluations";
 import AthleteProgress from "../pages/Professional/Exercise/AthleteProgressOverview";
+import DevOverview from "../pages/Dev/DevOverview";
 
 export const router = createBrowserRouter([
   {
@@ -225,6 +226,15 @@ export const router = createBrowserRouter([
           <ProtectedRoute>
             <PageTitle title="Progresso do Atleta" />
             <AthleteProgress />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "devoverview",
+        element: (
+          <ProtectedRoute>
+            <PageTitle title="Dev" />
+            <DevOverview />
           </ProtectedRoute>
         ),
       },

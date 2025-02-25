@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import Logo from "../../images/logo/b-blue-stroke.png";
-import { useAuth } from "../../context/useAuth";
+import Logo from "../../../images/logo/b-blue-stroke.png";
+import { useAuth } from "../../../context/useAuth";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";

@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', ''); 
+  const token = req.header('Authorization')?.replace('Pedro ', ''); 
 
   if (!token) {
     return res.status(401).json({ message: 'Acesso não autorizado. Token não fornecido!' });
