@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 
 const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Pedro ', ''); 
+  const token = req.header('Authorization')?.replace('Bearer ', ''); 
 
   if (!token) {
-    return res.status(401).json({ message: 'Acesso não autorizado. Token não fornecido!' });
+    return res.status(401).json({ message: 'Not authorized' });
   }
 
   try {
@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Token inválido ou expirado!' });
+    return res.status(401).json({ message: 'Invalid Token' });
   }
 };
 

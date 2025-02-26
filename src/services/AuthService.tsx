@@ -14,7 +14,7 @@ export const registerAPI = async (
       email: email,
       username: username,
       password: password,
-    });
+    }, { withCredentials: true });
     return data;
   } catch (error) {
     handleError(error);
@@ -26,7 +26,7 @@ export const loginAPI = async (username: string, password: string) => {
     const data = await axios.post<UserProfileToken>(api + "/login", {
       username: username,
       password: password,
-    });
+    }, { withCredentials: true });
     return data;
   } catch (error) {
     handleError(error);
