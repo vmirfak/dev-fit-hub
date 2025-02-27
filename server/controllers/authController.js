@@ -79,17 +79,32 @@ export const loginUser = async (req, res) => {
       { expiresIn: '1h' }
     );
 
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      maxAge: 3600000,
+    });
+
     res.status(200).json({
       user: {
         username: user.username,
         email: user.email,
         token,
         roleDesc: user.role.name,
-        name: user.name
+        name: user.name,
       },
     });
-
   } catch (error) {
     res.status(500).json({ message: 'Erro ao fazer login!', error: error.message });
   }
+};
+
+export const logoutUser = (req, res) => {
+  res.clearCookie('jwt', {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'lax',
+  });
+  res.status(200).json({ message: 'Logout bem-sucedido!' });
 };

@@ -10,24 +10,42 @@ export const registerAPI = async (
   password: string
 ) => {
   try {
-    const data = await axios.post<UserProfileToken>(api + "/register", {
-      email: email,
-      username: username,
-      password: password,
-    }, { withCredentials: true });
+    const data = await axios.post<UserProfileToken>(
+      api + "/register",
+      {
+        email: email,
+        username: username,
+        password: password,
+      },
+      { withCredentials: true }
+    );
     return data;
   } catch (error) {
     handleError(error);
   }
 };
-
 export const loginAPI = async (username: string, password: string) => {
   try {
-    const data = await axios.post<UserProfileToken>(api + "/login", {
-      username: username,
-      password: password,
-    }, { withCredentials: true });
+    const data = await axios.post<UserProfileToken>(
+      api + "/login",
+      {
+        username: username,
+        password: password,
+      },
+      { withCredentials: true }
+    );
     return data;
+  } catch (error) {
+    handleError(error);
+  }
+};
+export const logoutAPI = async () => {
+  try {
+    await axios.post(
+      api + "/logout",
+      {},
+      { withCredentials: true }
+    );
   } catch (error) {
     handleError(error);
   }
