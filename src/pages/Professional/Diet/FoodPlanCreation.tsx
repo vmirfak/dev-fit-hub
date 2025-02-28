@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { FaPencilAlt, FaTrashAlt, FaPlus } from "react-icons/fa";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
-import NewDietPlanModal from "../../components/Modal/NewDietPlanModal";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
+import NewDietPlanModal from "../../../components/Modal/NewDietPlanModal";
 import { NavLink } from "react-router-dom";
 
 interface DietPlan {

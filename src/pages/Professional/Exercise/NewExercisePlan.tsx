@@ -1,6 +1,6 @@
 import { useState, ChangeEventHandler, useEffect } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { FaPlus } from "react-icons/fa"; // Import Icon
 import {
   Stepper,
@@ -10,8 +10,8 @@ import {
   Typography,
   Slider,
 } from "@mui/material";
-import { ActivityLevel, HealthGoals } from "../../enum/enum";
-import { fileToDataString } from "../../utils/utils";
+import { ActivityLevel, HealthGoals } from "../../../enum/enum";
+import { fileToDataString } from "../../../utils/utils";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
@@ -825,7 +825,7 @@ const NewExercisePlan = () => {
                           Nome do exercício:
                         </label>
                         <select
-                          className="block w-full px-2 py-1 mb-2 border rounded-md cursor-pointer"
+                          className="block w-full px-2 py-1 mb-2 border rounded-md cursor-pointer dark:text-stone-800"
                           value={exercise.name}
                           onChange={(e) =>
                             handleExerciseChange(groupIndex, exerciseIndex, {
@@ -953,8 +953,6 @@ const NewExercisePlan = () => {
             ))}
           </div>
         );
-
-
       case 3:
         return (
           <div className="p-4">

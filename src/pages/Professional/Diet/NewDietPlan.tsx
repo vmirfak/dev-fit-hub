@@ -1,14 +1,14 @@
 import { useState, useEffect, ChangeEventHandler } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 import { Stepper, Step, StepLabel, Button, Typography } from "@mui/material";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import Slider from "@mui/material/Slider";
 import { FaPlus } from "react-icons/fa";
-import AddRecipeModal from "../../components/Modal/RecipeModal";
+import AddRecipeModal from "../../../components/Modal/RecipeModal";
 import { FiMinus } from "react-icons/fi";
-import { ActivityLevel, HealthGoals } from "../../enum/enum";
-import { fileToDataString } from "../../utils/utils";
+import { ActivityLevel, HealthGoals } from "../../../enum/enum";
+import { fileToDataString } from "../../../utils/utils";
 
 const steps = [
   "Perfil do Utilizador",
@@ -616,7 +616,7 @@ const NewDietPlan = () => {
                       type="file"
                       onChange={handleFileChange}
                       accept="image/*"
-                      multiple // Allow multiple file uploads
+                      multiple
                       className="border border-stroke bg-gray-50 py-2 px-4 text-black rounded-md focus:border-primary focus:ring focus:ring-primary/30 dark:border-strokedark dark:bg-meta-4 dark:text-white cursor-pointer"
                     />
                   </div>
@@ -782,7 +782,7 @@ const NewDietPlan = () => {
               <div>
                 <div className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0">
                   {/* Resumo Projetado Section */}
-                  <div className="p-6 border-2 border-green-500 rounded-lg shadow-lg bg-green-50 flex-1 w-full">
+                  <div className="p-6 border-2 mr-5 border-green-500 rounded-lg shadow-lg bg-green-50 flex-1 w-full">
                     <h3 className="text-lg font-bold mb-4 text-green-700">
                       Resumo Projetado:
                     </h3>
@@ -957,11 +957,13 @@ const NewDietPlan = () => {
         return (
           <div className="flex flex-col items-center justify-center">
             <div className="text-center">
+              {/* User Profile Section */}
               <Typography
                 variant="body1"
                 className="flex flex-col items-center justify-center"
               >
                 <strong>Perfil do Utilizador:</strong>
+
                 {/* Display Uploaded Images */}
                 {previewImgUrls.length > 0 && (
                   <div className="mt-4 flex flex-col items-center">
@@ -977,41 +979,61 @@ const NewDietPlan = () => {
                     </div>
                   </div>
                 )}
-                <br />
-                Idade: {userProfile.age} <br />
-                Género: {userProfile.gender} <br />
-                Peso: {userProfile.weight} kg
-                <br />
-                Altura: {userProfile.height} cm
-                <br />
-                Nível de Atividade: {userProfile.activityLevel} <br />
-                Calorias Diárias: {caloricNeeds} kcal
-                <br />
-                Objectivo: {userProfile.healthGoals}
+
+                {/* User Details */}
+                <div className="mt-4 space-y-2">
+                  <p>
+                    <strong>Idade:</strong> {userProfile.age}
+                  </p>
+                  <p>
+                    <strong>Género:</strong> {userProfile.gender}
+                  </p>
+                  <p>
+                    <strong>Peso:</strong> {userProfile.weight} kg
+                  </p>
+                  <p>
+                    <strong>Altura:</strong> {userProfile.height} cm
+                  </p>
+                  <p>
+                    <strong>Nível de Atividade:</strong>{" "}
+                    {userProfile.activityLevel}
+                  </p>
+                  <p>
+                    <strong>Calorias Diárias:</strong> {caloricNeeds} kcal
+                  </p>
+                  <p>
+                    <strong>Objectivo:</strong> {userProfile.healthGoals}
+                  </p>
+                </div>
               </Typography>
 
-              <Typography variant="body1">
+              {/* Allergies */}
+              <Typography variant="body1" className="mt-4">
                 <strong>Alergias:</strong>
-                <br />
-                {userProfile.allergies.length > 0
-                  ? userProfile.allergies.join(", ")
-                  : "Nenhuma alergia"}
+                <p>
+                  {userProfile.allergies.length > 0
+                    ? userProfile.allergies.join(", ")
+                    : "Nenhuma alergia"}
+                </p>
               </Typography>
 
-              <Typography variant="body1">
+              {/* Health Conditions */}
+              <Typography variant="body1" className="mt-4">
                 <strong>Condições de Saúde:</strong>
-                <br />
-                {userProfile.healthConditions.length > 0
-                  ? userProfile.healthConditions.join(", ")
-                  : "Nenhuma condição de saúde"}
+                <p>
+                  {userProfile.healthConditions.length > 0
+                    ? userProfile.healthConditions.join(", ")
+                    : "Nenhuma condição de saúde"}
+                </p>
               </Typography>
 
+              {/* Meal Plan Section */}
               {addedRecipes.map((mealRecipes, mealIndex) => (
-                <div key={mealIndex} className="my-4">
+                <div key={mealIndex} className="my-6">
                   <Typography variant="h6">
                     <strong>Refeição {mealIndex + 1}:</strong>
                   </Typography>
-                  <ul className="list-disc list-inside">
+                  <ul className="list-disc list-inside space-y-2">
                     {mealRecipes.map((recipe, recipeIndex) => (
                       <li key={recipeIndex}>
                         {recipe.name} - {recipe.calories} kcal ({recipe.carbs}g
@@ -1023,16 +1045,25 @@ const NewDietPlan = () => {
                 </div>
               ))}
 
-              <Typography variant="body1">
+              {/* Total Nutritional Summary */}
+              <Typography variant="body1" className="mt-6">
                 <strong>Total Nutricional:</strong>
-                <br />
-                Carboidratos: {calculatedMacros.carbs}g<br />
-                Proteínas: {calculatedMacros.protein}g<br />
-                Gorduras: {calculatedMacros.fats}g
+                <div className="mt-2 space-y-1">
+                  <p>
+                    <strong>Carboidratos:</strong> {calculatedMacros.carbs}g
+                  </p>
+                  <p>
+                    <strong>Proteínas:</strong> {calculatedMacros.protein}g
+                  </p>
+                  <p>
+                    <strong>Gorduras:</strong> {calculatedMacros.fats}g
+                  </p>
+                </div>
               </Typography>
             </div>
           </div>
         );
+
       default:
         return null;
     }

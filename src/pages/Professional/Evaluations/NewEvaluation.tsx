@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Breadcrumb from "../../components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "../../layout/DefaultLoayout";
+import Breadcrumb from "../../../components/Breadcrumbs/Breadcrumb";
+import DefaultLayout from "../../../layout/DefaultLoayout";
 
 const NewEvaluation: React.FC = () => {
   // State variables for form inputs
@@ -101,7 +101,7 @@ const NewEvaluation: React.FC = () => {
 
   return (
     <DefaultLayout isModalOpen={isOpen}>
-      <Breadcrumb pageName="New Physical Evaluation" />
+      <Breadcrumb pageName="Nova Avaliação Física" />
       <div className="w-full grid grid-cols-1 gap-9 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-xl border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
