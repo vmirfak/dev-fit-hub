@@ -6,7 +6,7 @@ dotenv.config();
 
 passport.use(new JwtCookieComboStrategy({
   secretOrPublicKey: process.env.JWT_SECRET,
-  jwtCookieName: 'jwt'
+  jwtCookieName: 'seshId'
 }, (payload, done) => {
   return done(null, payload.user);
 }));

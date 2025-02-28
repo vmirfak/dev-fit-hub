@@ -79,7 +79,7 @@ export const loginUser = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    res.cookie('jwt', token, {
+    res.cookie('seshId', token, {
       httpOnly: true,
       secure: false,
       sameSite: 'lax',
@@ -101,7 +101,7 @@ export const loginUser = async (req, res) => {
 };
 
 export const logoutUser = (req, res) => {
-  res.clearCookie('jwt', {
+  res.clearCookie('seshId', {
     httpOnly: true,
     secure: false,
     sameSite: 'lax',

@@ -24,6 +24,7 @@ export const registerAPI = async (
     handleError(error);
   }
 };
+
 export const loginAPI = async (username: string, password: string) => {
   try {
     const data = await axios.post<UserProfileToken>(

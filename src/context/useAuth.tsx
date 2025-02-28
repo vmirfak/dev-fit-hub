@@ -32,6 +32,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       axios.defaults.headers.common["Authorization"] = "Bearer  " + token;
     }
     setIsReady(true);
+    navigate("/dashboard")
   }, []);
 
   const registerUser = async (
