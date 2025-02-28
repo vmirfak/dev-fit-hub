@@ -13,7 +13,7 @@ export const getAllUsers = async () => {
     const response = await axios.get<UserProfile[]>(`${api}/getAllUsers`, {
       headers: {
         Authorization: `${token}`
-      }
+      }, withCredentials: true
     });
     return response.data;
   } catch (error) {

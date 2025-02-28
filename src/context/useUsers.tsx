@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import { UserProfile } from "../types/User";
 import { getAllUsers } from "../services/UserService";
 
@@ -27,10 +21,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setUsers([]);
     }
   };
-
-  useEffect(() => {
-    fetchAllUsers();
-  }, []);
 
   return (
     <UserContext.Provider value={{ users, fetchAllUsers }}>
