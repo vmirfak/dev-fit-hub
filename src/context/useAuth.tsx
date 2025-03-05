@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserProfile } from "../types/User";
 import { registerAPI, loginAPI, logoutAPI } from "../services/AuthService";
-import { toast } from "react-toastify";
+import { Slide, toast } from "react-toastify";
 import axios from "axios";
 
 type UserContextType = {
@@ -32,7 +32,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       axios.defaults.headers.common["Authorization"] = "Bearer  " + token;
     }
     setIsReady(true);
-    navigate("/dashboard")
+    navigate("/dashboard");
   }, []);
 
   const registerUser = async (
@@ -43,13 +43,40 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     try {
       const res = await registerAPI(email, username, password);
       if (res) {
-        toast.success("Registo feito com sucesso!");
+        toast.success("Registo feito com sucesso!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Slide,
+        });
         navigate("/");
       } else {
-        toast.warning("Erro no registo.");
+        toast.warning("Erro no registo.", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Slide,
+        });
       }
     } catch (e) {
-      toast.warning("Server error occurred");
+      toast.warning("Server error occurred", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Slide,
+      });
     }
   };
 
@@ -68,8 +95,28 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
           localStorage.setItem("user", JSON.stringify(userObj));
           setUser(userObj!);
           setToken(res.data.user.token!);
-          toast.success("Login efetuado com sucesso!");
+          toast.success("Login efetuado com sucesso!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+            transition: Slide,
+          });
           navigate("/dashboard");
+        }else{
+          toast.error("Erro de login. Credenciais erradas.", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "light",
+            transition: Slide,
+          });
         }
       })
       .catch((_e) => toast.warning("Ocorreu um erro no servidor"));
@@ -87,7 +134,16 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
         setUser(null);
         setToken("");
         navigate("/");
-        toast.success("Logout efetuado com sucesso!");
+        toast.success("Logout efetuado com sucesso!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Slide,
+        });
       })
       .catch((_e) => toast.warning("Ocorreu um erro no servidor"));
   };
