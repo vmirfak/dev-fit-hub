@@ -2,7 +2,7 @@ import { UserProfileToken } from "../types/User";
 import { handleError } from "../helpers/ErrorHandler";
 import axios from "axios";
 
-const api = "http://localhost:3000";
+const api = "https://dev-fit-hub-apiv2.onrender.com";
 
 export const registerAPI = async (
   email: string,
