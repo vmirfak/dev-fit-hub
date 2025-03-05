@@ -46,7 +46,7 @@ const Login = () => {
             <input
               type="text"
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-              placeholder="Enter your username"
+              placeholder="Introduza o seu nome de utilizador"
               {...register("userName")}
             />
             {errors.userName ? (
@@ -62,7 +62,7 @@ const Login = () => {
             <input
               type="password"
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-              placeholder="Enter your password"
+              placeholder="Introduza a sua palavra-pass"
               {...register("password")}
             />
           </div>
