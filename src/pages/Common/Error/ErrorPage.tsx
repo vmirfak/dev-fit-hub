@@ -1,7 +1,7 @@
 // src/components/ErrorPage.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import exerciseFailImage from '../../assets/exercise-fail-404.png'; 
+import exerciseFailImage from '../../../assets/exercise-fail-404.png'; 
 
 const ErrorPage: React.FC = () => {
   return (

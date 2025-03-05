@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../../images/logo/b-blue-stroke.png";
+import Logo from "../../../images/logo/b-blue-stroke.png";
 
 const RecoverPassword: React.FC = () => {
   const [email, setEmail] = useState("");
